@@ -1,0 +1,10 @@
+.add_tag-container {
+  width: 100%;
+}
+
+.addTagBtn {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5em;
+  font-size: 0.75em;
+}

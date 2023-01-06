@@ -1,0 +1,21 @@
+.side-tags-heading {
+  font-size: 1.2em;
+}
+
+.side-tag-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.side-tag-list-item {
+  border-radius: 2px;
+  font-size: 0.6em;
+  background-color: var(--tag_background);
+  color: var(--text_bright);
+  padding: 0 1rem;
+  cursor: pointer;
+}

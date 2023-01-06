@@ -1,0 +1,36 @@
+.article_page {
+  max-width: 70ch;
+  margin: auto;
+}
+
+.article_container {
+  padding: 1em;
+  background-color: var(--background_bright);
+  color: var(--text_dark);
+}
+
+.article_title {
+  margin-top: 1rem;
+}
+
+.tag-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.tag-list-item {
+  border-radius: 2px;
+  font-size: 0.6em;
+  background-color: var(--tag_background);
+  color: var(--text_bright);
+  padding: 0 1rem;
+}
+
+.article_image {
+  max-width: 100%;
+  max-height: 50vh;
+  display: block;
+  margin: auto;
+}

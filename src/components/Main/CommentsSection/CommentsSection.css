@@ -1,0 +1,7 @@
+.add-comment-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}

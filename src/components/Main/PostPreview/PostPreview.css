@@ -1,0 +1,75 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0.5em;
+  background-color: var(--blogpost_card_background);
+  color: var(--text_dark);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.post:hover {
+  background-color: var(--hover);
+  color: var(--text_bright);
+}
+
+.post:hover .read_more {
+  transform: scale(1.1);
+  color: var(--text_bright);
+}
+
+.post:hover .timestamp,
+.post:hover .post-text {
+  color: inherit;
+}
+
+.timestamp {
+  font-size: 0.6em;
+  color: var(--text_grey);
+}
+
+.post-title {
+  margin: 0;
+  word-wrap: break-word;
+  font-size: 1.2em;
+}
+
+.author {
+  font-size: 0.6em;
+  color: var(--text_grey);
+}
+
+.post-text {
+  max-width: 100%;
+  word-wrap: break-word;
+  font-size: 0.75em;
+  color: var(--text_grey);
+}
+
+.post-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6em;
+  gap: 0.6em;
+  width: 100%;
+}
+
+.read_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.6em;
+  color: var(--text_grey);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 800px) {
+  .post {
+    padding: 0.25em;
+  }
+}
