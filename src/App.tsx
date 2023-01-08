@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
 import AllPosts from './components/Main/AllPosts/AllPosts';
 import ArticlePage from './components/Main/ArticlePage/ArticlePage';
@@ -8,6 +8,19 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddPostPage from './components/Main/AddPostPage/AddPostPage';
+
+type ProtectedRouteProps = {
+  user: any;
+  redirectPath?: string;
+};
+
+const ProtectedRoute = ({ user, redirectPath = '/login' }: ProtectedRouteProps) => {
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
 
 function App() {
   const [filter, setFilter] = useState<ITag | string | null>(null);
@@ -33,10 +46,13 @@ function App() {
         </nav>
         <main>
           <Routes>
-            <Route path="/" element={<Navigate replace to="/all" />} />
-            <Route path="/all" element={<AllPosts filter={filter} />} />
-            <Route path="/post/:id" element={<ArticlePage />} />
-            <Route path="/add_post" element={<AddPostPage />} />
+            <Route element={<ProtectedRoute user={user} />}>
+              <Route path="/" element={<Navigate replace to="/all" />} />
+              <Route path="/all" element={<AllPosts filter={filter} />} />
+              <Route path="/post/:id" element={<ArticlePage />} />
+              <Route path="/add_post" element={<AddPostPage />} />
+              <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            </Route>
           </Routes>
         </main>
       </div>
