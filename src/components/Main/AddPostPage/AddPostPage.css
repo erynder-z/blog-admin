@@ -1,0 +1,55 @@
+.add-post_page {
+  max-width: 70ch;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-post_container {
+  padding: 1em;
+  background-color: var(--background_bright);
+  color: var(--text_dark);
+}
+
+.add-post_heading {
+  font-size: 1.5em;
+}
+
+.create-post-tag-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.tags-container {
+  margin-bottom: 1.5em;
+}
+
+.tags-container label {
+  all: unset;
+}
+
+.create-post-tag-list label {
+  all: unset;
+}
+
+.checkbox-container input[type='checkbox'] {
+  display: none;
+}
+
+.checkbox-container input[type='checkbox'] + label {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid var(--text_grey);
+  border-radius: 4px;
+}
+
+.checkbox-container input[type='checkbox']:checked + label {
+  background-color: var(--highlight);
+  color: var(--text_bright);
+}

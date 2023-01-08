@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
+import AddPostPage from './components/Main/AddPostPage/AddPostPage';
 
 function App() {
   const [filter, setFilter] = useState<ITag | string | null>(null);
@@ -35,6 +36,7 @@ function App() {
             <Route path="/" element={<Navigate replace to="/all" />} />
             <Route path="/all" element={<AllPosts filter={filter} />} />
             <Route path="/post/:id" element={<ArticlePage />} />
+            <Route path="/add_post" element={<AddPostPage />} />
           </Routes>
         </main>
       </div>
@@ -44,10 +46,7 @@ function App() {
           onClick={toggleSidebarActive}
         />
         <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
-          <Sidebar
-            handleTagFilter={handleTagFilter}
-            handleSearch={handleSearch}
-          />
+          <Sidebar handleTagFilter={handleTagFilter} handleSearch={handleSearch} />
         </div>
       </aside>
     </div>

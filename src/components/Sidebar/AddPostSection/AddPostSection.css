@@ -3,8 +3,27 @@
 }
 
 .addPostBtn {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
   padding: 0.5em;
   font-size: 0.75em;
+  background-color: var(--button);
+  color: var(--text_bright);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  line-height: normal;
+}
+
+.addPostBtn:hover {
+  background-color: var(--hover);
+  border-color: var(--hover);
+  color: var(--text_bright);
+}
+.addPostBtn:focus,
+.addPostBtn:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
