@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
 import AllPosts from './components/Main/AllPosts/AllPosts';
@@ -8,21 +8,25 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddPostPage from './components/Main/AddPostPage/AddPostPage';
+import LoginPage from './components/LoginPage/LoginPage';
 
 type ProtectedRouteProps = {
   user: any;
   redirectPath?: string;
 };
 
-const ProtectedRoute = ({ user, redirectPath = '/login' }: ProtectedRouteProps) => {
-  if (!user) {
-    return <Navigate to={redirectPath} replace />;
-  }
+type User = {
+  _id: string;
+  username: string;
+};
 
-  return <Outlet />;
+const ProtectedRoute = ({ user, redirectPath = '/login' }: ProtectedRouteProps) => {
+  return user ? <Outlet /> : <Navigate to={redirectPath} replace />;
 };
 
 function App() {
+  const [token, setToken] = useState<string | null>(localStorage.getItem('jwt'));
+  const [user, setUser] = useState<User | null>(null);
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
@@ -38,33 +42,62 @@ function App() {
     setSidebarActive(!sidebarActive);
   };
 
+  useEffect(() => {
+    if (token) {
+      const checkToken = async () => {
+        try {
+          const response = await fetch('http://localhost:8000/api/check-token', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          });
+          const data = await response.json();
+          if (response.status === 200) {
+            setUser(data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      checkToken();
+    }
+  }, [token]);
+
   return (
     <div className="app-container">
-      <div className="main-container">
-        <nav>
-          <Navbar />
-        </nav>
-        <main>
-          <Routes>
-            <Route element={<ProtectedRoute user={user} />}>
-              <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path="/all" element={<AllPosts filter={filter} />} />
-              <Route path="/post/:id" element={<ArticlePage />} />
-              <Route path="/add_post" element={<AddPostPage />} />
-              <Route path="*" element={<p>There's nothing here: 404!</p>} />
-            </Route>
-          </Routes>
-        </main>
-      </div>
-      <aside>
-        <FaAngleDoubleUp
-          className={`sidebar_toggle ${sidebarActive ? 'active' : ''}`}
-          onClick={toggleSidebarActive}
-        />
-        <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
-          <Sidebar handleTagFilter={handleTagFilter} handleSearch={handleSearch} />
-        </div>
-      </aside>
+      {user ? (
+        <>
+          <div className="main-container">
+            <nav>
+              <Navbar />
+            </nav>
+            <main>
+              <Routes>
+                <Route element={<ProtectedRoute user={user} />}>
+                  <Route path="/" element={<Navigate replace to="/all" />} />
+                  <Route path="/all" element={<AllPosts filter={filter} />} />
+                  <Route path="/post/:id" element={<ArticlePage />} />
+                  <Route path="/add_post" element={<AddPostPage />} />
+                  <Route path="*" element={<p>There's nothing here: 404!</p>} />
+                </Route>
+              </Routes>
+            </main>
+          </div>
+          <aside>
+            <FaAngleDoubleUp
+              className={`sidebar_toggle ${sidebarActive ? 'active' : ''}`}
+              onClick={toggleSidebarActive}
+            />
+            <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
+              <Sidebar handleTagFilter={handleTagFilter} handleSearch={handleSearch} />
+            </div>
+          </aside>
+        </>
+      ) : (
+        <LoginPage setToken={setToken} />
+      )}
     </div>
   );
 }
