@@ -86,7 +86,7 @@ export default function AddPostPage() {
           <div className="editor-container">
             <h2>content:</h2>
             <Editor
-              apiKey={import.meta.env.REACT_APP_TINYMCE_API_KEY}
+              apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
               onInit={(evt, editor) => (editorRef.current = editor)}
               initialValue="<p>This is the initial content of the editor.</p>"
               init={{
