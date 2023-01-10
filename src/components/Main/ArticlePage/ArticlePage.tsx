@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
+import { decode } from 'html-entities';
+import parse from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import { IPost } from '../../../interfaces/Post';
 import { ITag } from '../../../interfaces/Tag';
@@ -13,6 +15,8 @@ export default function ArticlePage() {
   const [article, setArticle] = useState<IPost>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+
+  const decodedString = decode(article?.text);
 
   const fetchArticleData = async () => {
     try {
@@ -61,7 +65,7 @@ export default function ArticlePage() {
             className="article_image"
           />
         )}
-        <p>{article?.text}</p>
+        {parse(decodedString)}
 
         {article && (
           <CommentsSection commentList={article.comments} fetchArticleData={fetchArticleData} />
