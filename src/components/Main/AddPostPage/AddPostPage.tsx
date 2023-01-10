@@ -4,37 +4,41 @@ import { Editor as TinyMCEEditor } from 'tinymce';
 import './AddPostPage.css';
 import { ITag } from '../../../interfaces/Tag';
 
-export default function AddPostPage() {
+interface Props {
+  token: string | null;
+}
+
+export default function AddPostPage({ token }: Props) {
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (token) {
+      const form = event.target as HTMLFormElement;
+      const formData = new FormData(form);
+      const body = {
+        ...Object.fromEntries(formData),
+        title: formData.get('title'),
+        text: editorRef.current ? editorRef.current.getContent() : ''
+      };
 
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
-    const body = {
-      ...Object.fromEntries(formData),
-      title: formData.get('title'),
-      text: editorRef.current ? editorRef.current.getContent() : ''
-    };
+      const response = await fetch('http://localhost:8000/api/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+      });
 
-    console.log(body);
-
-    const response = await fetch('http://localhost:8000/api/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-    } else {
-      console.error(response.statusText);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        console.error(response.statusText);
+      }
     }
   };
 
