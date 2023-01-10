@@ -1,5 +1,6 @@
 import React from 'react';
 import format from 'date-fns/format';
+import { stripHtml } from 'string-strip-html';
 import './PostPreview.css';
 import { IPost } from '../../../interfaces/Post';
 import { FaArrowRight, FaRegCommentAlt } from 'react-icons/fa';
@@ -17,7 +18,10 @@ export default function PostPreview({ postData }: Props) {
   };
 
   const getTextExcerpt = (text: string) => {
-    return text.length >= 100 ? text.substring(0, 100) + '...' : text;
+    const stringWithoutHTML = stripHtml(text).result;
+    return stringWithoutHTML.length >= 100
+      ? stringWithoutHTML.substring(0, 100) + '...'
+      : stringWithoutHTML;
   };
 
   return (
