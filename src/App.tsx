@@ -9,6 +9,8 @@ import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddPostPage from './components/Main/AddPostPage/AddPostPage';
 import LoginPage from './components/LoginPage/LoginPage';
+import UnpublishedPosts from './components/Main/UnpublishedPosts/UnpublishedPosts';
+import PublishedPosts from './components/Main/PublishedPosts/PublishedPosts';
 
 type ProtectedRouteProps = {
   user: any;
@@ -27,6 +29,7 @@ const ProtectedRoute = ({ user, redirectPath = '/login' }: ProtectedRouteProps) 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem('jwt'));
   const [user, setUser] = useState<User | null>(null);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
@@ -56,6 +59,9 @@ function App() {
           const data = await response.json();
           if (response.status === 200) {
             setUser(data);
+            setIsAuth(true);
+          } else {
+            setUser(null);
           }
         } catch (error) {
           console.error(error);
@@ -65,39 +71,46 @@ function App() {
     }
   }, [token]);
 
+  if (!user) {
+    return <LoginPage setToken={setToken} />;
+  }
+
+  if (!isAuth) {
+    return <p className="loading">Loading...</p>;
+  }
+
   return (
     <div className="app-container">
-      {user ? (
-        <>
-          <div className="main-container">
-            <nav>
-              <Navbar />
-            </nav>
-            <main>
-              <Routes>
-                <Route element={<ProtectedRoute user={user} />}>
-                  <Route path="/" element={<Navigate replace to="/all" />} />
-                  <Route path="/all" element={<AllPosts filter={filter} />} />
-                  <Route path="/post/:id" element={<ArticlePage />} />
-                  <Route path="/add_post" element={<AddPostPage />} />
-                  <Route path="*" element={<p>There's nothing here: 404!</p>} />
-                </Route>
-              </Routes>
-            </main>
-          </div>
-          <aside>
-            <FaAngleDoubleUp
-              className={`sidebar_toggle ${sidebarActive ? 'active' : ''}`}
-              onClick={toggleSidebarActive}
-            />
-            <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
-              <Sidebar handleTagFilter={handleTagFilter} handleSearch={handleSearch} />
-            </div>
-          </aside>
-        </>
-      ) : (
-        <LoginPage setToken={setToken} />
-      )}
+      <div className="main-container">
+        <nav>
+          <Navbar />
+        </nav>
+        <main>
+          <Routes>
+            <Route element={<ProtectedRoute user={user} />}>
+              <Route path="/" element={<Navigate replace to="/all" />} />
+              <Route path="/all" element={<AllPosts filter={filter} />} />
+              <Route path="/post/:id" element={<ArticlePage />} />
+              <Route path="/add_post" element={<AddPostPage token={token} />} />
+              <Route path="/published" element={<PublishedPosts filter={filter} token={token} />} />
+              <Route
+                path="/unpublished"
+                element={<UnpublishedPosts filter={filter} token={token} />}
+              />
+              <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            </Route>
+          </Routes>
+        </main>
+      </div>
+      <aside>
+        <FaAngleDoubleUp
+          className={`sidebar_toggle ${sidebarActive ? 'active' : ''}`}
+          onClick={toggleSidebarActive}
+        />
+        <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
+          <Sidebar handleTagFilter={handleTagFilter} handleSearch={handleSearch} />
+        </div>
+      </aside>
     </div>
   );
 }
