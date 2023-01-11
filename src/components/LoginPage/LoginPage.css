@@ -20,6 +20,13 @@
   font-size: 1.5em;
 }
 
+.verifying-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 800px) {
   .login-container {
     width: 95%;

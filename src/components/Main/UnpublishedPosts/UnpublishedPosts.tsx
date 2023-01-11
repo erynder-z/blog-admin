@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IPost } from '../../../interfaces/Post';
 import { ITag } from '../../../interfaces/Tag';
 import PostItem from '../PostPreview/PostPreview';
+import { MagnifyingGlass } from 'react-loader-spinner';
 import './UnpublishedPosts.css';
 
 interface Props {
@@ -57,7 +58,20 @@ export default function UnpublishedPosts({ filter, token }: Props) {
   }, [filter]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="fetching">
+        <MagnifyingGlass
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="MagnifyingGlass-loading"
+          wrapperStyle={{}}
+          wrapperClass="MagnifyingGlass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        />
+      </div>
+    );
   }
 
   if (error) {

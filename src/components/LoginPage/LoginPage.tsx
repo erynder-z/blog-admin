@@ -1,5 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Blocks } from 'react-loader-spinner';
 import './LoginPage.css';
 
 interface Props {
@@ -8,8 +9,10 @@ interface Props {
 
 export default function LoginPage({ setToken }: Props) {
   const navigate = useNavigate();
+  const [isVerifying, setIsVerifying] = useState<boolean>(false);
 
   const login = async (username: string, password: string) => {
+    setIsVerifying(true);
     try {
       const response = await fetch('http://localhost:8000/api/login', {
         method: 'POST',
@@ -20,10 +23,12 @@ export default function LoginPage({ setToken }: Props) {
       if (response.status === 200) {
         localStorage.setItem('jwt', data.token);
         setToken(data.token);
+        setIsVerifying(false);
       }
     } catch (error) {
       console.error(error);
     }
+    setIsVerifying(false);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -57,6 +62,21 @@ export default function LoginPage({ setToken }: Props) {
             <label htmlFor="password">Password</label>
           </div>
           <button type="submit">Login</button>
+          <div className="status_message">
+            {isVerifying && (
+              <div className="verifying-container">
+                <Blocks
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                />
+                verifying...
+              </div>
+            )}
+          </div>
         </form>
       </div>
     </div>
