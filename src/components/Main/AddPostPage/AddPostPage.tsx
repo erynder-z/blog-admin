@@ -152,6 +152,12 @@ export default function AddPostPage({ token }: Props) {
                 }}
               />
             </div>
+            <div className="create-post-publish-options">
+              <div className="checkbox-container">
+                <input type="checkbox" id="publishPost" name="publishPost" />
+                <label htmlFor="publishPost">publish post when submitting</label>
+              </div>
+            </div>
             <button type="submit">Submit post</button>
           </form>
         </div>
