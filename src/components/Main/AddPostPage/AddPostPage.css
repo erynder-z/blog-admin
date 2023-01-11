@@ -32,7 +32,12 @@
   all: unset;
 }
 
-.create-post-tag-list label {
+.create-post-publish-options {
+  margin: 1em 0;
+}
+
+.create-post-tag-list label,
+.create-post-publish-options label {
   all: unset;
 }
 
