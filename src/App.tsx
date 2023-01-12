@@ -33,6 +33,7 @@ function App() {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
+  const [refetchTrigger, setRefetchTriffer] = useState<boolean>(false);
 
   const handleTagFilter = (tag: ITag) => {
     setFilter(tag);
@@ -45,6 +46,10 @@ function App() {
   const toggleSidebarActive = () => {
     setSidebarActive(!sidebarActive);
   };
+
+  useEffect(() => {
+    setRefetchTriffer(false);
+  }, [refetchTrigger]);
 
   useEffect(() => {
     if (token) {
@@ -93,7 +98,10 @@ function App() {
               <Route path="/all" element={<AllPosts filter={filter} token={token} />} />
               <Route path="/post/:id" element={<ArticlePage />} />
               <Route path="/add_post" element={<AddPostPage token={token} />} />
-              <Route path="/add_tag" element={<AddTagPage token={token} />} />
+              <Route
+                path="/add_tag"
+                element={<AddTagPage token={token} setRefetchTrigger={setRefetchTriffer} />}
+              />
               <Route path="/published" element={<PublishedPosts filter={filter} token={token} />} />
               <Route
                 path="/unpublished"
@@ -110,7 +118,11 @@ function App() {
           onClick={toggleSidebarActive}
         />
         <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
-          <Sidebar handleTagFilter={handleTagFilter} handleSearch={handleSearch} />
+          <Sidebar
+            handleTagFilter={handleTagFilter}
+            handleSearch={handleSearch}
+            refetchTrigger={refetchTrigger}
+          />
         </div>
       </aside>
     </div>

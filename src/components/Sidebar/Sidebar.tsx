@@ -9,13 +9,14 @@ import TagsSection from './TagsSection/TagsSection';
 interface Props {
   handleTagFilter: (tag: ITag) => void;
   handleSearch: (query: string) => void;
+  refetchTrigger: boolean;
 }
 
-export default function Sidebar({ handleTagFilter, handleSearch }: Props) {
+export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger }: Props) {
   return (
     <div className="sidebar">
       <SearchSection handleSearch={handleSearch} />
-      <TagsSection handleTagFilter={handleTagFilter} />
+      <TagsSection handleTagFilter={handleTagFilter} refetchTrigger={refetchTrigger} />
       <AddPostSection />
       <AddTagSection />
     </div>

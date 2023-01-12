@@ -4,9 +4,10 @@ import './TagSection.css';
 
 interface Props {
   handleTagFilter: (tag: ITag) => void;
+  refetchTrigger: boolean;
 }
 
-export default function TagsSection({ handleTagFilter }: Props) {
+export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) {
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -24,7 +25,7 @@ export default function TagsSection({ handleTagFilter }: Props) {
 
   useEffect(() => {
     fetchTagListData();
-  }, []);
+  }, [refetchTrigger]);
 
   if (loading) {
     return <p>Loading...</p>;

@@ -1,0 +1,36 @@
+.newTag_input {
+  margin-bottom: 1.5em;
+}
+
+.create-post-tag-list ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.registered_tasks-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px var(--text_grey);
+  border-radius: 4px;
+  padding-left: 0.25em;
+  height: 1.5em;
+}
+
+.tag_delete-divider {
+  height: 100%;
+  width: 1px;
+  background-color: var(--text_grey);
+  margin-left: 0.5rem;
+}
+
+.tag_delete-button {
+  all: unset;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
