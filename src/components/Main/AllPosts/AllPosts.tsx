@@ -6,9 +6,10 @@ import './AllPosts.css';
 
 interface Props {
   filter: ITag | string | null;
+  token: string | null;
 }
 
-export default function AllPosts({ filter }: Props) {
+export default function AllPosts({ filter, token }: Props) {
   const [activePostList, setActivePostList] = useState<IPost[]>([]);
   const [fullPostList, setFullPostList] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,11 @@ export default function AllPosts({ filter }: Props) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/posts/all');
+        const res = await fetch('http://localhost:8000/api/admin/posts/all', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         setActivePostList(data.post_list);
         setFullPostList(data.post_list);
