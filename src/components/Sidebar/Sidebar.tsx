@@ -1,7 +1,7 @@
 import React from 'react';
 import { ITag } from '../../interfaces/Tag';
 import AddPostSection from './AddPostSection/AddPostSection';
-import AddTagSection from './AddTagSection/AddTagSection';
+import AddTagSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
 import './Sidebar.css';
 import TagsSection from './TagsSection/TagsSection';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './AddTagPage.css';
+import './ManageTagsPage.css';
 import { ITag } from '../../../interfaces/Tag';
 import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
@@ -10,7 +10,7 @@ interface Props {
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function AddTagPage({ token, setRefetchTrigger }: Props) {
+export default function ManageTagsPage({ token, setRefetchTrigger }: Props) {
   const navigate = useNavigate();
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);
@@ -113,13 +113,13 @@ export default function AddTagPage({ token, setRefetchTrigger }: Props) {
   }
 
   return (
-    <main className="add-post_page">
+    <main className="manage_tags_page">
       {showInfoText ? (
         <InfoText message={infoTextMessage} />
       ) : (
-        <div className="add-post_container">
+        <div className="manage_tags_container">
           <form onSubmit={handleSubmit}>
-            <h1 className="add-post_heading">Add post</h1>
+            <h1 className="manage_tags_heading">Add tag</h1>
             <div className="tags-container">
               <label htmlFor="tags">Registered tags</label>
               <div className="create-post-tag-list">

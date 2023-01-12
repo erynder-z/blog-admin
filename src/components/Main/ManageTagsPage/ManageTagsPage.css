@@ -1,3 +1,20 @@
+.manage_tags_page {
+  max-width: 70ch;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.manage_tags_container {
+  padding: 1em;
+  background-color: var(--background_bright);
+  color: var(--text_dark);
+}
+
+.manage_tags_heading {
+  font-size: 1.5em;
+}
+
 .newTag_input {
   margin-bottom: 1.5em;
 }

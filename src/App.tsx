@@ -8,7 +8,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddPostPage from './components/Main/AddPostPage/AddPostPage';
-import AddTagPage from './components/Main/AddTagPage/AddTagPage';
+import AddTagPage from './components/Main/ManageTagsPage/ManageTagsPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import UnpublishedPosts from './components/Main/UnpublishedPosts/UnpublishedPosts';
 import PublishedPosts from './components/Main/PublishedPosts/PublishedPosts';
@@ -97,7 +97,7 @@ function App() {
               <Route path="/" element={<Navigate replace to="/all" />} />
               <Route path="/all" element={<AllPosts filter={filter} token={token} />} />
               <Route path="/post/:id" element={<ArticlePage />} />
-              <Route path="/add_post" element={<AddPostPage token={token} />} />
+              <Route path="/manage_tags" element={<AddPostPage token={token} />} />
               <Route
                 path="/add_tag"
                 element={<AddTagPage token={token} setRefetchTrigger={setRefetchTriffer} />}
