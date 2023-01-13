@@ -19,3 +19,7 @@
   padding: 0 1rem;
   cursor: pointer;
 }
+
+.side-tag-list-item.active {
+  background-color: var(--highlight);
+}

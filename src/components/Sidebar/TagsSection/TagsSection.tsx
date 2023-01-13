@@ -9,6 +9,7 @@ interface Props {
 
 export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) {
   const [tagList, setTagList] = useState<ITag[]>();
+  const [activeTag, setActiveTag] = useState<ITag | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -42,9 +43,10 @@ export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) 
         {tagList?.map((tag: ITag) => (
           <li
             key={tag._id.toString()}
-            className="side-tag-list-item"
+            className={`side-tag-list-item ${activeTag == tag ? 'active' : ''}`}
             onClick={() => {
               handleTagFilter(tag);
+              setActiveTag(tag);
             }}>
             {tag.name}
           </li>
