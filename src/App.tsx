@@ -36,7 +36,7 @@ function App() {
   const [refetchTrigger, setRefetchTriffer] = useState<boolean>(false);
 
   const handleTagFilter = (tag: ITag) => {
-    setFilter(tag);
+    tag !== filter ? setFilter(tag) : setFilter(null);
   };
 
   const handleSearch = (query: string) => {

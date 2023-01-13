@@ -24,6 +24,10 @@ export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) 
     setLoading(false);
   };
 
+  const handleTagClick = (tag: ITag) => {
+    tag !== activeTag ? setActiveTag(tag) : setActiveTag(null);
+  };
+
   useEffect(() => {
     fetchTagListData();
   }, [refetchTrigger]);
@@ -46,7 +50,7 @@ export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) 
             className={`side-tag-list-item ${activeTag == tag ? 'active' : ''}`}
             onClick={() => {
               handleTagFilter(tag);
-              setActiveTag(tag);
+              handleTagClick(tag);
             }}>
             {tag.name}
           </li>

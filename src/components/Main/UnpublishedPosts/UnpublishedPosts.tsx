@@ -54,7 +54,7 @@ export default function UnpublishedPosts({ filter, token }: Props) {
         : filterForTag(filter as ITag);
     };
 
-    setActivePostList(getFilterPosts(filter));
+    filter ? setActivePostList(getFilterPosts(filter)) : setActivePostList(fullPostList);
   }, [filter]);
 
   if (loading) {
