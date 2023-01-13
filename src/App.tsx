@@ -97,9 +97,9 @@ function App() {
               <Route path="/" element={<Navigate replace to="/all" />} />
               <Route path="/all" element={<AllPosts filter={filter} token={token} />} />
               <Route path="/post/:id" element={<ArticlePage />} />
-              <Route path="/manage_tags" element={<AddPostPage token={token} />} />
+              <Route path="/add_post" element={<AddPostPage token={token} />} />
               <Route
-                path="/add_tag"
+                path="/manage_tags"
                 element={<AddTagPage token={token} setRefetchTrigger={setRefetchTriffer} />}
               />
               <Route path="/published" element={<PublishedPosts filter={filter} token={token} />} />

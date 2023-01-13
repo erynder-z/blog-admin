@@ -119,21 +119,18 @@ export default function ManageTagsPage({ token, setRefetchTrigger }: Props) {
       ) : (
         <div className="manage_tags_container">
           <form onSubmit={handleSubmit}>
-            <h1 className="manage_tags_heading">Add tag</h1>
-            <div className="tags-container">
-              <label htmlFor="tags">Registered tags</label>
-              <div className="create-post-tag-list">
-                <ul>
-                  {tagList?.map((tag) => (
-                    <li key={tag._id} className="registered_tasks-list">
-                      {tag.name} <div className="tag_delete-divider"></div>
-                      <div className="tag_delete-button" onClick={() => handleTagDelete(tag._id)}>
-                        <FaTimes color="crimson" />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <h1 className="manage_tags_heading">Regsitered tags</h1>
+            <div className="create-post-tag-list">
+              <ul>
+                {tagList?.map((tag) => (
+                  <li key={tag._id} className="registered_tasks-list">
+                    {tag.name} <div className="tag_delete-divider"></div>
+                    <div className="tag_delete-button" onClick={() => handleTagDelete(tag._id)}>
+                      <FaTimes color="crimson" />
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="title-container">
               <h2>Enter new tag:</h2>
