@@ -8,12 +8,8 @@ export interface IPost {
     _id: string;
   };
   title: string;
-  text: string;
+  content: string;
   timestamp: Date;
-  image: {
-    data: Buffer;
-    contentType: string;
-  };
   tags: ITag[];
   comments: IComment[];
 }

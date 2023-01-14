@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function PostPreview({ postData }: Props) {
-  const { _id, title, text, timestamp, comments } = postData;
+  const { _id, title, content, timestamp, comments } = postData;
 
   const getTitleExcerpt = (title: string) => {
     return title.length >= 100 ? title.substring(0, 100) + '...' : title;
@@ -31,7 +31,7 @@ export default function PostPreview({ postData }: Props) {
           <div className="timestamp">{format(new Date(timestamp), 'EEEE, dd. MMMM yyyy')}</div>{' '}
           <h1 className="post-title">{getTitleExcerpt(title)}</h1>
         </div>
-        <p className="post-text">{getTextExcerpt(text)}</p>
+        <p className="post-text">{getTextExcerpt(content)}</p>
       </div>
       <div className="post-bottom">
         {comments.length} <FaRegCommentAlt />

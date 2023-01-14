@@ -16,7 +16,7 @@ export default function ArticlePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const decodedString = decode(article?.text);
+  const decodedString = decode(article?.content);
 
   const fetchArticleData = async () => {
     try {
@@ -56,15 +56,6 @@ export default function ArticlePage() {
           ))}
         </ul>
 
-        {article?.image && (
-          <img
-            src={`data:image/${article?.image.contentType};base64 ${article?.image.data.toString(
-              'base64'
-            )}`}
-            alt="article-image"
-            className="article_image"
-          />
-        )}
         {parse(decodedString)}
 
         {article && (
