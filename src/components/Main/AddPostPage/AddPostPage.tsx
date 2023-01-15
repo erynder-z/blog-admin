@@ -1,16 +1,14 @@
-import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import './AddPostPage.css';
 import { ITag } from '../../../interfaces/Tag';
 import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
+import AuthContext from '../../../contexts/AuthContext';
 
-interface Props {
-  token: string | null;
-}
-
-export default function AddPostPage({ token }: Props) {
+export default function AddPostPage() {
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);

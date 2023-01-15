@@ -1,19 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './LogoutSection.css';
 import { FaPowerOff } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../../contexts/AuthContext';
 
-type User = {
-  _id: string;
-  username: string;
-};
-
-interface Props {
-  setToken: React.Dispatch<React.SetStateAction<string | null>>;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-}
-
-export default function LogoutSection({ setToken, setUser }: Props) {
+export default function LogoutSection() {
+  const { setToken, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {

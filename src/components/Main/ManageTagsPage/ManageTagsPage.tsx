@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ManageTagsPage.css';
 import { ITag } from '../../../interfaces/Tag';
 import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
 import { FaTimes } from 'react-icons/fa';
+import AuthContext from '../../../contexts/AuthContext';
 
 interface Props {
-  token: string | null;
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ManageTagsPage({ token, setRefetchTrigger }: Props) {
+export default function ManageTagsPage({ setRefetchTrigger }: Props) {
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);

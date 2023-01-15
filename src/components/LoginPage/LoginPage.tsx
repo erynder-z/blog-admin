@@ -1,13 +1,11 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Blocks } from 'react-loader-spinner';
 import './LoginPage.css';
+import AuthContext from '../../contexts/AuthContext';
 
-interface Props {
-  setToken: Dispatch<SetStateAction<string | null>>;
-}
-
-export default function LoginPage({ setToken }: Props) {
+export default function LoginPage() {
+  const { setToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
 

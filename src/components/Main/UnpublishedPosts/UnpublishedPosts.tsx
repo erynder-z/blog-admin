@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IPost } from '../../../interfaces/Post';
 import { ITag } from '../../../interfaces/Tag';
 import PostItem from '../PostPreview/PostPreview';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import './UnpublishedPosts.css';
+import AuthContext from '../../../contexts/AuthContext';
 
 interface Props {
   filter: ITag | string | null;
-  token: string | null;
 }
 
-export default function UnpublishedPosts({ filter, token }: Props) {
+export default function UnpublishedPosts({ filter }: Props) {
+  const { token } = useContext(AuthContext);
   const [activePostList, setActivePostList] = useState<IPost[]>([]);
   const [fullPostList, setFullPostList] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +41,7 @@ export default function UnpublishedPosts({ filter, token }: Props) {
   useEffect(() => {
     const filterForString = (filter: string) => {
       return fullPostList.filter((post) => {
-        return post.title.includes(filter) || post.text.includes(filter);
+        return post.title.includes(filter) || post.content.includes(filter);
       });
     };
 

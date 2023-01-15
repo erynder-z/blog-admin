@@ -16,8 +16,8 @@ export default function Navbar() {
         <Link to="/unpublished" className="nav-list-item">
           Unpublished posts
         </Link>
-        <Link to="/tags" className="nav-list-item">
-          Tags
+        <Link to="/howto" className="nav-list-item">
+          Manual
         </Link>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
 import AllPosts from './components/Main/AllPosts/AllPosts';
@@ -12,15 +12,11 @@ import ManageTagsPage from './components/Main/ManageTagsPage/ManageTagsPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import UnpublishedPosts from './components/Main/UnpublishedPosts/UnpublishedPosts';
 import PublishedPosts from './components/Main/PublishedPosts/PublishedPosts';
+import AuthContext from './contexts/AuthContext';
 
 type ProtectedRouteProps = {
   user: any;
   redirectPath?: string;
-};
-
-type User = {
-  _id: string;
-  username: string;
 };
 
 const ProtectedRoute = ({ user, redirectPath = '/' }: ProtectedRouteProps) => {
@@ -28,9 +24,7 @@ const ProtectedRoute = ({ user, redirectPath = '/' }: ProtectedRouteProps) => {
 };
 
 function App() {
-  const [token, setToken] = useState<string | null>(localStorage.getItem('jwt'));
-  const [user, setUser] = useState<User | null>(null);
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const { token, user, isAuth, setUser, setIsAuth } = useContext(AuthContext);
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
   const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
@@ -78,7 +72,7 @@ function App() {
   }, [token]);
 
   if (!user) {
-    return <LoginPage setToken={setToken} />;
+    return <LoginPage />;
   }
 
   if (!isAuth) {
@@ -95,18 +89,15 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path="/all" element={<AllPosts filter={filter} token={token} />} />
+              <Route path="/all" element={<AllPosts filter={filter} />} />
               <Route path="/post/:id" element={<ArticlePage />} />
-              <Route path="/add_post" element={<AddPostPage token={token} />} />
+              <Route path="/add_post" element={<AddPostPage />} />
               <Route
                 path="/manage_tags"
-                element={<ManageTagsPage token={token} setRefetchTrigger={setRefetchTrigger} />}
+                element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}
               />
-              <Route path="/published" element={<PublishedPosts filter={filter} token={token} />} />
-              <Route
-                path="/unpublished"
-                element={<UnpublishedPosts filter={filter} token={token} />}
-              />
+              <Route path="/published" element={<PublishedPosts filter={filter} />} />
+              <Route path="/unpublished" element={<UnpublishedPosts filter={filter} />} />
               <Route path="*" element={<p>There's nothing here: 404!</p>} />
             </Route>
           </Routes>
@@ -122,8 +113,6 @@ function App() {
             handleTagFilter={handleTagFilter}
             handleSearch={handleSearch}
             refetchTrigger={refetchTrigger}
-            setToken={setToken}
-            setUser={setUser}
           />
         </div>
       </aside>

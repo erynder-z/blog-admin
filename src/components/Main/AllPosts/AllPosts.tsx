@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import AuthContext from '../../../contexts/AuthContext';
 import { IPost } from '../../../interfaces/Post';
 import { ITag } from '../../../interfaces/Tag';
 import PostItem from '../PostPreview/PostPreview';
@@ -6,10 +7,10 @@ import './AllPosts.css';
 
 interface Props {
   filter: ITag | string | null;
-  token: string | null;
 }
 
-export default function AllPosts({ filter, token }: Props) {
+export default function AllPosts({ filter }: Props) {
+  const { token } = useContext(AuthContext);
   const [activePostList, setActivePostList] = useState<IPost[]>([]);
   const [fullPostList, setFullPostList] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
