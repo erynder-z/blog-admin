@@ -56,7 +56,6 @@ function App() {
           }
         });
         const data = await response.json();
-
         if (response.status === 200) {
           setUser(data);
           setIsAuth(true);

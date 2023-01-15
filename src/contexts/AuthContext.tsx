@@ -43,6 +43,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     const checkToken = async () => {
       try {
+        if (!token) {
+          throw new Error('Unauthorized: Token is missing');
+        }
         const response = await fetch('http://localhost:8000/api/check-token', {
           method: 'GET',
           headers: {
@@ -50,16 +53,19 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
             Authorization: `Bearer ${token}`
           }
         });
-        const data = await response.json();
-
-        if (response.status === 200) {
-          setUser(data);
-          setIsAuth(true);
-        } else {
-          setUser(null);
-          setIsAuth(false);
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error('Unauthorized: Token is expired');
+          } else {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
         }
+        const data = await response.json();
+        setUser(data);
+        setIsAuth(true);
       } catch (error) {
+        setUser(null);
+        setIsAuth(false);
         console.error(error);
       }
     };

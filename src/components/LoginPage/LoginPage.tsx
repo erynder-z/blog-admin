@@ -17,12 +17,12 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
       });
-      const data = await response.json();
-      if (response.status === 200) {
-        localStorage.setItem('jwt', data.token);
-        setToken(data.token);
-        setIsVerifying(false);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
+      const data = await response.json();
+      localStorage.setItem('jwt', data.token);
+      setToken(data.token);
     } catch (error) {
       console.error(error);
     }
