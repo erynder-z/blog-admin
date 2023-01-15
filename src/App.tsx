@@ -8,7 +8,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddPostPage from './components/Main/AddPostPage/AddPostPage';
-import AddTagPage from './components/Main/ManageTagsPage/ManageTagsPage';
+import ManageTagsPage from './components/Main/ManageTagsPage/ManageTagsPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import UnpublishedPosts from './components/Main/UnpublishedPosts/UnpublishedPosts';
 import PublishedPosts from './components/Main/PublishedPosts/PublishedPosts';
@@ -23,7 +23,7 @@ type User = {
   username: string;
 };
 
-const ProtectedRoute = ({ user, redirectPath = '/login' }: ProtectedRouteProps) => {
+const ProtectedRoute = ({ user, redirectPath = '/' }: ProtectedRouteProps) => {
   return user ? <Outlet /> : <Navigate to={redirectPath} replace />;
 };
 
@@ -33,7 +33,7 @@ function App() {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
-  const [refetchTrigger, setRefetchTriffer] = useState<boolean>(false);
+  const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
 
   const handleTagFilter = (tag: ITag) => {
     tag !== filter ? setFilter(tag) : setFilter(null);
@@ -48,33 +48,33 @@ function App() {
   };
 
   useEffect(() => {
-    setRefetchTriffer(false);
+    setRefetchTrigger(false);
   }, [refetchTrigger]);
 
   useEffect(() => {
-    if (token) {
-      const checkToken = async () => {
-        try {
-          const response = await fetch('http://localhost:8000/api/check-token', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`
-            }
-          });
-          const data = await response.json();
-          if (response.status === 200) {
-            setUser(data);
-            setIsAuth(true);
-          } else {
-            setUser(null);
+    const checkToken = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/check-token', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
           }
-        } catch (error) {
-          console.error(error);
+        });
+        const data = await response.json();
+
+        if (response.status === 200) {
+          setUser(data);
+          setIsAuth(true);
+        } else {
+          setUser(null);
+          setIsAuth(false);
         }
-      };
-      checkToken();
-    }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    checkToken();
   }, [token]);
 
   if (!user) {
@@ -100,7 +100,7 @@ function App() {
               <Route path="/add_post" element={<AddPostPage token={token} />} />
               <Route
                 path="/manage_tags"
-                element={<AddTagPage token={token} setRefetchTrigger={setRefetchTriffer} />}
+                element={<ManageTagsPage token={token} setRefetchTrigger={setRefetchTrigger} />}
               />
               <Route path="/published" element={<PublishedPosts filter={filter} token={token} />} />
               <Route
@@ -122,6 +122,8 @@ function App() {
             handleTagFilter={handleTagFilter}
             handleSearch={handleSearch}
             refetchTrigger={refetchTrigger}
+            setToken={setToken}
+            setUser={setUser}
           />
         </div>
       </aside>
