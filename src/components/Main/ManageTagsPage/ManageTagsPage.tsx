@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
 import { FaTimes } from 'react-icons/fa';
 import AuthContext from '../../../contexts/AuthContext';
+import { fetchTagListData } from '../../../helpers/FetchTagListData';
 
 interface Props {
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,17 +73,6 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
     }
   };
 
-  const fetchTagListData = async () => {
-    try {
-      const res = await fetch('http://localhost:8000/api/tags');
-      const data = await res.json();
-      setTagList(data.tag_list);
-    } catch (err: any) {
-      setError(err);
-    }
-    setLoading(false);
-  };
-
   const successfullSubmit = () => {
     setInfoTextMessage('success!');
     setShowInfoText(true);
@@ -102,7 +92,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   };
 
   useEffect(() => {
-    fetchTagListData();
+    fetchTagListData(setTagList, setLoading, setError);
   }, []);
 
   if (loading) {

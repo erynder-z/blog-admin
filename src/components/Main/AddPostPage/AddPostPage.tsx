@@ -6,6 +6,7 @@ import { ITag } from '../../../interfaces/Tag';
 import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
 import AuthContext from '../../../contexts/AuthContext';
+import { fetchTagListData } from '../../../helpers/FetchTagListData';
 
 export default function AddPostPage() {
   const { token } = useContext(AuthContext);
@@ -46,17 +47,6 @@ export default function AddPostPage() {
     }
   };
 
-  const fetchTagListData = async () => {
-    try {
-      const res = await fetch('http://localhost:8000/api/tags');
-      const data = await res.json();
-      setTagList(data.tag_list);
-    } catch (err: any) {
-      setError(err);
-    }
-    setLoading(false);
-  };
-
   const successfullSubmit = () => {
     setInfoTextMessage('success!');
     setShowInfoText(true);
@@ -76,7 +66,7 @@ export default function AddPostPage() {
   };
 
   useEffect(() => {
-    fetchTagListData();
+    fetchTagListData(setTagList, setLoading, setError);
   }, []);
 
   const editorRef = useRef<TinyMCEEditor | null>(null);

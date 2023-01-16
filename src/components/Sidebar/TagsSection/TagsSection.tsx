@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { ITag } from '../../../interfaces/Tag';
 import './TagSection.css';
 
@@ -13,23 +14,12 @@ export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchTagListData = async () => {
-    try {
-      const res = await fetch('http://localhost:8000/api/tags');
-      const data = await res.json();
-      setTagList(data.tag_list);
-    } catch (err: any) {
-      setError(err);
-    }
-    setLoading(false);
-  };
-
   const handleTagClick = (tag: ITag) => {
     tag !== activeTag ? setActiveTag(tag) : setActiveTag(null);
   };
 
   useEffect(() => {
-    fetchTagListData();
+    fetchTagListData(setTagList, setLoading, setError);
   }, [refetchTrigger]);
 
   if (loading) {

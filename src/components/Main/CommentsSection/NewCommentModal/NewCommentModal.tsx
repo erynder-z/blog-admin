@@ -6,10 +6,10 @@ import './NewCommentModal.css';
 interface Props {
   showModal: boolean;
   closeModal: () => void;
-  fetchArticleData: () => Promise<void>;
+  setRefetchTrigger: (value: React.SetStateAction<boolean>) => void;
 }
 
-export default function NewCommentModal({ showModal, closeModal, fetchArticleData }: Props) {
+export default function NewCommentModal({ showModal, closeModal, setRefetchTrigger }: Props) {
   const params = useParams();
   const id: string | undefined = params.id;
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -35,8 +35,9 @@ export default function NewCommentModal({ showModal, closeModal, fetchArticleDat
         body: JSON.stringify({ author, text })
       });
       const data = await response.json();
-      console.log(data);
-      fetchArticleData();
+      setRefetchTrigger(true);
+      usernameRef.current.value = '';
+      textRef.current.value = '';
     } catch (error) {
       console.error(error);
     }

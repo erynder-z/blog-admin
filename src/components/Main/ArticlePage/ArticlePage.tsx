@@ -2,11 +2,13 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { decode } from 'html-entities';
 import parse from 'html-react-parser';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IPost } from '../../../interfaces/Post';
 import { ITag } from '../../../interfaces/Tag';
 import CommentsSection from '../CommentsSection/CommentsSection';
+import { FaPenAlt } from 'react-icons/fa';
 import './ArticlePage.css';
+import { fetchArticleData } from '../../../helpers/FetchArticleData';
 
 export default function ArticlePage() {
   const params = useParams();
@@ -15,23 +17,23 @@ export default function ArticlePage() {
   const [article, setArticle] = useState<IPost>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
 
   const decodedString = decode(article?.content);
 
-  const fetchArticleData = async () => {
-    try {
-      const res = await fetch(`http://localhost:8000/api/posts/${id}`);
-      const data = await res.json();
-      setArticle(data.post);
-    } catch (err: any) {
-      setError(err);
-    }
-    setLoading(false);
-  };
+  useEffect(() => {
+    fetchArticleData(id, setArticle, setLoading, setError);
+  }, [id]);
 
   useEffect(() => {
-    fetchArticleData();
-  }, [id]);
+    if (refetchTrigger) {
+      fetchArticleData(id, setArticle, setLoading, setError);
+    }
+  }, [refetchTrigger]);
+
+  useEffect(() => {
+    setRefetchTrigger(false);
+  }, [refetchTrigger]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -57,11 +59,13 @@ export default function ArticlePage() {
         </ul>
 
         {parse(decodedString)}
-
+        <Link to={`/edit_post/${id}`} className="edit_article-button">
+          Edit article <FaPenAlt />
+        </Link>
         {article && (
-          <CommentsSection commentList={article.comments} fetchArticleData={fetchArticleData} />
+          <CommentsSection commentList={article.comments} setRefetchTrigger={setRefetchTrigger} />
         )}
-        {!article && <CommentsSection commentList={[]} fetchArticleData={fetchArticleData} />}
+        {!article && <CommentsSection commentList={[]} setRefetchTrigger={setRefetchTrigger} />}
       </div>
     </main>
   );

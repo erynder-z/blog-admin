@@ -7,10 +7,10 @@ import NewCommentModal from './NewCommentModal/NewCommentModal';
 
 interface Props {
   commentList: IComment[];
-  fetchArticleData: () => Promise<void>;
+  setRefetchTrigger: (value: React.SetStateAction<boolean>) => void;
 }
 
-export default function CommentsSection({ commentList, fetchArticleData }: Props) {
+export default function CommentsSection({ commentList, setRefetchTrigger }: Props) {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => setShowModal(true);
@@ -27,7 +27,7 @@ export default function CommentsSection({ commentList, fetchArticleData }: Props
         <NewCommentModal
           showModal={showModal}
           closeModal={closeModal}
-          fetchArticleData={fetchArticleData}
+          setRefetchTrigger={setRefetchTrigger}
         />
       </div>
     );
@@ -42,7 +42,7 @@ export default function CommentsSection({ commentList, fetchArticleData }: Props
         <NewCommentModal
           showModal={showModal}
           closeModal={closeModal}
-          fetchArticleData={fetchArticleData}
+          setRefetchTrigger={setRefetchTrigger}
         />
         {commentList?.map((comment) => (
           <div key={comment._id.toString()}>

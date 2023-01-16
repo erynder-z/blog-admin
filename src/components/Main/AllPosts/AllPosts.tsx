@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../../contexts/AuthContext';
+import { fetchPosts } from '../../../helpers/FetchPosts';
 import { IPost } from '../../../interfaces/Post';
 import { ITag } from '../../../interfaces/Tag';
 import PostItem from '../PostPreview/PostPreview';
@@ -17,23 +18,9 @@ export default function AllPosts({ filter }: Props) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch('http://localhost:8000/api/admin/posts/all', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const data = await res.json();
-        setActivePostList(data.post_list);
-        setFullPostList(data.post_list);
-      } catch (err: any) {
-        setError(err);
-      }
-      setLoading(false);
-    };
-
-    fetchPosts();
+    if (token) {
+      fetchPosts('all', token, setActivePostList, setFullPostList, setLoading, setError);
+    }
   }, []);
 
   useEffect(() => {

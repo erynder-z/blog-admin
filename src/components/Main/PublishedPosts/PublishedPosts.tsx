@@ -5,6 +5,7 @@ import PostItem from '../PostPreview/PostPreview';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import './PublishedPosts.css';
 import AuthContext from '../../../contexts/AuthContext';
+import { fetchPosts } from '../../../helpers/FetchPosts';
 
 interface Props {
   filter: ITag | string | null;
@@ -18,23 +19,8 @@ export default function PublishedPosts({ filter }: Props) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch('http://localhost:8000/api/admin/posts/published', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const data = await res.json();
-        setActivePostList(data.post_list);
-        setFullPostList(data.post_list);
-      } catch (err: any) {
-        setError(err);
-      }
-      setLoading(false);
-    };
     if (token) {
-      fetchPosts();
+      fetchPosts('published', token, setActivePostList, setFullPostList, setLoading, setError);
     }
   }, []);
 
