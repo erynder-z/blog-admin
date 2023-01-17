@@ -13,6 +13,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 import UnpublishedPosts from './components/Main/UnpublishedPosts/UnpublishedPosts';
 import PublishedPosts from './components/Main/PublishedPosts/PublishedPosts';
 import AuthContext from './contexts/AuthContext';
+import EditPost from './components/Main/EditPost/EditPost';
 
 type ProtectedRouteProps = {
   user: any;
@@ -91,6 +92,7 @@ function App() {
               <Route path="/all" element={<AllPosts filter={filter} />} />
               <Route path="/post/:id" element={<ArticlePage />} />
               <Route path="/add_post" element={<AddPostPage />} />
+              <Route path="/edit_post/:id" element={<EditPost />} />
               <Route
                 path="/manage_tags"
                 element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}

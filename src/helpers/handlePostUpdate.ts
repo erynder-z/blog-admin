@@ -1,10 +1,14 @@
 import { Editor as TinyMCEEditor } from 'tinymce';
+import { IComment } from '../interfaces/Comment';
+import { ITag } from '../interfaces/Tag';
 
-export const handlePostSubmit = async (
+export const handlePostUpdate = async (
   event: React.FormEvent<HTMLFormElement>,
   token: String | null,
+  id: String | undefined,
   editorRef: React.MutableRefObject<TinyMCEEditor | null>,
-  selectedTags: string[],
+  selectedTags: string[] | [],
+  comments: string[] | [],
   successfullSubmit: () => () => void,
   failedSubmit: () => () => void
 ) => {
@@ -14,11 +18,12 @@ export const handlePostSubmit = async (
     const body = {
       title: formData.get('title'),
       content: editorRef.current ? editorRef.current.getContent() : '',
-      tags: selectedTags
+      tags: selectedTags,
+      comments: comments
     };
 
-    const response = await fetch('http://localhost:8000/api/posts', {
-      method: 'POST',
+    const response = await fetch(`http://localhost:8000/api/posts/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
