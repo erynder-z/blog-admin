@@ -10,6 +10,6 @@ export interface IPost {
   title: string;
   content: string;
   timestamp: Date;
-  tags: ITag[];
-  comments: IComment[];
+  tags: ITag[] | [];
+  comments: IComment[] | [];
 }
