@@ -16,6 +16,9 @@ export default function AddPostPage() {
   const [error, setError] = useState<Error | null>(null);
   const [showInfoText, setShowInfoText] = useState<boolean>(false);
   const [infoTextMessage, setInfoTextMessage] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const editorRef = useRef<TinyMCEEditor | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,9 +26,9 @@ export default function AddPostPage() {
       const form = event.target as HTMLFormElement;
       const formData = new FormData(form);
       const body = {
-        ...Object.fromEntries(formData),
         title: formData.get('title'),
-        text: editorRef.current ? editorRef.current.getContent() : ''
+        content: editorRef.current ? editorRef.current.getContent() : '',
+        tags: selectedTags
       };
 
       const response = await fetch('http://localhost:8000/api/posts', {
@@ -65,11 +68,18 @@ export default function AddPostPage() {
     return () => clearTimeout(timeoutId);
   };
 
+  const handleTagCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    if (event.target.checked) {
+      setSelectedTags([...selectedTags, value]);
+    } else {
+      setSelectedTags(selectedTags.filter((tag) => tag !== value));
+    }
+  };
+
   useEffect(() => {
     fetchTagListData(setTagList, setLoading, setError);
   }, []);
-
-  const editorRef = useRef<TinyMCEEditor | null>(null);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -92,7 +102,13 @@ export default function AddPostPage() {
               <div className="create-post-tag-list">
                 {tagList?.map((tag) => (
                   <div key={tag._id} className="checkbox-container">
-                    <input type="checkbox" id={tag.name} name={tag.name} value={tag._id} />
+                    <input
+                      type="checkbox"
+                      id={tag.name}
+                      name={tag.name}
+                      value={tag._id}
+                      onChange={handleTagCheckboxChange}
+                    />
                     <label htmlFor={tag.name}>{tag.name}</label>
                   </div>
                 ))}
