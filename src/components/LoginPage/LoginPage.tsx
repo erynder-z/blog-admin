@@ -8,9 +8,11 @@ export default function LoginPage() {
   const { setToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const login = async (username: string, password: string) => {
     setIsVerifying(true);
+    setError(null);
     try {
       const response = await fetch('http://localhost:8000/api/login', {
         method: 'POST',
@@ -18,6 +20,7 @@ export default function LoginPage() {
         body: JSON.stringify({ username, password })
       });
       if (!response.ok) {
+        setError('invalid credentials');
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
       const data = await response.json();
@@ -74,6 +77,7 @@ export default function LoginPage() {
                 verifying...
               </div>
             )}
+            {error && <div className="error-container">{error}</div>}
           </div>
         </form>
       </div>

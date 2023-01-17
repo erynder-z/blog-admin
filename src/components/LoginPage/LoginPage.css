@@ -20,11 +20,13 @@
   font-size: 1.5em;
 }
 
-.verifying-container {
+.verifying-container,
+.error-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
 }
 
 @media (max-width: 800px) {
