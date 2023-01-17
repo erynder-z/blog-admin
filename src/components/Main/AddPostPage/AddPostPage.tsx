@@ -23,19 +23,11 @@ export default function AddPostPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handlePostSubmit(
-      event,
-      token,
-      'POST',
-      editorRef,
-      selectedTags,
-      successfullSubmit,
-      failedSubmit
-    );
+    handlePostSubmit(event, token, editorRef, selectedTags, successfullSubmit, failedSubmit);
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('success!');
+    setInfoTextMessage('Post successfull!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
@@ -44,7 +36,7 @@ export default function AddPostPage() {
   };
 
   const failedSubmit = () => {
-    setInfoTextMessage('something went wrong!');
+    setInfoTextMessage('Something went wrong!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
