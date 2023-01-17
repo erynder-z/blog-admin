@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
+import { handlePostSubmit } from '../../../helpers/HandlePostSubmit';
 
 export default function AddPostPage() {
   const { token } = useContext(AuthContext);
@@ -20,34 +21,17 @@ export default function AddPostPage() {
 
   const editorRef = useRef<TinyMCEEditor | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (token) {
-      const form = event.target as HTMLFormElement;
-      const formData = new FormData(form);
-      const body = {
-        title: formData.get('title'),
-        content: editorRef.current ? editorRef.current.getContent() : '',
-        tags: selectedTags
-      };
-
-      const response = await fetch('http://localhost:8000/api/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(body)
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        successfullSubmit();
-      } else {
-        console.error(response.statusText);
-        failedSubmit();
-      }
-    }
+    handlePostSubmit(
+      event,
+      token,
+      'POST',
+      editorRef,
+      selectedTags,
+      successfullSubmit,
+      failedSubmit
+    );
   };
 
   const successfullSubmit = () => {
