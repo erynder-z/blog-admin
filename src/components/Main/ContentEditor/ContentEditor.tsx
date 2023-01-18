@@ -4,17 +4,17 @@ import { Editor as TinyMCEEditor } from 'tinymce';
 
 interface ITinyMCEEditorProps {
   setEditorRef: (editor: TinyMCEEditor) => void;
-  decodedString?: string;
+  decodedContent?: string;
 }
 
-export default function ContentEditor({ setEditorRef, decodedString }: ITinyMCEEditorProps) {
+export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCEEditorProps) {
   return (
     <Editor
       apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
       onInit={(evt, editor) => {
         setEditorRef(editor);
       }}
-      initialValue={decodedString ? decodedString : "What's todays topic?"}
+      initialValue={decodedContent ? decodedContent : "What's todays topic?"}
       init={{
         height: 500,
         menubar: false,
