@@ -14,7 +14,10 @@ export default function PostPreview({ postData }: Props) {
   const { _id, title, content, timestamp, comments } = postData;
 
   const getTitleExcerpt = (title: string) => {
-    return title.length >= 100 ? title.substring(0, 100) + '...' : title;
+    const stringWithoutHTML = stripHtml(title).result;
+    return stringWithoutHTML.length >= 100
+      ? stringWithoutHTML.substring(0, 100) + '...'
+      : stringWithoutHTML;
   };
 
   const getTextExcerpt = (text: string) => {
@@ -36,7 +39,7 @@ export default function PostPreview({ postData }: Props) {
       <div className="post-bottom">
         {comments.length} <FaRegCommentAlt />
         <div className="read_more">
-          Read more <FaArrowRight />
+          Details <FaArrowRight />
         </div>
       </div>
     </Link>
