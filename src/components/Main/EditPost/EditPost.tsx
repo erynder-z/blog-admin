@@ -33,7 +33,8 @@ export default function EditPost() {
     editorRef.current = editor;
   };
 
-  const decodedString = decode(article?.content);
+  const decodedTitle = decode(article?.title);
+  const decodedContent = decode(article?.content);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -124,13 +125,13 @@ export default function EditPost() {
                 <input
                   type="text"
                   name="title"
-                  defaultValue={article?.title}
+                  defaultValue={decodedTitle}
                   onChange={(e) => setArticle({ ...article, title: e.target.value })}
                 />
               </div>
               <div className="editor-container">
                 <h2>content:</h2>
-                <ContentEditor setEditorRef={setEditorRef} decodedString={decodedString} />
+                <ContentEditor setEditorRef={setEditorRef} decodedContent={decodedContent} />
               </div>
               <div className="create-post-publish-options">
                 <div className="checkbox-container">
