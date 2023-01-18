@@ -25,6 +25,7 @@ export default function EditPost() {
   const [infoTextMessage, setInfoTextMessage] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [articleComments, setArticleComments] = useState<string[]>([]);
+  const [initialRender, setInitialRender] = useState<boolean>(true);
   const editorRef = useRef<TinyMCEEditor | null>(null);
 
   const decodedString = decode(article?.content);
@@ -78,8 +79,14 @@ export default function EditPost() {
   }, [id]);
 
   useEffect(() => {
-    if (article) {
+    if (initialRender && article) {
       setSelectedTags(article.tags.map((tag) => tag._id));
+      setInitialRender(false);
+    }
+  }, [article, initialRender]);
+
+  useEffect(() => {
+    if (article) {
       setArticleComments(article.comments.map((comment) => comment._id));
     }
   }, [article]);
