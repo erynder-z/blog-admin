@@ -1,8 +1,16 @@
 .comment {
+  box-sizing: border-box;
   font-size: 0.6em;
-  margin: 2.5rem;
+  padding: 2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .comment-text {
   margin-top: 0;
+}
+
+.delete-comment-icon {
+  cursor: pointer;
 }

@@ -46,7 +46,7 @@ export default function CommentsSection({ commentList, setRefetchTrigger }: Prop
         />
         {commentList?.map((comment) => (
           <div key={comment._id.toString()}>
-            <Comment commentData={comment} />
+            <Comment commentData={comment} setRefetchTrigger={setRefetchTrigger} />
           </div>
         ))}
       </div>
