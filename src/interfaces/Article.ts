@@ -1,7 +1,7 @@
 import { IComment } from './Comment';
 import { ITag } from './Tag';
 
-export interface IPost {
+export interface IArticle {
   _id: string;
   author: {
     username: string;

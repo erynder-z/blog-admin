@@ -1,16 +1,16 @@
 import React, { ChangeEvent, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { Editor as TinyMCEEditor } from 'tinymce';
-import './AddPostPage.css';
+import './AddArticlePage.css';
 import { ITag } from '../../../interfaces/Tag';
 import { useNavigate } from 'react-router-dom';
 import InfoText from '../InfoText/InfoText';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
-import { handlePostSubmit } from '../../../helpers/HandlePostSubmit';
+import { handleArticleSubmit } from '../../../helpers/HandleArticleSubmit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
 
-export default function AddPostPage() {
+export default function AddArticlePage() {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   const [tagList, setTagList] = useState<ITag[]>();
@@ -28,11 +28,11 @@ export default function AddPostPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handlePostSubmit(event, token, editorRef, selectedTags, successfullSubmit, failedSubmit);
+    handleArticleSubmit(event, token, editorRef, selectedTags, successfullSubmit, failedSubmit);
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('Post successfull!');
+    setInfoTextMessage('Article successfull!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
@@ -62,13 +62,13 @@ export default function AddPostPage() {
   }
 
   return (
-    <main className="add-post_page">
+    <main className="add-article_page">
       {showInfoText ? (
         <InfoText message={infoTextMessage} />
       ) : (
-        <div className="add-post_container">
+        <div className="add-article_container">
           <form onSubmit={handleSubmit}>
-            <h1 className="add-post_heading">Add post</h1>
+            <h1 className="add-article_heading">Add article</h1>
             <div className="tags-container">
               <label htmlFor="tags">Tags</label>
               <Tags
@@ -85,13 +85,13 @@ export default function AddPostPage() {
               <h2>content:</h2>
               <ContentEditor setEditorRef={setEditorRef} />
             </div>
-            <div className="create-post-publish-options">
+            <div className="create-article-publish-options">
               <div className="checkbox-container">
-                <input type="checkbox" id="publishPost" name="publishPost" />
-                <label htmlFor="publishPost">publish post when submitting</label>
+                <input type="checkbox" id="publishArticle" name="publishArticle" />
+                <label htmlFor="publishArticle">publish article when submitting</label>
               </div>
             </div>
-            <button type="submit">Submit post</button>
+            <button type="submit">Submit article</button>
           </form>
         </div>
       )}

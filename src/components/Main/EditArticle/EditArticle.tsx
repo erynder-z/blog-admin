@@ -2,24 +2,24 @@ import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'rea
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchArticleData } from '../../../helpers/FetchArticleData';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
-import { IPost } from '../../../interfaces/Post';
+import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import InfoText from '../InfoText/InfoText';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import { decode } from 'html-entities';
-import './EditPost.css';
+import './EditArticle.css';
 import AuthContext from '../../../contexts/AuthContext';
-import { handlePostUpdate } from '../../../helpers/handlePostUpdate';
+import { handleArticleUpdate } from '../../../helpers/handleArticleUpdate';
 import { Tags } from './DisplayTagsEdit/DisplayTagsEdit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 
-export default function EditPost() {
+export default function EditArticle() {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   const params = useParams();
   const id: string | undefined = params.id;
   const [tagList, setTagList] = useState<ITag[]>();
-  const [article, setArticle] = useState<IPost>();
+  const [article, setArticle] = useState<IArticle>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [showInfoText, setShowInfoText] = useState<boolean>(false);
@@ -39,7 +39,7 @@ export default function EditPost() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (article) {
-      handlePostUpdate(
+      handleArticleUpdate(
         event,
         token,
         id,
@@ -53,7 +53,7 @@ export default function EditPost() {
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('Post updated successfully!!');
+    setInfoTextMessage('Article updated successfully!!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
@@ -101,14 +101,14 @@ export default function EditPost() {
     return <p>An error occurred: {error.message}</p>;
   }
   return (
-    <main className="add-post_page">
+    <main className="add-article_page">
       {showInfoText ? (
         <InfoText message={infoTextMessage} />
       ) : (
-        <div className="add-post_container">
+        <div className="add-article_container">
           {article && (
             <form onSubmit={handleSubmit}>
-              <h1 className="add-post_heading">Add post</h1>
+              <h1 className="add-article_heading">Edit article</h1>
               <div className="tags-container">
                 <label htmlFor="tags">Tags</label>
                 {tagList && (
@@ -133,18 +133,18 @@ export default function EditPost() {
                 <h2>content:</h2>
                 <ContentEditor setEditorRef={setEditorRef} decodedContent={decodedContent} />
               </div>
-              <div className="create-post-publish-options">
+              <div className="create-article-publish-options">
                 <div className="checkbox-container">
                   <input
                     type="checkbox"
-                    id="publishPost"
-                    name="publishPost"
+                    id="publishArticle"
+                    name="publishArticle"
                     defaultChecked={article?.isPublished}
                   />
-                  <label htmlFor="publishPost">publish post when submitting</label>
+                  <label htmlFor="publishArticle">publish article when submitting</label>
                 </div>
               </div>
-              <button type="submit">Submit post</button>
+              <button type="submit">Submit article</button>
             </form>
           )}
         </div>

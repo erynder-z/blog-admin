@@ -18,7 +18,7 @@ export default function Comment({ commentData, setRefetchTrigger }: Props) {
     const confirmed = window.confirm('Are you sure you want to delete this comment?');
     if (confirmed) {
       try {
-        const res = await fetch(`http://localhost:8000/api/posts/${_id}/comment`, {
+        const res = await fetch(`http://localhost:8000/api/articles/${_id}/comment`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`

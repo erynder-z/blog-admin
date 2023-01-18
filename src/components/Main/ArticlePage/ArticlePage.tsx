@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { decode } from 'html-entities';
 import parse from 'html-react-parser';
 import { Link, useParams } from 'react-router-dom';
-import { IPost } from '../../../interfaces/Post';
+import { IPost } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import CommentsSection from '../CommentsSection/CommentsSection';
 import { FaPenAlt } from 'react-icons/fa';
@@ -61,7 +61,7 @@ export default function ArticlePage() {
         </ul>
 
         {parse(decodedString)}
-        <Link to={`/edit_post/${id}`} className="edit_article-button">
+        <Link to={`/edit_article/${id}`} className="edit_article-button">
           Edit article <FaPenAlt />
         </Link>
         {article && (

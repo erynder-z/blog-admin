@@ -11,10 +11,10 @@ export default function Navbar() {
           All
         </Link>
         <Link to="/published" className="nav-list-item">
-          Published posts
+          Published articles
         </Link>
         <Link to="/unpublished" className="nav-list-item">
-          Unpublished posts
+          Unpublished articles
         </Link>
         <Link to="/howto" className="nav-list-item">
           Manual

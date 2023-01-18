@@ -1,6 +1,6 @@
 export interface IComment {
   _id: string;
-  parentPost: string;
+  parentArticle: string;
   author: string;
   text: string;
   timestamp: Date;

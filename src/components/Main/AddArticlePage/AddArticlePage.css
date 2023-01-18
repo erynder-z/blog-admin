@@ -1,21 +1,21 @@
-.add-post_page {
+.add-article_page {
   max-width: 70ch;
   margin: auto;
   display: flex;
   flex-direction: column;
 }
 
-.add-post_container {
+.add-article_container {
   padding: 1em;
   background-color: var(--background_bright);
   color: var(--text_dark);
 }
 
-.add-post_heading {
+.add-article_heading {
   font-size: 1.5em;
 }
 
-.create-post-tag-list {
+.create-article-tag-list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -32,12 +32,12 @@
   all: unset;
 }
 
-.create-post-publish-options {
+.create-article-publish-options {
   margin: 1em 0;
 }
 
-.create-post-tag-list label,
-.create-post-publish-options label {
+.create-article-tag-list label,
+.create-article-publish-options label {
   all: unset;
 }
 

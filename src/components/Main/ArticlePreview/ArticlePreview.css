@@ -1,28 +1,28 @@
-.post {
+.article {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
   height: 100%;
   padding: 0.5em;
-  background-color: var(--blogpost_card_background);
+  background-color: var(--article_card_background);
   color: var(--text_dark);
   text-decoration: none;
   transition: all 0.3s ease-in-out;
 }
 
-.post:hover {
+.article:hover {
   background-color: var(--hover);
   color: var(--text_bright);
 }
 
-.post:hover .read_more {
+.article:hover .read_more {
   transform: scale(1.1);
   color: var(--text_bright);
 }
 
-.post:hover .timestamp,
-.post:hover .post-text {
+.article:hover .timestamp,
+.article:hover .article-text {
   color: inherit;
 }
 
@@ -31,10 +31,10 @@
   color: var(--text_grey);
 }
 
-.post-title {
+.article-title {
   margin: 0;
   word-wrap: break-word;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .author {
@@ -42,14 +42,14 @@
   color: var(--text_grey);
 }
 
-.post-text {
+.article-text {
   max-width: 100%;
   word-wrap: break-word;
   font-size: 0.75em;
   color: var(--text_grey);
 }
 
-.post-bottom {
+.article-bottom {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,7 +69,7 @@
 }
 
 @media (max-width: 800px) {
-  .post {
+  .article {
     padding: 0.25em;
   }
 }

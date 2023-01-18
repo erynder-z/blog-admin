@@ -1,8 +1,8 @@
-.add_post-container {
+.add_article-container {
   width: 100%;
 }
 
-.addPostBtn {
+.addArticleBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,12 +19,12 @@
   gap: 1rem;
 }
 
-.addPostBtn:hover {
+.addArticleBtn:hover {
   background-color: var(--hover);
   border-color: var(--hover);
   color: var(--text_bright);
 }
-.addPostBtn:focus,
-.addPostBtn:focus-visible {
+.addArticleBtn:focus,
+.addArticleBtn:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }

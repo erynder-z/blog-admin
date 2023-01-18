@@ -5,10 +5,10 @@ export const fetchArticleData = async (
   setError?: Function
 ) => {
   try {
-    const res = await fetch(`http://localhost:8000/api/posts/${id}`);
+    const res = await fetch(`http://localhost:8000/api/articles/${id}`);
     const data = await res.json();
     if (setArticle) {
-      setArticle(data.post);
+      setArticle(data.article);
     }
   } catch (err: any) {
     if (setError) {

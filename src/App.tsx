@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
-import AllPosts from './components/Main/AllPosts/AllPosts';
+import AllArticles from './components/Main/AllArticles/AllArticles';
 import ArticlePage from './components/Main/ArticlePage/ArticlePage';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
-import AddPostPage from './components/Main/AddPostPage/AddPostPage';
+import AddArticlePage from './components/Main/AddArticlePage/AddArticlePage';
 import ManageTagsPage from './components/Main/ManageTagsPage/ManageTagsPage';
 import LoginPage from './components/LoginPage/LoginPage';
-import UnpublishedPosts from './components/Main/UnpublishedPosts/UnpublishedPosts';
-import PublishedPosts from './components/Main/PublishedPosts/PublishedPosts';
+import UnpublishedArticles from './components/Main/UnpublishedArticles/UnpublishedArticles';
+import PublishedArticles from './components/Main/PublishedArticles/PublishedArticles';
 import AuthContext from './contexts/AuthContext';
-import EditPost from './components/Main/EditPost/EditPost';
+import EditArticle from './components/Main/EditArticle/EditArticle';
 
 type ProtectedRouteProps = {
   user: any;
@@ -89,16 +89,16 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path="/all" element={<AllPosts filter={filter} />} />
-              <Route path="/post/:id" element={<ArticlePage />} />
-              <Route path="/add_post" element={<AddPostPage />} />
-              <Route path="/edit_post/:id" element={<EditPost />} />
+              <Route path="/all" element={<AllArticles filter={filter} />} />
+              <Route path="/article/:id" element={<ArticlePage />} />
+              <Route path="/add_article" element={<AddArticlePage />} />
+              <Route path="/edit_article/:id" element={<EditArticle />} />
               <Route
                 path="/manage_tags"
                 element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}
               />
-              <Route path="/published" element={<PublishedPosts filter={filter} />} />
-              <Route path="/unpublished" element={<UnpublishedPosts filter={filter} />} />
+              <Route path="/published" element={<PublishedArticles filter={filter} />} />
+              <Route path="/unpublished" element={<UnpublishedArticles filter={filter} />} />
               <Route path="*" element={<p>There's nothing here: 404!</p>} />
             </Route>
           </Routes>

@@ -1,47 +1,58 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { IPost } from '../../../interfaces/Post';
+import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
-import PostItem from '../PostPreview/PostPreview';
+import ArticleItem from '../ArticlePreview/ArticlePreview';
 import { MagnifyingGlass } from 'react-loader-spinner';
-import './PublishedPosts.css';
+import './PublishedArticles.css';
 import AuthContext from '../../../contexts/AuthContext';
-import { fetchPosts } from '../../../helpers/FetchPosts';
+import { fetchArticles } from '../../../helpers/FetchArticles';
 
 interface Props {
   filter: ITag | string | null;
 }
 
-export default function PublishedPosts({ filter }: Props) {
+export default function PublishedArticles({ filter }: Props) {
   const { token } = useContext(AuthContext);
-  const [activePostList, setActivePostList] = useState<IPost[]>([]);
-  const [fullPostList, setFullPostList] = useState<IPost[]>([]);
+  const [activeArticleList, setActiveArticleList] = useState<IArticle[]>([]);
+  const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     if (token) {
-      fetchPosts('published', token, setActivePostList, setFullPostList, setLoading, setError);
+      fetchArticles(
+        'published',
+        token,
+        setActiveArticleList,
+        setFullArticleList,
+        setLoading,
+        setError
+      );
     }
   }, []);
 
   useEffect(() => {
     const filterForString = (filter: string) => {
-      return fullPostList.filter((post) => {
-        return post.title.includes(filter) || post.content.includes(filter);
+      return fullArticleList.filter((article) => {
+        return article.title.includes(filter) || article.content.includes(filter);
       });
     };
 
     const filterForTag = (filter: ITag) => {
-      return fullPostList.filter((post) => post?.tags?.some((tag) => tag._id == filter?._id));
+      return fullArticleList.filter((article) =>
+        article?.tags?.some((tag) => tag._id == filter?._id)
+      );
     };
 
-    const getFilterPosts = (filter: ITag | string | null) => {
+    const getFilterArticles = (filter: ITag | string | null) => {
       return typeof filter === 'string'
         ? filterForString(filter as string)
         : filterForTag(filter as ITag);
     };
 
-    filter ? setActivePostList(getFilterPosts(filter)) : setActivePostList(fullPostList);
+    filter
+      ? setActiveArticleList(getFilterArticles(filter))
+      : setActiveArticleList(fullArticleList);
   }, [filter]);
 
   if (loading) {
@@ -66,10 +77,10 @@ export default function PublishedPosts({ filter }: Props) {
   }
 
   return (
-    <main className="published-posts-list">
-      {activePostList?.map((post) => (
-        <div key={post._id.toString()} className="post-container">
-          <PostItem postData={post} />
+    <main className="published-articles-list">
+      {activeArticleList?.map((article) => (
+        <div key={article._id.toString()} className="article-container">
+          <ArticleItem articleData={article} />
         </div>
       ))}
     </main>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITag } from '../../interfaces/Tag';
-import AddPostSection from './AddPostSection/AddPostSection';
+import AddPostSection from './AddArticleSection/AddArticleSection';
 import LogoutSection from './LogoutSection/LogoutSection';
 import AddTagSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';

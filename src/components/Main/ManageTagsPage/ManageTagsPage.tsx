@@ -111,7 +111,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
         <div className="manage_tags_container">
           <form onSubmit={handleSubmit}>
             <h1 className="manage_tags_heading">Regsitered tags</h1>
-            <div className="create-post-tag-list">
+            <div className="create-article-tag-list">
               <ul>
                 {tagList?.map((tag) => (
                   <li key={tag._id} className="registered_tasks-list">

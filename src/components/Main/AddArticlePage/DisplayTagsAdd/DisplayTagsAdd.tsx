@@ -3,12 +3,11 @@ import { ITag } from '../../../../interfaces/Tag';
 
 interface ITagsProps {
   tagList: ITag[] | undefined;
-  articleTags: ITag[];
   selectedTags: string[];
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const Tags = ({ tagList, articleTags, selectedTags, setSelectedTags }: ITagsProps) => {
+export const Tags = ({ tagList, selectedTags, setSelectedTags }: ITagsProps) => {
   const handleTagCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (event.target.checked) {
@@ -23,7 +22,7 @@ export const Tags = ({ tagList, articleTags, selectedTags, setSelectedTags }: IT
   }
 
   return (
-    <div className="create-post-tag-list">
+    <div className="create-article-tag-list">
       {tagList.map((tag) => (
         <div key={tag._id} className="checkbox-container">
           <input
@@ -31,8 +30,7 @@ export const Tags = ({ tagList, articleTags, selectedTags, setSelectedTags }: IT
             id={tag.name}
             name={tag.name}
             value={tag._id}
-            defaultChecked={articleTags?.some((t) => t._id === tag._id)}
-            onChange={(e) => handleTagCheckboxChange(e)}
+            onChange={handleTagCheckboxChange}
           />
           <label htmlFor={tag.name}>{tag.name}</label>
         </div>

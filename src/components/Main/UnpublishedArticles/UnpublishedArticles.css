@@ -1,4 +1,4 @@
-.published-posts-list {
+.unpublished-articles-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
