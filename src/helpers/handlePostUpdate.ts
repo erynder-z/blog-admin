@@ -19,7 +19,8 @@ export const handlePostUpdate = async (
       title: formData.get('title'),
       content: editorRef.current ? editorRef.current.getContent() : '',
       tags: selectedTags,
-      comments: comments
+      comments: comments,
+      isPublished: formData.get('publishPost')
     };
 
     const response = await fetch(`http://localhost:8000/api/posts/${id}`, {

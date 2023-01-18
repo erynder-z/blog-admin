@@ -134,7 +134,12 @@ export default function EditPost() {
               </div>
               <div className="create-post-publish-options">
                 <div className="checkbox-container">
-                  <input type="checkbox" id="publishPost" name="publishPost" />
+                  <input
+                    type="checkbox"
+                    id="publishPost"
+                    name="publishPost"
+                    defaultChecked={article?.isPublished}
+                  />
                   <label htmlFor="publishPost">publish post when submitting</label>
                 </div>
               </div>

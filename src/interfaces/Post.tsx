@@ -12,4 +12,5 @@ export interface IPost {
   timestamp: Date;
   tags: ITag[] | [];
   comments: IComment[] | [];
+  isPublished: boolean;
 }
