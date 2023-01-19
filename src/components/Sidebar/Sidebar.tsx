@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
+import { ViewType } from '../../interfaces/customTypes';
 import { ITag } from '../../interfaces/Tag';
 import AddPostSection from './AddArticleSection/AddArticleSection';
 import LogoutSection from './LogoutSection/LogoutSection';
@@ -8,19 +9,37 @@ import './Sidebar.css';
 import TagsSection from './TagsSection/TagsSection';
 
 interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
   handleTagFilter: (tag: ITag) => void;
   handleSearch: (query: string) => void;
   refetchTrigger: boolean;
 }
 
-export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger }: Props) {
+export default function Sidebar({
+  setCurrentView,
+  handleTagFilter,
+  handleSearch,
+  refetchTrigger
+}: Props) {
+  const handleSetCurrentView = () => {
+    setCurrentView('Other');
+    localStorage.setItem('currentView', 'Other');
+  };
+
   return (
     <div className="sidebar">
-      <SearchSection handleSearch={handleSearch} />
-      <TagsSection handleTagFilter={handleTagFilter} refetchTrigger={refetchTrigger} />
-      <AddPostSection />
-      <AddTagSection />
-      <LogoutSection />
+      <section>
+        <SearchSection handleSearch={handleSearch} />
+        <TagsSection handleTagFilter={handleTagFilter} refetchTrigger={refetchTrigger} />
+      </section>
+      <section
+        onClick={() => {
+          handleSetCurrentView();
+        }}>
+        <AddPostSection />
+        <AddTagSection />
+        <LogoutSection />
+      </section>
     </div>
   );
 }

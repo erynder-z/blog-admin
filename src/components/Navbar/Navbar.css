@@ -47,3 +47,14 @@
   transform-origin: left;
   transform: scaleX(1);
 }
+
+.nav-list-item.active::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.nav-list-item:hover::before {
+  color: var(--text_dark);
+  transform-origin: left;
+  transform: scaleX(1);
+}
