@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import ActiveTagContext from '../../../contexts/ActiveTagContext';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { ITag } from '../../../interfaces/Tag';
 import './TagSection.css';
@@ -10,9 +11,9 @@ interface Props {
 
 export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) {
   const [tagList, setTagList] = useState<ITag[]>();
-  const [activeTag, setActiveTag] = useState<ITag | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const { activeTag, setActiveTag } = useContext(ActiveTagContext);
 
   const handleTagClick = (tag: ITag) => {
     tag !== activeTag ? setActiveTag(tag) : setActiveTag(null);

@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
+import ActiveTagContext from '../../contexts/ActiveTagContext';
 import { ViewType } from '../../interfaces/customTypes';
 import { ITag } from '../../interfaces/Tag';
 import AddPostSection from './AddArticleSection/AddArticleSection';
@@ -21,6 +22,8 @@ export default function Sidebar({
   handleSearch,
   refetchTrigger
 }: Props) {
+  const { setActiveTag } = useContext(ActiveTagContext);
+
   const handleSetCurrentView = () => {
     setCurrentView('Other');
     localStorage.setItem('currentView', 'Other');
@@ -35,6 +38,7 @@ export default function Sidebar({
       <section
         onClick={() => {
           handleSetCurrentView();
+          setActiveTag(null);
         }}>
         <AddPostSection />
         <AddTagSection />
