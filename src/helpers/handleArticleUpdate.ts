@@ -10,7 +10,7 @@ export const handleArticleUpdate = async (
   selectedTags: string[] | [],
   comments: string[] | [],
   successfullSubmit: () => () => void,
-  failedSubmit: () => () => void
+  failedSubmit: (error: any) => void
 ) => {
   if (token) {
     const form = event.target as HTMLFormElement;
@@ -37,7 +37,7 @@ export const handleArticleUpdate = async (
       successfullSubmit();
     } else {
       console.error(response.statusText);
-      failedSubmit();
+      failedSubmit(response.statusText);
     }
   }
 };

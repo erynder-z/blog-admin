@@ -40,13 +40,8 @@ export default function AddArticlePage() {
     return () => clearTimeout(timeoutId);
   };
 
-  const failedSubmit = () => {
-    setInfoTextMessage('Something went wrong!');
-    setShowInfoText(true);
-    const timeoutId = setTimeout(() => {
-      navigate('/all');
-    }, 3000);
-    return () => clearTimeout(timeoutId);
+  const failedSubmit = (error: Error) => {
+    window.alert(`Error: ${error}`);
   };
 
   useEffect(() => {

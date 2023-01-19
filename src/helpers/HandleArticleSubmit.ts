@@ -6,7 +6,7 @@ export const handleArticleSubmit = async (
   editorRef: React.MutableRefObject<TinyMCEEditor | null>,
   selectedTags: string[],
   successfullSubmit: () => () => void,
-  failedSubmit: () => () => void
+  failedSubmit: (error: any) => void
 ) => {
   if (token) {
     const form = event.target as HTMLFormElement;
@@ -31,7 +31,7 @@ export const handleArticleSubmit = async (
       successfullSubmit();
     } else {
       console.error(response.statusText);
-      failedSubmit();
+      failedSubmit(response.statusText);
     }
   }
 };
