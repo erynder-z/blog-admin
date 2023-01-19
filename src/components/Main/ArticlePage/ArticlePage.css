@@ -1,12 +1,14 @@
 .article_page {
   max-width: 70ch;
   margin: auto;
+  padding-top: 1rem;
 }
 
 .article_container {
   padding: 1em;
   background-color: var(--background_bright);
   color: var(--text_dark);
+  border-radius: 4px;
 }
 
 .article_title {
