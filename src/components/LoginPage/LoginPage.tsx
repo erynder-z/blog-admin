@@ -51,6 +51,7 @@ export default function LoginPage() {
 
   return (
     <div className="login-overlay">
+      <h1 className="login-heading">Blog-Admin</h1>
       <div className="login-container">
         <h1>Please login to continue!</h1>
         <form className="login-form" action="" method="POST" onSubmit={handleSubmit}>

@@ -16,6 +16,7 @@ export default function AllArticles({ filter }: Props) {
   const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  // successfull submit + failed submit
 
   useEffect(() => {
     if (token) {

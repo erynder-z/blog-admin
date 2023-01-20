@@ -6,9 +6,11 @@
 }
 
 .manage_tags_container {
+  margin-top: 1rem;
   padding: 1em;
   background-color: var(--background_bright);
   color: var(--text_dark);
+  border-radius: 4px;
 }
 
 .manage_tags_heading {

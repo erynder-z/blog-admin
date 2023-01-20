@@ -9,9 +9,11 @@ import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { handleArticleSubmit } from '../../../helpers/HandleArticleSubmit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
+import CurrentViewContext from '../../../contexts/CurrentViewContext';
 
 export default function AddArticlePage() {
   const { token } = useContext(AuthContext);
+  const { setCurrentView } = useContext(CurrentViewContext);
   const navigate = useNavigate();
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);
@@ -32,10 +34,11 @@ export default function AddArticlePage() {
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('Article successfull!');
+    setInfoTextMessage('Article submit successfull!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
+      setCurrentView('All');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
@@ -58,10 +61,10 @@ export default function AddArticlePage() {
 
   return (
     <main className="add-article_page">
-      {showInfoText ? (
-        <InfoText message={infoTextMessage} />
-      ) : (
-        <div className="add-article_container">
+      <div className="add-article_container">
+        {showInfoText ? (
+          <InfoText message={infoTextMessage} />
+        ) : (
           <form onSubmit={handleSubmit}>
             <h1 className="add-article_heading">Add article</h1>
             <div className="tags-container">
@@ -88,8 +91,8 @@ export default function AddArticlePage() {
             </div>
             <button type="submit">Submit article</button>
           </form>
-        </div>
-      )}
+        )}
+      </div>
     </main>
   );
 }

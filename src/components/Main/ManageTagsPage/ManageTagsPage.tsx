@@ -105,10 +105,10 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
 
   return (
     <main className="manage_tags_page">
-      {showInfoText ? (
-        <InfoText message={infoTextMessage} />
-      ) : (
-        <div className="manage_tags_container">
+      <div className="manage_tags_container">
+        {showInfoText ? (
+          <InfoText message={infoTextMessage} />
+        ) : (
           <form onSubmit={handleSubmit}>
             <h1 className="manage_tags_heading">Regsitered tags</h1>
             <div className="create-article-tag-list">
@@ -129,8 +129,8 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
             </div>
             <button type="submit">Submit tag</button>
           </form>
-        </div>
-      )}
+        )}{' '}
+      </div>
     </main>
   );
 }

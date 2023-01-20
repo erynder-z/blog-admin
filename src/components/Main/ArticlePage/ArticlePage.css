@@ -30,6 +30,13 @@
   padding: 0 1rem;
 }
 
+.article_options_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
 .edit_article-button {
   display: flex;
   justify-content: center;

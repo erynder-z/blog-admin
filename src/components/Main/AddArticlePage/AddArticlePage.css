@@ -3,12 +3,14 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
 }
 
 .add-article_container {
   padding: 1em;
   background-color: var(--background_bright);
   color: var(--text_dark);
+  border-radius: 4px;
 }
 
 .add-article_heading {

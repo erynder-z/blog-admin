@@ -61,12 +61,14 @@ export default function ArticlePage() {
         </ul>
 
         {parse(decodedString)}
-        <Link to={`/edit_article/${id}`} className="edit_article-button">
-          Edit article <FaPenAlt />
-        </Link>
-        <Link to={`/confirm_article_delete/${id}`} className="delete_article-button">
-          Delete article <FaTrashAlt />
-        </Link>
+        <div className="article_options_container">
+          <Link to={`/edit_article/${id}`} className="edit_article-button">
+            Edit article <FaPenAlt />
+          </Link>
+          <Link to={`/confirm_article_delete/${id}`} className="delete_article-button">
+            Delete article <FaTrashAlt />
+          </Link>
+        </div>
         {article && (
           <CommentsSection commentList={article.comments} setRefetchTrigger={setRefetchTrigger} />
         )}
