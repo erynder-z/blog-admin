@@ -15,6 +15,7 @@ import PublishedArticles from './components/Main/PublishedArticles/PublishedArti
 import AuthContext from './contexts/AuthContext';
 import EditArticle from './components/Main/EditArticle/EditArticle';
 import CurrentViewContext from './contexts/CurrentViewContext';
+import NotFoundPage from './components/Main/NotFoundPage/NotFoundPage';
 
 type ProtectedRouteProps = {
   user: any;
@@ -101,7 +102,7 @@ function App() {
               />
               <Route path="/published" element={<PublishedArticles filter={filter} />} />
               <Route path="/unpublished" element={<UnpublishedArticles filter={filter} />} />
-              <Route path="*" element={<p>There's nothing here: 404!</p>} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </main>
