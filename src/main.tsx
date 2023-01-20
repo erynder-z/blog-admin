@@ -5,13 +5,16 @@ import App from './App';
 import './index.css';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { ActiveTagContextProvider } from './contexts/ActiveTagContext';
+import { CurrentViewContextProvider } from './contexts/CurrentViewContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
         <ActiveTagContextProvider>
-          <App />
+          <CurrentViewContextProvider>
+            <App />
+          </CurrentViewContextProvider>
         </ActiveTagContextProvider>
       </AuthContextProvider>
     </BrowserRouter>

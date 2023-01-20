@@ -1,16 +1,12 @@
-import React, { Dispatch, SetStateAction, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ActiveTagContext from '../../contexts/ActiveTagContext';
-import { ViewType } from '../../interfaces/customTypes';
+import CurrentViewContext from '../../contexts/CurrentViewContext';
 import './Navbar.css';
 
-interface Props {
-  currentView: ViewType | null;
-  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
-}
-
-export default function Navbar({ currentView, setCurrentView }: Props) {
+export default function Navbar() {
   const { setActiveTag } = useContext(ActiveTagContext);
+  const { currentView, setCurrentView } = useContext(CurrentViewContext);
 
   const handleSetCurrentView = (currentView: 'All' | 'Published' | 'Unpublished' | 'Manual') => {
     setCurrentView(currentView);

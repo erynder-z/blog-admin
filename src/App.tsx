@@ -14,7 +14,7 @@ import UnpublishedArticles from './components/Main/UnpublishedArticles/Unpublish
 import PublishedArticles from './components/Main/PublishedArticles/PublishedArticles';
 import AuthContext from './contexts/AuthContext';
 import EditArticle from './components/Main/EditArticle/EditArticle';
-import { ViewType } from './interfaces/customTypes';
+import CurrentViewContext from './contexts/CurrentViewContext';
 
 type ProtectedRouteProps = {
   user: any;
@@ -27,9 +27,7 @@ const ProtectedRoute = ({ user, redirectPath = '/' }: ProtectedRouteProps) => {
 
 function App() {
   const { token, user, isAuth, setUser, setIsAuth } = useContext(AuthContext);
-  const [currentView, setCurrentView] = useState<ViewType | null>(
-    (localStorage.getItem('currentView') as ViewType) || null
-  );
+
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
   const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
@@ -87,7 +85,7 @@ function App() {
     <div className="app-container">
       <div className="main-container">
         <nav>
-          <Navbar currentView={currentView} setCurrentView={setCurrentView} />
+          <Navbar />
         </nav>
         <main>
           <Routes>
@@ -115,7 +113,6 @@ function App() {
         />
         <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
           <Sidebar
-            setCurrentView={setCurrentView}
             handleTagFilter={handleTagFilter}
             handleSearch={handleSearch}
             refetchTrigger={refetchTrigger}
