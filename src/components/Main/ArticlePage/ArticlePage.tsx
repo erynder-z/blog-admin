@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { decode } from 'html-entities';
 import parse from 'html-react-parser';
 import { Link, useParams } from 'react-router-dom';
-import { IPost } from '../../../interfaces/Article';
+import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import CommentsSection from '../CommentsSection/CommentsSection';
-import { FaPenAlt } from 'react-icons/fa';
+import { FaPenAlt, FaTrashAlt } from 'react-icons/fa';
 import './ArticlePage.css';
 import { fetchArticleData } from '../../../helpers/FetchArticleData';
 import { stripHtml } from 'string-strip-html';
@@ -15,7 +15,7 @@ export default function ArticlePage() {
   const params = useParams();
   const id: string | undefined = params.id;
 
-  const [article, setArticle] = useState<IPost>();
+  const [article, setArticle] = useState<IArticle>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
@@ -63,6 +63,9 @@ export default function ArticlePage() {
         {parse(decodedString)}
         <Link to={`/edit_article/${id}`} className="edit_article-button">
           Edit article <FaPenAlt />
+        </Link>
+        <Link to={`/confirm_article_delete/${id}`} className="delete_article-button">
+          Delete article <FaTrashAlt />
         </Link>
         {article && (
           <CommentsSection commentList={article.comments} setRefetchTrigger={setRefetchTrigger} />

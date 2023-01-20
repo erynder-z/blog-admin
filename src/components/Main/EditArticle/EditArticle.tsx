@@ -9,7 +9,7 @@ import { Editor as TinyMCEEditor } from 'tinymce';
 import { decode } from 'html-entities';
 import './EditArticle.css';
 import AuthContext from '../../../contexts/AuthContext';
-import { handleArticleUpdate } from '../../../helpers/handleArticleUpdate';
+import { handleArticleUpdate } from '../../../helpers/HandleArticleUpdate';
 import { Tags } from './DisplayTagsEdit/DisplayTagsEdit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 

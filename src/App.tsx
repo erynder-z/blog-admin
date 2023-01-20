@@ -16,6 +16,7 @@ import AuthContext from './contexts/AuthContext';
 import EditArticle from './components/Main/EditArticle/EditArticle';
 import CurrentViewContext from './contexts/CurrentViewContext';
 import NotFoundPage from './components/Main/NotFoundPage/NotFoundPage';
+import ConfirmArticleDelete from './components/Main/ConfirmArticleDelete/ConfirmArticleDelete';
 
 type ProtectedRouteProps = {
   user: any;
@@ -96,6 +97,7 @@ function App() {
               <Route path="/article/:id" element={<ArticlePage />} />
               <Route path="/add_article" element={<AddArticlePage />} />
               <Route path="/edit_article/:id" element={<EditArticle />} />
+              <Route path="/confirm_article_delete/:id" element={<ConfirmArticleDelete />} />
               <Route
                 path="/manage_tags"
                 element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}
