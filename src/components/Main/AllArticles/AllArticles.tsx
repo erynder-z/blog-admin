@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { MagnifyingGlass } from 'react-loader-spinner';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticles } from '../../../helpers/FetchArticles';
 import { IArticle } from '../../../interfaces/Article';
@@ -16,7 +17,6 @@ export default function AllArticles({ filter }: Props) {
   const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  // successfull submit + failed submit
 
   useEffect(() => {
     if (token) {
@@ -49,7 +49,20 @@ export default function AllArticles({ filter }: Props) {
   }, [filter]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="fetching">
+        <MagnifyingGlass
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="MagnifyingGlass-loading"
+          wrapperStyle={{}}
+          wrapperClass="MagnifyingGlass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        />
+      </div>
+    );
   }
 
   if (error) {

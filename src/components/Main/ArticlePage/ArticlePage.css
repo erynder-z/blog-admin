@@ -30,11 +30,16 @@
   padding: 0 1rem;
 }
 
+.article-content {
+  font-size: 0.8em;
+}
+
 .article_options_container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 5rem;
+  margin-top: 2em;
 }
 
 .edit_article-button {
@@ -93,4 +98,11 @@
 .delete_article-button:focus,
 .delete_article-button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (max-width: 800px) {
+  .article_options_container {
+    gap: 1rem;
+    flex-direction: column;
+  }
 }

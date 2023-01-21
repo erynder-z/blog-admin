@@ -10,6 +10,7 @@ import { handleArticleSubmit } from '../../../helpers/HandleArticleSubmit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
 import CurrentViewContext from '../../../contexts/CurrentViewContext';
+import { MagnifyingGlass } from 'react-loader-spinner';
 
 export default function AddArticlePage() {
   const { token } = useContext(AuthContext);
@@ -52,7 +53,20 @@ export default function AddArticlePage() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="fetching">
+        <MagnifyingGlass
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="MagnifyingGlass-loading"
+          wrapperStyle={{}}
+          wrapperClass="MagnifyingGlass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        />
+      </div>
+    );
   }
 
   if (error) {

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ActiveTagContext from '../../contexts/ActiveTagContext';
 import CurrentViewContext from '../../contexts/CurrentViewContext';
+import { FaServer } from 'react-icons/fa';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -15,7 +16,10 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <h1 className="nav-title">Admin</h1>
+      <h1 className="nav-title">
+        <FaServer />
+        Blog-Admin
+      </h1>
       <div className="nav-list">
         <Link
           to="/all"

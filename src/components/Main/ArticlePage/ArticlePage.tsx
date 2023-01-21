@@ -79,7 +79,7 @@ export default function ArticlePage() {
             </li>
           ))}
         </ul>
-        {parse(decodedString)}
+        <div className="article-content">{parse(decodedString)}</div>
         <div className="article_options_container">
           <Link to={`/edit_article/${id}`} className="edit_article-button">
             Edit article <FaPenAlt />
