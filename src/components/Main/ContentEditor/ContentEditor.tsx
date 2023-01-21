@@ -1,6 +1,7 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Editor as TinyMCEEditor } from 'tinymce';
+import Prism from 'prismjs';
 
 interface ITinyMCEEditorProps {
   setEditorRef: (editor: TinyMCEEditor) => void;
@@ -11,7 +12,7 @@ export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCE
   return (
     <Editor
       apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
-      onInit={(evt, editor) => {
+      onInit={(_evt, editor: TinyMCEEditor) => {
         setEditorRef(editor);
       }}
       initialValue={decodedContent ? decodedContent : "What's todays topic?"}
@@ -36,14 +37,31 @@ export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCE
           'table',
           'code',
           'help',
-          'wordcount'
+          'wordcount',
+          'codesample'
         ],
         toolbar:
           'undo redo | blocks | ' +
-          'bold italic forecolor | alignleft aligncenter ' +
+          'codesample | bold italic forecolor | alignleft aligncenter ' +
           'alignright alignjustify | image | bullist numlist outdent indent | ' +
           'removeformat | help',
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        codesample_languages: [
+          { text: 'HTML/XML', value: 'markup' },
+          { text: 'JavaScript', value: 'javascript' },
+          { text: 'CSS', value: 'css' },
+          { text: 'PHP', value: 'php' },
+          { text: 'Ruby', value: 'ruby' },
+          { text: 'Python', value: 'python' },
+          { text: 'Java', value: 'java' },
+          { text: 'C', value: 'c' },
+          { text: 'C#', value: 'csharp' },
+          { text: 'C++', value: 'cpp' }
+        ],
+        codesample_highlight: true,
+        pre_process: (editor, el) => {
+          Prism.highlightAllUnder(el);
+        },
         file_picker_callback: (cb, value, meta) => {
           const createFileInput = () => {
             const input = document.createElement('input');
