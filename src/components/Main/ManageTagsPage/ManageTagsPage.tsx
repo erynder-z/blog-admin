@@ -75,7 +75,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('success!');
+    setInfoTextMessage('Tag added!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
@@ -84,7 +84,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   };
 
   const failedSubmit = () => {
-    setInfoTextMessage('something went wrong!');
+    setInfoTextMessage('Something went wrong!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');

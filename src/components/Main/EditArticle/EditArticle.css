@@ -1,0 +1,18 @@
+.edit-article_page {
+  max-width: 70ch;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+.edit-article_container {
+  padding: 1em;
+  background-color: var(--background_bright);
+  color: var(--text_dark);
+  border-radius: 4px;
+}
+
+.edit-article_heading {
+  font-size: 1.5em;
+}

@@ -26,7 +26,7 @@ export default function LoginPage() {
       const data = await response.json();
       localStorage.setItem('jwt', data.token);
       setToken(data.token);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
     }
     setIsVerifying(false);
@@ -78,7 +78,7 @@ export default function LoginPage() {
                 verifying...
               </div>
             )}
-            {error && <div className="error-container">{error}</div>}
+            {error && <p className="error-container">{error}</p>}
           </div>
         </form>
       </div>

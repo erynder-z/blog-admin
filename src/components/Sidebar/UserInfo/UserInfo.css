@@ -1,0 +1,9 @@
+.userinfo-container {
+  max-width: 18rem;
+  border-bottom: solid 2px var(--text_grey);
+  margin-bottom: 2rem;
+  font-size: 0.6em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

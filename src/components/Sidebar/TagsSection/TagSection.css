@@ -7,8 +7,20 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: auto;
+  max-height: calc(100vh / 2);
   gap: 1rem;
   padding-top: 1rem;
+}
+
+.side-tag-list::-webkit-scrollbar {
+  width: 8px;
+}
+.side-tag-list::-webkit-scrollbar-track {
+  background: var(--background_dark);
+}
+.side-tag-list::-webkit-scrollbar-thumb {
+  background-color: var(--highlight);
 }
 
 .side-tag-list-item {

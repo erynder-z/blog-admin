@@ -12,9 +12,12 @@ import AuthContext from '../../../contexts/AuthContext';
 import { handleArticleUpdate } from '../../../helpers/HandleArticleUpdate';
 import { Tags } from './DisplayTagsEdit/DisplayTagsEdit';
 import ContentEditor from '../ContentEditor/ContentEditor';
+import { MagnifyingGlass } from 'react-loader-spinner';
+import CurrentViewContext from '../../../contexts/CurrentViewContext';
 
 export default function EditArticle() {
   const { token } = useContext(AuthContext);
+  const { setCurrentView } = useContext(CurrentViewContext);
   const navigate = useNavigate();
   const params = useParams();
   const id: string | undefined = params.id;
@@ -57,6 +60,7 @@ export default function EditArticle() {
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
+      setCurrentView('All');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
@@ -89,21 +93,34 @@ export default function EditArticle() {
   }, [navigate]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="fetching">
+        <MagnifyingGlass
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="MagnifyingGlass-loading"
+          wrapperStyle={{}}
+          wrapperClass="MagnifyingGlass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        />
+      </div>
+    );
   }
 
   if (error) {
     return <p>An error occurred: {error.message}</p>;
   }
   return (
-    <main className="add-article_page">
-      {showInfoText ? (
-        <InfoText message={infoTextMessage} />
-      ) : (
-        <div className="add-article_container">
-          {article && (
+    <main className="edit-article_page">
+      <div className="edit-article_container">
+        {showInfoText ? (
+          <InfoText message={infoTextMessage} />
+        ) : (
+          article && (
             <form onSubmit={handleSubmit}>
-              <h1 className="add-article_heading">Edit article</h1>
+              <h1 className="edit-article_heading">Edit article</h1>
               <div className="tags-container">
                 <label htmlFor="tags">Tags</label>
                 {tagList && (
@@ -141,9 +158,9 @@ export default function EditArticle() {
               </div>
               <button type="submit">Submit article</button>
             </form>
-          )}
-        </div>
-      )}
+          )
+        )}
+      </div>{' '}
     </main>
   );
 }

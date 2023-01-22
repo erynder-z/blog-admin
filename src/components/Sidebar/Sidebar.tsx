@@ -8,6 +8,7 @@ import AddTagSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
 import './Sidebar.css';
 import TagsSection from './TagsSection/TagsSection';
+import UserInfo from './UserInfo/UserInfo';
 
 interface Props {
   handleTagFilter: (tag: ITag) => void;
@@ -27,6 +28,7 @@ export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger 
   return (
     <div className="sidebar">
       <section>
+        <UserInfo />
         <SearchSection handleSearch={handleSearch} />
         <TagsSection handleTagFilter={handleTagFilter} refetchTrigger={refetchTrigger} />
       </section>
