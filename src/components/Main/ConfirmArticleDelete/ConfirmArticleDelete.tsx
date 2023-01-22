@@ -14,6 +14,10 @@ export default function ConfirmArticleDelete() {
   const id: string | undefined = params.id;
   const navigate = useNavigate();
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   const handleDelete = () => {
     handleArticleDelete(token, id, successfullSubmit, failedSubmit);
   };
@@ -40,7 +44,9 @@ export default function ConfirmArticleDelete() {
           <h1>Are you sure?</h1>
           <p>This cannot be undone!</p>
           <div className="confirm_delete_buttton_container">
-            <button className="go_back">Go back</button>
+            <button className="go_back" onClick={handleBack}>
+              Go back
+            </button>
             <button className="delete_article" onClick={handleDelete}>
               Delete
             </button>
