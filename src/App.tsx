@@ -17,6 +17,7 @@ import EditArticle from './components/Main/EditArticle/EditArticle';
 import CurrentViewContext from './contexts/CurrentViewContext';
 import NotFoundPage from './components/Main/NotFoundPage/NotFoundPage';
 import ConfirmArticleDelete from './components/Main/ConfirmArticleDelete/ConfirmArticleDelete';
+import ManualPage from './components/Main/ManualPage/ManualPage';
 
 type ProtectedRouteProps = {
   user: any;
@@ -104,6 +105,7 @@ function App() {
               />
               <Route path="/published" element={<PublishedArticles filter={filter} />} />
               <Route path="/unpublished" element={<UnpublishedArticles filter={filter} />} />
+              <Route path="/howto" element={<ManualPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
