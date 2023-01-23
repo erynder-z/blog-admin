@@ -17,7 +17,7 @@
   width: 8px;
 }
 .side-tag-list::-webkit-scrollbar-track {
-  background: var(--background_dark);
+  background: var(--background_1);
 }
 .side-tag-list::-webkit-scrollbar-thumb {
   background-color: var(--highlight);
@@ -27,7 +27,7 @@
   border-radius: 2px;
   font-size: 0.6em;
   background-color: var(--tag_background);
-  color: var(--text_bright);
+  color: var(--text_1);
   padding: 0 1rem;
   cursor: pointer;
 }

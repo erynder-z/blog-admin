@@ -10,7 +10,7 @@
   padding: 0.5em;
   font-size: 0.75em;
   background-color: var(--button);
-  color: var(--text_bright);
+  color: var(--text_1);
   cursor: pointer;
   transition: border-color 0.25s;
   border-radius: 4px;
@@ -22,7 +22,7 @@
 .addTagBtn:hover {
   background-color: var(--hover);
   border-color: var(--hover);
-  color: var(--text_bright);
+  color: var(--text_1);
 }
 .addTagBtn:focus,
 .addTagBtn:focus-visible {

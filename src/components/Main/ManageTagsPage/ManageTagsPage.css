@@ -8,8 +8,8 @@
 .manage_tags_container {
   margin-top: 1rem;
   padding: 1em;
-  background-color: var(--background_bright);
-  color: var(--text_dark);
+  background-color: var(--card_background);
+  color: var(--text_2);
   border-radius: 4px;
 }
 
@@ -33,7 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px var(--text_grey);
+  border: solid 1px var(--text_3);
   border-radius: 4px;
   padding-left: 0.25em;
   height: 1.5em;
@@ -42,7 +42,7 @@
 .tag_delete-divider {
   height: 100%;
   width: 1px;
-  background-color: var(--text_grey);
+  background-color: var(--text_3);
   margin-left: 0.5rem;
 }
 

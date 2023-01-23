@@ -5,23 +5,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f6f6f6;
 }
 
 .login-heading {
-  color: var(--text_bright);
+  color: #001b2e;
 }
 
 .login-container {
   box-sizing: border-box;
   height: 50%;
-  width: 35%;
+  width: 30%;
   border-radius: 4px;
   padding: 1em;
-  background-color: var(--background_bright);
 }
 
 .login-container h1 {
-  color: var(--text_dark);
+  color: #001b2e;
   font-size: 1.5em;
 }
 

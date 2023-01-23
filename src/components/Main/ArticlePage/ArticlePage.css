@@ -6,8 +6,8 @@
 
 .article_container {
   padding: 1em;
-  background-color: var(--background_bright);
-  color: var(--text_dark);
+  background-color: var(--card_background);
+  color: var(--text_2);
   border-radius: 4px;
 }
 
@@ -26,7 +26,7 @@
   border-radius: 2px;
   font-size: 0.6em;
   background-color: var(--tag_background);
-  color: var(--text_bright);
+  color: var(--text_1);
   padding: 0 1rem;
 }
 
@@ -58,13 +58,13 @@
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: var(--button);
-  color: var(--text_bright);
+  color: var(--text_1);
 }
 
 .edit_article-button:hover {
   background-color: var(--hover);
   border-color: var(--hover);
-  color: var(--text_bright);
+  color: var(--text_1);
 }
 .edit_article-button:focus,
 .edit_article-button:focus-visible {
@@ -87,13 +87,13 @@
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: var(--button_danger);
-  color: var(--text_bright);
+  color: var(--text_1);
 }
 
 .delete_article-button:hover {
   background-color: var(--button_danger_hover);
   border-color: var(--button_danger_hover);
-  color: var(--text_bright);
+  color: var(--text_1);
 }
 .delete_article-button:focus,
 .delete_article-button:focus-visible {
