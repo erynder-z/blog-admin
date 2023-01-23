@@ -6,6 +6,7 @@ import './index.css';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { ActiveTagContextProvider } from './contexts/ActiveTagContext';
 import { CurrentViewContextProvider } from './contexts/CurrentViewContext';
+import { ThemeContextProvider } from './contexts/ThemeContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <AuthContextProvider>
         <ActiveTagContextProvider>
           <CurrentViewContextProvider>
-            <App />
+            <ThemeContextProvider>
+              <App />
+            </ThemeContextProvider>
           </CurrentViewContextProvider>
         </ActiveTagContextProvider>
       </AuthContextProvider>

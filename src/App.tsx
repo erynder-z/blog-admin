@@ -18,6 +18,7 @@ import CurrentViewContext from './contexts/CurrentViewContext';
 import NotFoundPage from './components/Main/NotFoundPage/NotFoundPage';
 import ConfirmArticleDelete from './components/Main/ConfirmArticleDelete/ConfirmArticleDelete';
 import ManualPage from './components/Main/ManualPage/ManualPage';
+import ThemeContext from './contexts/ThemeContext';
 
 type ProtectedRouteProps = {
   user: any;
@@ -30,6 +31,7 @@ const ProtectedRoute = ({ user, redirectPath = '/' }: ProtectedRouteProps) => {
 
 function App() {
   const { token, user, isAuth, setUser, setIsAuth } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
 
   const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
@@ -85,7 +87,7 @@ function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${theme}`}>
       <div className="main-container">
         <nav>
           <Navbar />

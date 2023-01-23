@@ -1,0 +1,32 @@
+.dropdown-content {
+  position: relative;
+  top: -25em;
+}
+
+.theme_switch-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5em;
+  font-size: 0.75em;
+  background-color: var(--button);
+  color: var(--text_1);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  line-height: normal;
+  gap: 1rem;
+  width: 100%;
+}
+
+.theme_switch-button:hover {
+  background-color: var(--hover);
+  border-color: var(--hover);
+  color: var(--text_1);
+}
+.theme_switch-button:focus,
+.theme_switch-button:focus-visible {
+  outline: none;
+}

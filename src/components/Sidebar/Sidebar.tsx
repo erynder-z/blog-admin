@@ -8,6 +8,7 @@ import AddTagSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
 import './Sidebar.css';
 import TagsSection from './TagsSection/TagsSection';
+import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 import UserInfo from './UserInfo/UserInfo';
 
 interface Props {
@@ -42,6 +43,7 @@ export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger 
       </section>
       <section>
         <LogoutSection />
+        <ThemeSwitch />
       </section>
     </div>
   );

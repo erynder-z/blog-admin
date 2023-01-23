@@ -6,7 +6,7 @@
   line-height: 24px;
   font-weight: 400;
 
-  --background_dark: #001c30;
+  /*   --background_dark: #001c30;
   --background_bright: #f6f6f6;
   --text_bright: #f6f6f6;
   --text_dark: #001b2e;
@@ -19,7 +19,7 @@
   --button_danger: #800040;
   --button_danger_hover: #99024e;
   --hover: #0071af;
-  --highlight: #d2008f;
+  --highlight: #d2008f; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

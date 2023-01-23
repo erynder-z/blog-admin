@@ -1,3 +1,35 @@
+.Default {
+  --background_1: #001c30;
+  --text_1: #f6f6f6;
+  --text_2: #001b2e;
+  --text_3: #707070;
+  --nav: #f6f6f6;
+  --sidebar: #f6f6f6;
+  --card_background: #f6f6f6;
+  --tag_background: #cd3c00;
+  --button: #003b5e;
+  --button_danger: #800040;
+  --button_danger_hover: #99024e;
+  --hover: #0071af;
+  --highlight: #d2008f;
+}
+
+.Alternative {
+  --background_1: #44475a;
+  --text_1: #f8f8f2;
+  --text_2: #f8f8f2;
+  --text_3: #bd93f9;
+  --nav: #44475a;
+  --sidebar: #2f2f2f;
+  --card_background: #44475a;
+  --tag_background: #ff5555;
+  --button: #282a36;
+  --button_danger: #bd93f9;
+  --button_danger_hover: #ff5722;
+  --hover: #2196f3;
+  --highlight: #9c27b0;
+}
+
 .app-container {
   box-sizing: border-box;
   display: grid;
@@ -7,8 +39,8 @@
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
-  background-color: var(--background_dark);
-  color: var(--text_bright);
+  background-color: var(--background_1);
+  color: var(--text_1);
 }
 
 .main-container {
@@ -47,7 +79,7 @@
 .loading {
   height: 100vh;
   width: 100vw;
-  color: var(--text_bright);
+  color: var(--text_1);
   margin: 0;
   display: flex;
   justify-content: center;
