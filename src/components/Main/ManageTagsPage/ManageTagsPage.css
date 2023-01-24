@@ -17,8 +17,16 @@
   font-size: 1.5em;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .newTag_input {
   margin-bottom: 1.5em;
+  width: 33%;
 }
 
 .create-article-tag-list ul {
@@ -57,4 +65,10 @@
 
 .tag_delete-button:hover {
   background-color: #d1e7ff;
+}
+
+.submitTagBtn {
+  color: var(--text_1);
+  width: 33%;
+  align-self: center;
 }

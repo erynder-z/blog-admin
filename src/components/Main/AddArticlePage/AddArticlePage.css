@@ -61,3 +61,7 @@
   background-color: var(--highlight);
   color: var(--text_1);
 }
+
+.submitArticleBtn {
+  color: var(--text_1);
+}

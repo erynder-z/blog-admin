@@ -4,7 +4,7 @@
   --text_2: #001b2e;
   --text_3: #707070;
   --nav: #f6f6f6;
-  --sidebar: #f6f6f6;
+  --sidebar: #001c30;
   --card_background: #f6f6f6;
   --tag_background: #cd3c00;
   --button: #003b5e;
@@ -108,7 +108,8 @@
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
-  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
   z-index: 10;
 }
 
@@ -133,7 +134,7 @@
   margin-top: 1rem;
   border-radius: 4px;
   min-height: 66vh;
-  background-color: var(--article_card_background);
+  background-color: var(--card_background);
 }
 
 @media (max-width: 800px) {

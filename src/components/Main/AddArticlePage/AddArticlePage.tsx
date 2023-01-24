@@ -103,7 +103,9 @@ export default function AddArticlePage() {
                 <label htmlFor="publishArticle">publish article when submitting</label>
               </div>
             </div>
-            <button type="submit">Submit article</button>
+            <button type="submit" className="submitArticleBtn">
+              Submit article
+            </button>
           </form>
         )}
       </div>

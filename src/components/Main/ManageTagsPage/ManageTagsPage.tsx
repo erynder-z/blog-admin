@@ -141,7 +141,9 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
               <h2>Enter new tag:</h2>
               <input type="text" name="newTag" className="newTag_input" placeholder="some tag" />
             </div>
-            <button type="submit">Submit tag</button>
+            <button type="submit" className="submitTagBtn">
+              Submit tag
+            </button>
           </form>
         )}{' '}
       </div>
