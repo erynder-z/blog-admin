@@ -83,6 +83,12 @@ export default function ManualPage() {
           search for articles containing the query.
         </li>
       </ol>
+
+      <h2 className="manual_paragraph-heading">Changing the theme:</h2>
+      <ol>
+        <li>Click the "Theme" button to toggle between four different color themes.</li>
+        <li>Your choice will be saved.</li>
+      </ol>
     </div>
   );
 }
