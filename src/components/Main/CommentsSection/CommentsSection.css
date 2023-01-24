@@ -5,4 +5,5 @@
   font-size: 0.8em;
   gap: 1em;
   width: 100%;
+  color: var(--text_1);
 }

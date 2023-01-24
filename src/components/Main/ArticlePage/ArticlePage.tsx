@@ -12,7 +12,7 @@ import { fetchArticleData } from '../../../helpers/FetchArticleData';
 import { stripHtml } from 'string-strip-html';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Prism from 'prismjs';
-import '../../../libraries/prism-laserwave.css';
+import '../../../libraries/prism-material-dark.css';
 
 export default function ArticlePage() {
   const params = useParams();
