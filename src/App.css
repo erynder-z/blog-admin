@@ -12,22 +12,62 @@
   --button_danger_hover: #99024e;
   --hover: #0071af;
   --highlight: #d2008f;
+  --searchbar: rgba(246, 246, 246, 0.1);
+  --searchbar_focus: rgba(246, 246, 246, 0.2);
 }
 
-.Alternative {
+.Matte {
   --background_1: #44475a;
-  --text_1: #f8f8f2;
-  --text_2: #f8f8f2;
-  --text_3: #bd93f9;
+  --text_1: #bdc3c7;
+  --text_2: #bdc3c7;
+  --text_3: #d3c680;
   --nav: #44475a;
-  --sidebar: #2f2f2f;
+  --sidebar: #44475a;
   --card_background: #44475a;
-  --tag_background: #ff5555;
-  --button: #282a36;
-  --button_danger: #bd93f9;
-  --button_danger_hover: #ff5722;
-  --hover: #2196f3;
-  --highlight: #9c27b0;
+  --tag_background: #846560;
+  --button: #555673;
+  --button_danger: #68829f;
+  --button_danger_hover: #bb928b;
+  --hover: #777798;
+  --highlight: #866c83;
+  --searchbar: rgba(189, 195, 199, 0.1);
+  --searchbar_focus: rgba(189, 195, 199, 0.2);
+}
+
+.Dark {
+  --background_1: #1d1f21;
+  --text_1: #caced8;
+  --text_2: #caced8;
+  --text_3: #6a8799;
+  --nav: #1d1f21;
+  --sidebar: #1d1f21;
+  --card_background: #1d1f21;
+  --tag_background: #48513b;
+  --button: #292d3e;
+  --button_danger: #97522c;
+  --button_danger_hover: #be100e;
+  --hover: #ac6d74;
+  --highlight: #ac6d74;
+  --searchbar: rgba(202, 206, 216, 0.1);
+  --searchbar_focus: rgba(202, 206, 216, 0.2);
+}
+
+.Bright {
+  --background_1: #f4f4f4;
+  --text_1: #3e3e3e;
+  --text_2: #3e3e3e;
+  --text_3: #6a8799;
+  --nav: #f4f4f4;
+  --sidebar: #f4f4f4;
+  --card_background: #ffffff;
+  --tag_background: #f7d4cf;
+  --button: #f8eec7;
+  --button_danger: #fb7661;
+  --button_danger_hover: rgb(255, 91, 88);
+  --hover: #f1d007;
+  --highlight: #f1d007;
+  --searchbar: rgba(62, 62, 62, 0.1);
+  --searchbar_focus: rgba(62, 62, 62, 0.2);
 }
 
 .app-container {

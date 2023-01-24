@@ -5,12 +5,13 @@ import { ThemeType } from '../../../interfaces/customTypes';
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);
-  const themes = ['Default', 'Alternative'];
+  const themes = ['Default', 'Matte', 'Dark', 'Bright'];
   const currentIndex = themes.indexOf(theme as ThemeType);
   const nextIndex = (currentIndex + 1) % themes.length;
 
   const handleClick = () => {
     setTheme(themes[nextIndex] as ThemeType);
+    localStorage.setItem('theme', themes[nextIndex]);
   };
 
   return (

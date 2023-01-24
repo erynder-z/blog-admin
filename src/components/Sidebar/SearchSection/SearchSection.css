@@ -24,7 +24,7 @@
   height: 2.5em;
   font-size: 0.7em;
   border-radius: 0;
-  background-color: rgba(246, 246, 246, 0.1);
+  background-color: var(--searchbar);
   color: var(--text_1);
   transition: background-color 0.2s ease-in-out;
   flex: 1;
@@ -36,7 +36,7 @@
 .searchbox input:focus {
   border: none;
   border-radius: 0;
-  background-color: rgba(246, 246, 246, 0.3);
+  background-color: var(--searchbar_focus);
   transform: scale(1.1);
 }
 
