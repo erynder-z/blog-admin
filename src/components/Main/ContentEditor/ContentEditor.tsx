@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import Prism from 'prismjs';
+import ThemeContext from '../../../contexts/ThemeContext';
 
 interface ITinyMCEEditorProps {
   setEditorRef: (editor: TinyMCEEditor) => void;
@@ -9,6 +10,7 @@ interface ITinyMCEEditorProps {
 }
 
 export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCEEditorProps) {
+  const { theme } = useContext(ThemeContext);
   return (
     <Editor
       apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
@@ -19,6 +21,8 @@ export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCE
       init={{
         height: 500,
         menubar: false,
+        skin: theme === 'Default' || theme === 'Bright' ? 'oxide' : 'oxide-dark',
+        content_css: theme === 'Default' || theme === 'Bright' ? 'default' : 'dark',
         plugins: [
           'advlist',
           'autolink',

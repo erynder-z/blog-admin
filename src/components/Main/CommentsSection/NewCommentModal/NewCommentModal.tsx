@@ -63,7 +63,7 @@ export default function NewCommentModal({ showModal, closeModal, setRefetchTrigg
           </button>
         </form>
         <button className="closeBtn" onClick={closeModal}>
-          Close <FaTimes />
+          <FaTimes />
         </button>
       </div>
     </div>
