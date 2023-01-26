@@ -33,8 +33,12 @@ export default function UnpublishedArticles({ filter }: Props) {
 
   useEffect(() => {
     const filterForString = (filter: string) => {
+      const filterLower = filter.toLowerCase();
       return fullArticleList.filter((article) => {
-        return article.title.includes(filter) || article.content.includes(filter);
+        return (
+          article.title.toLowerCase().includes(filterLower) ||
+          article.content.toLowerCase().includes(filterLower)
+        );
       });
     };
 
