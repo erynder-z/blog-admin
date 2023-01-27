@@ -34,6 +34,11 @@
   margin-top: 1rem;
 }
 
+input[name='username'],
+input[name='password'] {
+  border: solid 1px black;
+}
+
 input[name='username'] + label,
 input[name='password'] + label {
   top: 0.4em;
@@ -44,6 +49,17 @@ input[name='password']:focus + label,
 input[name='username']:not(:focus):valid ~ label,
 input[name='password']:not(:focus):valid ~ label {
   top: -1.4em;
+}
+
+.loginBtn {
+  border: none;
+  outline: none;
+}
+
+.loginBtn:hover {
+  background-color: rgba(255, 221, 0, 0.175);
+  border: none;
+  outline: none;
 }
 
 @media (max-width: 800px) {

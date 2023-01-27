@@ -20,8 +20,8 @@
 }
 
 .addTagBtn:hover {
-  background-color: var(--hover);
-  border-color: var(--hover);
+  background-color: var(--button_hover);
+  border-color: var(--button_hover);
   color: var(--text_1);
 }
 .addTagBtn:focus,

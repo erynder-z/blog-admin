@@ -8,9 +8,10 @@
   --card_background: #f6f6f6;
   --tag_background: #cd3c00;
   --button: #003b5e;
+  --button_hover: #005180;
   --button_danger: #800040;
   --button_danger_hover: #99024e;
-  --hover: #0071af;
+  --hover: #c6e0ff;
   --highlight: #d2008f;
   --searchbar: rgba(246, 246, 246, 0.1);
   --searchbar_focus: rgba(246, 246, 246, 0.2);
@@ -26,6 +27,7 @@
   --card_background: #44475a;
   --tag_background: #846560;
   --button: #555673;
+  --button_hover: #616285;
   --button_danger: #68829f;
   --button_danger_hover: #bb928b;
   --hover: #777798;
@@ -44,9 +46,10 @@
   --card_background: #1d1f21;
   --tag_background: #48513b;
   --button: #292d3e;
+  --button_hover: #353b56;
   --button_danger: #97522c;
   --button_danger_hover: #be100e;
-  --hover: #ac6d74;
+  --hover: #50272c;
   --highlight: #ac6d74;
   --searchbar: rgba(202, 206, 216, 0.1);
   --searchbar_focus: rgba(202, 206, 216, 0.2);
@@ -62,6 +65,7 @@
   --card_background: #ffffff;
   --tag_background: #f7d4cf;
   --button: #f8eec7;
+  --button_hover: #decf92;
   --button_danger: #fb7661;
   --button_danger_hover: rgb(255, 91, 88);
   --hover: #f1d007;
@@ -102,8 +106,8 @@ button {
   color: var(--text_bright);
 }
 button:hover {
-  background-color: var(--hover);
-  border-color: var(--hover);
+  background-color: var(--button_hover);
+  border-color: var(--button_hover);
 }
 button:focus,
 button:focus-visible {

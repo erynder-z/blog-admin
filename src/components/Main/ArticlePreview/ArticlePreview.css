@@ -8,23 +8,23 @@
   background-color: var(--card_background);
   color: var(--text_2);
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  transition: background-color 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 .article:hover {
   background-color: var(--hover);
-  color: var(--text_1);
+  color: var(--text_2);
 }
 
 .article:hover .read_more {
   transform: scale(1.1);
-  color: var(--text_1);
+  color: var(--text_2);
 }
-
+/* 
 .article:hover .timestamp,
 .article:hover .article-text {
   color: inherit;
-}
+} */
 
 .timestamp {
   font-size: 0.6em;

@@ -37,7 +37,6 @@
   border: none;
   border-radius: 0;
   background-color: var(--searchbar_focus);
-  transform: scale(1.1);
 }
 
 .searchbox input:focus + .search-icon {

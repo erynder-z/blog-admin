@@ -63,7 +63,9 @@ export default function LoginPage() {
             <input name="password" autoComplete="off" autoFocus required type="password" />
             <label htmlFor="password">Password</label>
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" className="loginBtn">
+            Login
+          </button>
           <div className="status_message">
             {isVerifying && (
               <div className="verifying-container">
