@@ -42,8 +42,8 @@ export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger 
         <AddTagSection />
       </section>
       <section>
-        <LogoutSection />
         <ThemeSwitch />
+        <LogoutSection />
       </section>
     </div>
   );

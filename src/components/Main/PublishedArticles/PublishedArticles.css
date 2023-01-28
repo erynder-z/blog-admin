@@ -1,7 +1,6 @@
 .published-articles-list {
   display: flex;
   flex-direction: column;
-  gap: 1px;
   padding-top: 1rem;
 }
 
