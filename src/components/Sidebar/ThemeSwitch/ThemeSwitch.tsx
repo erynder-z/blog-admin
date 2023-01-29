@@ -5,7 +5,7 @@ import { ThemeType } from '../../../interfaces/customTypes';
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);
-  const themes = ['Default', 'Matte', 'Dark', 'Bright'];
+  const themes = ['Default', 'Matte', 'Dark', 'Bright', 'Chameleon'];
   const currentIndex = themes.indexOf(theme as ThemeType);
   const nextIndex = (currentIndex + 1) % themes.length;
 

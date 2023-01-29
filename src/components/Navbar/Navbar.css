@@ -1,6 +1,6 @@
 .navbar {
   background-color: var(--nav);
-  color: var(--text_2);
+  color: var(--text_1);
   padding: 1em;
   border-radius: 4px;
 }
@@ -21,7 +21,7 @@
 }
 
 .nav-list-item {
-  color: var(--text_2);
+  color: var(--text_1);
   position: relative;
   text-decoration: none;
 }

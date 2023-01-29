@@ -3,7 +3,7 @@
   --text_1: #f6f6f6;
   --text_2: #001b2e;
   --text_3: #707070;
-  --nav: #f6f6f6;
+  --nav: #001c30;
   --sidebar: #001c30;
   --card_background: #f6f6f6;
   --tag_background: #cd3c00;
@@ -72,6 +72,25 @@
   --highlight: #f1d007;
   --searchbar: rgba(62, 62, 62, 0.1);
   --searchbar_focus: rgba(62, 62, 62, 0.2);
+}
+
+.Chameleon {
+  --background_1: #2c2c2c;
+  --text_1: #c8bb97;
+  --text_2: #d79821;
+  --text_3: #777777;
+  --nav: #2c2c2c;
+  --sidebar: #2c2c2c;
+  --card_background: #383838;
+  --tag_background: #cc231c;
+  --hover: #4e5165;
+  --button: #777777;
+  --button_hover: #5a5959;
+  --button_danger: #cc231c;
+  --button_danger_hover: #a0100b;
+  --highlight: #689d69;
+  --searchbar: rgba(106, 106, 106, 0.3);
+  --searchbar_focus: rgba(106, 106, 106, 0.6);
 }
 
 body {
