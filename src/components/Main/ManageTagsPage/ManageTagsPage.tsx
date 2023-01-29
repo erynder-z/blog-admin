@@ -21,10 +21,12 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   const [showInfoText, setShowInfoText] = useState<boolean>(false);
   const [infoTextMessage, setInfoTextMessage] = useState<string | null>(null);
 
+  const serverURL = import.meta.env.VITE_SERVER_URL;
+
   const handleTagDelete = async (tagId: string) => {
     if (window.confirm('Are you sure you want to delete this tag?')) {
       try {
-        const res = await fetch(`http://localhost:8000/api/admin/tags/${tagId}`, {
+        const res = await fetch(`${serverURL}/api/admin/tags/${tagId}`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`
@@ -54,7 +56,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
         tagName: formData.get('newTag')
       };
 
-      const response = await fetch('http://localhost:8000/api/admin/tags', {
+      const response = await fetch(`${serverURL}/api/admin/tags`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +77,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('Tag added!');
+    setInfoTextMessage('Tags updated');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');

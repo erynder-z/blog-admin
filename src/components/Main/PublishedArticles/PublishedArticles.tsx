@@ -32,32 +32,28 @@ export default function PublishedArticles({ filter }: Props) {
   }, []);
 
   useEffect(() => {
-    const filterForString = (filter: string) => {
-      const filterLower = filter.toLowerCase();
-      return fullArticleList.filter((article) => {
-        return (
-          article.title.toLowerCase().includes(filterLower) ||
-          article.content.toLowerCase().includes(filterLower)
+    const filterArticles = (filter: ITag | string | null) => {
+      let filtered = fullArticleList;
+
+      if (typeof filter === 'string') {
+        // search comes from searchbar
+        const filterLower = filter.toLowerCase();
+        filtered = fullArticleList.filter(
+          ({ title, content }) =>
+            title.toLowerCase().includes(filterLower) || content.toLowerCase().includes(filterLower)
         );
-      });
+      } else if (filter) {
+        // search comes from tag
+        filtered = fullArticleList.filter(({ tags = [] }) =>
+          tags.some(({ _id }) => _id === filter._id)
+        );
+      }
+
+      setActiveArticleList(filtered);
     };
 
-    const filterForTag = (filter: ITag) => {
-      return fullArticleList.filter((article) =>
-        article?.tags?.some((tag) => tag._id == filter?._id)
-      );
-    };
-
-    const getFilterArticles = (filter: ITag | string | null) => {
-      return typeof filter === 'string'
-        ? filterForString(filter as string)
-        : filterForTag(filter as ITag);
-    };
-
-    filter
-      ? setActiveArticleList(getFilterArticles(filter))
-      : setActiveArticleList(fullArticleList);
-  }, [filter]);
+    filterArticles(filter);
+  }, [filter, fullArticleList]);
 
   if (loading) {
     return (
