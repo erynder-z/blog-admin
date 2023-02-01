@@ -21,15 +21,17 @@ export default function ArticlePreview({ articleData }: Props) {
   };
 
   return (
-    <Link to={`/article/${_id}`} className="article">
+    <Link to={`/article/${_id}`} className="article" aria-label={title}>
       <div className="article-top">
         <div className="article-head">
-          <div className="timestamp">{format(new Date(timestamp), 'EEEE, dd. MMMM yyyy')}</div>{' '}
+          <div className="timestamp">{format(new Date(timestamp), 'EEEE, dd. MMMM yyyy')}</div>
           <h1 className="article-title">{getTitleExcerpt(title)}</h1>
         </div>
       </div>
       <div className="article-bottom">
-        {comments.length} <FaRegCommentAlt />
+        <span className="comments">
+          {comments.length} <FaRegCommentAlt />
+        </span>
         <div className="read_more">
           Details <FaArrowRight />
         </div>

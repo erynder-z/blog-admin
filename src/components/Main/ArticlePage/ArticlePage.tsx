@@ -46,7 +46,7 @@ export default function ArticlePage() {
 
   if (loading) {
     return (
-      <div className="fetching">
+      <div className="fetching" aria-live="polite">
         <MagnifyingGlass
           visible={true}
           height="80"
@@ -56,22 +56,29 @@ export default function ArticlePage() {
           wrapperClass="MagnifyingGlass-wrapper"
           glassColor="#c0efff"
           color="#e15b64"
-        />
+        />{' '}
+        <p>Loading articles...</p>
       </div>
     );
   }
 
   if (error) {
-    return <p>An error occurred: {error.message}</p>;
+    return (
+      <p aria-live="assertive">
+        An error occurred: <span role="alert">{error.message}</span>
+      </p>
+    );
   }
   return (
-    <main className="article_page">
+    <main className="article_page" aria-label="Main content for article page">
       <div className="article_container">
         <div className="timestamp">
-          {format(new Date(article?.timestamp || ''), 'EEEE, dd. MMMM yyyy')}
+          <time>{format(new Date(article?.timestamp || ''), 'EEEE, dd. MMMM yyyy')}</time>
         </div>
-        <div className="author">by {article?.author?.username}</div>
-        <h1 className="article_title">{titleWithoutHTML}</h1>
+        <span className="author">by {article?.author?.username}</span>
+        <h1 id="article-title" className="article_title">
+          {titleWithoutHTML}
+        </h1>
         <ul className="tag-list">
           {article?.tags?.map((tag: ITag) => (
             <li key={tag._id.toString()} className="tag-list-item">
@@ -79,7 +86,9 @@ export default function ArticlePage() {
             </li>
           ))}
         </ul>
-        <div className="article-content">{parse(decodedString)}</div>
+        <div aria-labelledby="article-title" className="article-content">
+          {parse(decodedString)}
+        </div>
         <div className="article_options_container">
           <Link to={`/edit_article/${id}`} className="edit_article-button">
             Edit article <FaPenAlt />

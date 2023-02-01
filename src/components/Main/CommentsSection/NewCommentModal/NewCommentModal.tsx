@@ -62,7 +62,7 @@ export default function NewCommentModal({ showModal, closeModal, setRefetchTrigg
             Submit <FaCheck />
           </button>
         </form>
-        <button className="closeBtn" onClick={closeModal}>
+        <button className="closeBtn" onClick={closeModal} aria-label="close modal">
           <FaTimes />
         </button>
       </div>

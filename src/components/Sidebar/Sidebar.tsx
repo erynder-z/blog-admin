@@ -4,7 +4,7 @@ import CurrentViewContext from '../../contexts/CurrentViewContext';
 import { ITag } from '../../interfaces/Tag';
 import AddPostSection from './AddArticleSection/AddArticleSection';
 import LogoutSection from './LogoutSection/LogoutSection';
-import AddTagSection from './ManageTagsSection/ManageTagsSection';
+import ManageTagsSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
 import './Sidebar.css';
 import TagsSection from './TagsSection/TagsSection';
@@ -28,21 +28,22 @@ export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger 
 
   return (
     <div className="sidebar">
-      <section>
+      <section className="sidebar-section">
         <UserInfo />
         <SearchSection handleSearch={handleSearch} />
         <TagsSection handleTagFilter={handleTagFilter} refetchTrigger={refetchTrigger} />
       </section>
       <section
+        className="sidebar-section"
         onClick={() => {
           handleSetCurrentView();
           setActiveTag(null);
         }}>
         <AddPostSection />
-        <AddTagSection />
+        <ManageTagsSection />
       </section>
-      <section>
-        <ThemeSwitch />
+      <section className="sidebar-section">
+        <ThemeSwitch aria-label="Toggle theme" />
         <LogoutSection />
       </section>
     </div>

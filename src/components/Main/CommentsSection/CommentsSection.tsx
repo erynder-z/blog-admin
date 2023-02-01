@@ -17,7 +17,7 @@ export default function CommentsSection({ commentList, setRefetchTrigger }: Prop
 
   const closeModal = () => setShowModal(false);
 
-  if (commentList.length == 0) {
+  if (commentList.length === 0) {
     return (
       <div className="comment-section">
         <h2>No Comments</h2>
@@ -35,7 +35,6 @@ export default function CommentsSection({ commentList, setRefetchTrigger }: Prop
     return (
       <div className="comment-section">
         <h2>{commentList.length} Comments</h2>
-
         <button className="add-comment-button" onClick={openModal}>
           Add comment <FaRegCommentAlt />
         </button>

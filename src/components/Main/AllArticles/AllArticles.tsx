@@ -50,7 +50,7 @@ export default function AllArticles({ filter }: Props) {
 
   if (loading) {
     return (
-      <div className="fetching">
+      <div className="fetching" aria-live="polite">
         <MagnifyingGlass
           visible={true}
           height="80"
@@ -60,13 +60,18 @@ export default function AllArticles({ filter }: Props) {
           wrapperClass="MagnifyingGlass-wrapper"
           glassColor="#c0efff"
           color="#e15b64"
-        />
+        />{' '}
+        <p>Loading articles...</p>
       </div>
     );
   }
 
   if (error) {
-    return <p>An error occurred: {error.message}</p>;
+    return (
+      <p aria-live="assertive">
+        An error occurred: <span role="alert">{error.message}</span>
+      </p>
+    );
   }
 
   return (

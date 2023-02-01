@@ -11,12 +11,21 @@
 }
 
 .search-icon {
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
   position: absolute;
-  right: 0;
-  margin-right: 0.25em;
+  right: -0.5em;
   cursor: pointer;
   z-index: 10;
   transition: transform 0.2s ease-in-out;
+}
+
+.search-icon:hover {
+  background: none;
+  outline: none;
+  border: none;
 }
 
 .searchbox input {
@@ -40,5 +49,8 @@
 }
 
 .searchbox input:focus + .search-icon {
-  transform: scale(1.5) rotate(180deg);
+  transform: rotate(180deg);
+  background: none;
+  outline: none;
+  border: none;
 }

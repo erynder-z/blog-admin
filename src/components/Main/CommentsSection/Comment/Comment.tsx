@@ -33,7 +33,7 @@ export default function Comment({ commentData, setRefetchTrigger }: Props) {
   };
 
   return (
-    <div className="comment">
+    <div className="comment" aria-label="Comment">
       <div className="comment-main-container">
         <div className="comment-head">
           from: <strong>{author}</strong> on

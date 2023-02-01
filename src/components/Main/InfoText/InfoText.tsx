@@ -6,5 +6,9 @@ interface Props {
 }
 
 export default function InfoText({ message }: Props) {
-  return <h1 className="infoText">{message}</h1>;
+  return (
+    <h1 className="infoText" aria-live="polite" aria-atomic="true">
+      {message || ''}
+    </h1>
+  );
 }

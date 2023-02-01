@@ -59,9 +59,9 @@ export default function AddArticlePage() {
           visible={true}
           height="80"
           width="80"
-          ariaLabel="MagnifyingGlass-loading"
+          ariaLabel="Loading data"
           wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
+          wrapperClass="loading-spinner"
           glassColor="#c0efff"
           color="#e15b64"
         />
@@ -74,13 +74,17 @@ export default function AddArticlePage() {
   }
 
   return (
-    <main className="add-article_page">
+    <main className="add-article_page" role="main">
       <div className="add-article_container">
         {showInfoText ? (
           <InfoText message={infoTextMessage} />
         ) : (
           <form onSubmit={handleSubmit}>
-            <h1 className="add-article_heading">Add article</h1>
+            <header className="add-article_header">
+              <h1 className="add-article_heading" id="add-article-heading">
+                Add article
+              </h1>
+            </header>
             <div className="tags-container">
               <label htmlFor="tags">Tags</label>
               <Tags
@@ -90,17 +94,18 @@ export default function AddArticlePage() {
               />
             </div>
             <div className="title-container">
-              <h2>title:</h2>
-              <input type="text" name="title" />
+              <h2>Title:</h2>
+              <input type="text" name="title" id="title" aria-describedby="title-desc" />
+              <p id="title-desc">Enter the title of the article here</p>
             </div>
             <div className="editor-container">
-              <h2>content:</h2>
+              <h2>Content:</h2>
               <ContentEditor setEditorRef={setEditorRef} />
             </div>
             <div className="create-article-publish-options">
               <div className="checkbox-container">
                 <input type="checkbox" id="publishArticle" name="publishArticle" />
-                <label htmlFor="publishArticle">publish article when submitting</label>
+                <label htmlFor="publishArticle">Publish article when submitting</label>
               </div>
             </div>
             <button type="submit" className="submitArticleBtn">

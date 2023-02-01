@@ -34,14 +34,22 @@ export default function TagsSection({ handleTagFilter, refetchTrigger }: Props) 
   return (
     <div className="tag-section">
       <h1 className="side-tags-heading">All tags</h1>
-      <ul className="side-tag-list">
+      <ul className="side-tag-list" role="list">
         {tagList?.map((tag: ITag) => (
           <li
             key={tag._id.toString()}
             className={`side-tag-list-item ${activeTag == tag ? 'active' : ''}`}
+            role="listitem"
             onClick={() => {
               handleTagFilter(tag);
               handleTagClick(tag);
+            }}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleTagFilter(tag);
+                handleTagClick(tag);
+              }
             }}>
             {tag.name}
           </li>

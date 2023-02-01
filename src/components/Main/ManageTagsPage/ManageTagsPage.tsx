@@ -100,7 +100,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
 
   if (loading) {
     return (
-      <div className="fetching">
+      <div className="fetching" aria-live="polite">
         <MagnifyingGlass
           visible={true}
           height="80"
@@ -110,13 +110,18 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
           wrapperClass="MagnifyingGlass-wrapper"
           glassColor="#c0efff"
           color="#e15b64"
-        />
+        />{' '}
+        <p>Loading articles...</p>
       </div>
     );
   }
 
   if (error) {
-    return <p>An error occurred: {error.message}</p>;
+    return (
+      <p aria-live="assertive">
+        An error occurred: <span role="alert">{error.message}</span>
+      </p>
+    );
   }
 
   return (
@@ -126,14 +131,14 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
           <InfoText message={infoTextMessage} />
         ) : (
           <form onSubmit={handleSubmit}>
-            <h1 className="manage_tags_heading">Regsitered tags</h1>
+            <h1 className="manage_tags_heading">Registered tags</h1>
             <div className="create-article-tag-list">
               <ul>
                 {tagList?.map((tag) => (
                   <li key={tag._id} className="registered_tasks-list">
                     {tag.name} <div className="tag_delete-divider"></div>
                     <div className="tag_delete-button" onClick={() => handleTagDelete(tag._id)}>
-                      <FaTimes color="crimson" />
+                      <FaTimes aria-label="Delete tag" color="crimson" />
                     </div>
                   </li>
                 ))}
@@ -141,13 +146,19 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
             </div>
             <div className="title-container">
               <h2>Enter new tag:</h2>
-              <input type="text" name="newTag" className="newTag_input" placeholder="some tag" />
+              <input
+                type="text"
+                id="newTag"
+                name="newTag"
+                className="newTag_input"
+                placeholder="some tag"
+              />
             </div>
             <button type="submit" className="submitTagBtn">
               Submit tag
             </button>
           </form>
-        )}{' '}
+        )}
       </div>
     </main>
   );

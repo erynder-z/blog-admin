@@ -94,12 +94,12 @@ export default function EditArticle() {
 
   if (loading) {
     return (
-      <div className="fetching">
+      <div className="fetching" aria-label="Loading data">
         <MagnifyingGlass
           visible={true}
           height="80"
           width="80"
-          ariaLabel="MagnifyingGlass-loading"
+          ariaLabel="Loading spinner"
           wrapperStyle={{}}
           wrapperClass="MagnifyingGlass-wrapper"
           glassColor="#c0efff"
@@ -120,7 +120,9 @@ export default function EditArticle() {
         ) : (
           article && (
             <form onSubmit={handleSubmit}>
-              <h1 className="edit-article_heading">Edit article</h1>
+              <h1 className="edit-article_heading" aria-level="1">
+                Edit article
+              </h1>
               <div className="tags-container">
                 <label htmlFor="tags">Tags</label>
                 {tagList && (
@@ -139,6 +141,7 @@ export default function EditArticle() {
                   name="title"
                   defaultValue={decodedTitle}
                   onChange={(e) => setArticle({ ...article, title: e.target.value })}
+                  aria-label="Article title"
                 />
               </div>
               <div className="editor-container">
@@ -152,6 +155,7 @@ export default function EditArticle() {
                     id="publishArticle"
                     name="publishArticle"
                     defaultChecked={article?.isPublished}
+                    aria-label="Publish article when submitting"
                   />
                   <label htmlFor="publishArticle">publish article when submitting</label>
                 </div>

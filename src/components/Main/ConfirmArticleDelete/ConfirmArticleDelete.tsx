@@ -43,7 +43,7 @@ export default function ConfirmArticleDelete() {
         <>
           <h1>Are you sure?</h1>
           <p>This cannot be undone!</p>
-          <div className="confirm_delete_buttton_container">
+          <div className="confirm_delete_button_container">
             <button className="go_back" onClick={handleBack}>
               Go back
             </button>

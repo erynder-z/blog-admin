@@ -21,7 +21,7 @@ export default function LogoutSection() {
 
   return (
     <div className="logout-container">
-      <button className="logoutBtn" onClick={handleLogout}>
+      <button className="logoutBtn" onClick={handleLogout} aria-label="Logout">
         Logout <FaPowerOff />
       </button>
     </div>

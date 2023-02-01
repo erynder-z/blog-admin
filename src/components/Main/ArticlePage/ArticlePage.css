@@ -58,7 +58,6 @@
   font-size: 0.8em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: var(--button);
@@ -66,7 +65,7 @@
 }
 
 .edit_article-button:hover {
-  background-color: var(--hover);
+  background-color: var(--button_hover);
   border-color: var(--hover);
   color: var(--text_1);
 }

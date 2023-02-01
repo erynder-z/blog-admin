@@ -6,17 +6,17 @@ interface ThemeContextProviderProps {
 }
 
 interface ThemeContextProps {
-  theme: ThemeType | null;
-  setTheme: (theme: ThemeType | null) => void;
+  theme: ThemeType;
+  setTheme: (theme: ThemeType) => void;
 }
 
 const ThemeContext = createContext<ThemeContextProps>({
-  theme: null,
+  theme: 'Default',
   setTheme: () => {}
 });
 
 export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
-  const [theme, setTheme] = useState<ThemeType | null>(
+  const [theme, setTheme] = useState<ThemeType>(
     (localStorage.getItem('theme') as ThemeType) || 'Default'
   );
 

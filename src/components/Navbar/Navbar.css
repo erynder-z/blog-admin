@@ -18,15 +18,16 @@
 .nav-list {
   display: flex;
   justify-content: space-evenly;
+  list-style: none;
 }
 
-.nav-list-item {
+.nav-list-item a {
   color: var(--text_1);
   position: relative;
   text-decoration: none;
 }
 
-.nav-list-item::before {
+.nav-list-item a::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -40,25 +41,27 @@
   transition: transform 0.1s ease-in-out;
 }
 
-.nav-list-item:hover {
+.nav-list-item a:hover {
   color: var(--highlight);
 }
 
-.nav-list-item:hover::before {
+.nav-list-item a:hover::before {
   color: var(--text_2);
   transform-origin: left;
   transform: scaleX(1);
 }
 
-.nav-list-item.active::before {
+.nav-list-item a.active::before {
   transform-origin: left;
   transform: scaleX(1);
+  bottom: -5px;
 }
 
-.nav-list-item:hover::before {
+.nav-list-item a:hover::before {
   color: var(--text_2);
   transform-origin: left;
   transform: scaleX(1);
+  bottom: -5px;
 }
 
 @media (max-width: 800px) {

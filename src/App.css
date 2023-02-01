@@ -84,8 +84,8 @@
   --card_background: #383838;
   --tag_background: #cc231c;
   --hover: #4e5165;
-  --button: #777777;
-  --button_hover: #5a5959;
+  --button: #5a5959;
+  --button_hover: #777777;
   --button_danger: #cc231c;
   --button_danger_hover: #a0100b;
   --highlight: #689d69;
@@ -122,7 +122,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: var(--button);
-  color: var(--text_bright);
+  color: var(--text_1);
 }
 button:hover {
   background-color: var(--button_hover);
@@ -220,6 +220,7 @@ textarea:focus {
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
+  background-color: var(--background_1);
 }
 
 .side-container {
@@ -229,8 +230,6 @@ textarea:focus {
   right: 0;
   display: flex;
   flex-direction: column;
-  max-width: 70ch;
-  padding: 3em 3em 3em 0;
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
