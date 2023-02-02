@@ -5,6 +5,7 @@ import { fetchArticles } from '../../../helpers/FetchArticles';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
+import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import './AllArticles.css';
 
 interface Props {
@@ -76,6 +77,7 @@ export default function AllArticles({ filter }: Props) {
 
   return (
     <main className="all-articles-list">
+      {activeArticleList.length === 0 && <NoArticlePage filter={filter} />}
       {activeArticleList?.map((article) => (
         <div key={article._id.toString()} className="article-container">
           <ArticleItem articleData={article} />

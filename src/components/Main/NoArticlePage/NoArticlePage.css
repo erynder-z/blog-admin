@@ -1,0 +1,13 @@
+.not_found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  padding: 1em;
+  margin-top: 1rem;
+  background-color: var(--background_bright);
+  color: var(--text_2);
+  border-radius: 4px;
+  text-align: center;
+}

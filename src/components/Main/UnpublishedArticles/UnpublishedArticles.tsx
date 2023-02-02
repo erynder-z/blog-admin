@@ -6,6 +6,7 @@ import { MagnifyingGlass } from 'react-loader-spinner';
 import './UnpublishedArticles.css';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticles } from '../../../helpers/FetchArticles';
+import NoArticlePage from '../NoArticlePage/NoArticlePage';
 
 interface Props {
   filter: ITag | string | null;
@@ -83,6 +84,7 @@ export default function UnpublishedArticles({ filter }: Props) {
 
   return (
     <main className="unpublished-articles-list">
+      {activeArticleList.length === 0 && <NoArticlePage filter={filter} />}
       {activeArticleList?.map((article) => (
         <div key={article._id.toString()} className="article-container">
           <ArticleItem articleData={article} />

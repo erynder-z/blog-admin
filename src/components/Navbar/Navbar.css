@@ -19,6 +19,11 @@
   display: flex;
   justify-content: space-evenly;
   list-style: none;
+  padding: 0;
+}
+
+.nav-list-item {
+  text-align: center;
 }
 
 .nav-list-item a {

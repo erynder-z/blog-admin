@@ -5,7 +5,7 @@
 }
 
 .article_container {
-  padding: 1em;
+  padding: 1em 1.5em;
   background-color: var(--card_background);
   color: var(--text_2);
   border-radius: 4px;
