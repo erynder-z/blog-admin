@@ -7,6 +7,7 @@ import './PublishedArticles.css';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticles } from '../../../helpers/FetchArticles';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
+import { filterArticles } from '../../../helpers/FilterArticles';
 
 interface Props {
   filter: ITag | string | null;
@@ -33,27 +34,7 @@ export default function PublishedArticles({ filter }: Props) {
   }, []);
 
   useEffect(() => {
-    const filterArticles = (filter: ITag | string | null) => {
-      let filtered = fullArticleList;
-
-      if (typeof filter === 'string') {
-        // search comes from searchbar
-        const filterLower = filter.toLowerCase();
-        filtered = fullArticleList.filter(
-          ({ title, content }) =>
-            title.toLowerCase().includes(filterLower) || content.toLowerCase().includes(filterLower)
-        );
-      } else if (filter) {
-        // search comes from tag
-        filtered = fullArticleList.filter(({ tags = [] }) =>
-          tags.some(({ _id }) => _id === filter._id)
-        );
-      }
-
-      setActiveArticleList(filtered);
-    };
-
-    filterArticles(filter);
+    filterArticles(filter, fullArticleList, setActiveArticleList);
   }, [filter, fullArticleList]);
 
   if (loading) {

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticles } from '../../../helpers/FetchArticles';
+import { filterArticles } from '../../../helpers/FilterArticles';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
@@ -26,27 +27,7 @@ export default function AllArticles({ filter }: Props) {
   }, []);
 
   useEffect(() => {
-    const filterArticles = (filter: ITag | string | null) => {
-      let filtered = fullArticleList;
-
-      if (typeof filter === 'string') {
-        // search comes from searchbar
-        const filterLower = filter.toLowerCase();
-        filtered = fullArticleList.filter(
-          ({ title, content }) =>
-            title.toLowerCase().includes(filterLower) || content.toLowerCase().includes(filterLower)
-        );
-      } else if (filter) {
-        // search comes from tag
-        filtered = fullArticleList.filter(({ tags = [] }) =>
-          tags.some(({ _id }) => _id === filter._id)
-        );
-      }
-
-      setActiveArticleList(filtered);
-    };
-
-    filterArticles(filter);
+    filterArticles(filter, fullArticleList, setActiveArticleList);
   }, [filter, fullArticleList]);
 
   if (loading) {
