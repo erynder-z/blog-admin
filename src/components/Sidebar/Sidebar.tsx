@@ -3,6 +3,7 @@ import ActiveTagContext from '../../contexts/ActiveTagContext';
 import CurrentViewContext from '../../contexts/CurrentViewContext';
 import { ITag } from '../../interfaces/Tag';
 import AddPostSection from './AddArticleSection/AddArticleSection';
+import ClearSearch from './ClearSearch/ClearSearch';
 import LogoutSection from './LogoutSection/LogoutSection';
 import ManageTagsSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
@@ -13,11 +14,12 @@ import UserInfo from './UserInfo/UserInfo';
 
 interface Props {
   handleTagFilter: (tag: ITag) => void;
-  handleSearch: (query: string) => void;
+  handleSearch: (query: string | null) => void;
   refetchTrigger: boolean;
+  filter: ITag | string | null;
 }
 
-export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger }: Props) {
+export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger, filter }: Props) {
   const { setActiveTag } = useContext(ActiveTagContext);
   const { setCurrentView } = useContext(CurrentViewContext);
 
@@ -30,8 +32,11 @@ export default function Sidebar({ handleTagFilter, handleSearch, refetchTrigger 
     <div className="sidebar">
       <section className="sidebar-section">
         <UserInfo />
-        <SearchSection handleSearch={handleSearch} />
+        <SearchSection handleSearch={handleSearch} filter={filter} />
         <TagsSection handleTagFilter={handleTagFilter} refetchTrigger={refetchTrigger} />
+      </section>
+      <section className="sidebar-section">
+        <ClearSearch handleSearch={handleSearch} />
       </section>
       <section
         className="sidebar-section"

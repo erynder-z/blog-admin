@@ -15,7 +15,7 @@ export default function NoArticlePage({ filter }: Props) {
 
   return (
     <div className="not_found" aria-live="assertive">
-      <span> No articles matching {getQueryString()} !</span>
+      <span> No articles containing {getQueryString()} !</span>
       <span>
         <FaRegFrown />
       </span>

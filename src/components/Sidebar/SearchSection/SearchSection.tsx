@@ -1,18 +1,26 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './SearchSection.css';
 import { FaAngleLeft } from 'react-icons/fa';
+import { ITag } from '../../../interfaces/Tag';
 
 interface Props {
   handleSearch: (query: string) => void;
+  filter: ITag | string | null;
 }
 
-export default function SearchSection({ handleSearch }: Props) {
+export default function SearchSection({ handleSearch, filter }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleSearch(inputRef.current!.value);
   };
+
+  useEffect(() => {
+    if (!filter) {
+      inputRef.current!.value = '';
+    }
+  }, [filter]);
 
   return (
     <div className="searchbox-container">

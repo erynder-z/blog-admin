@@ -41,7 +41,7 @@ function App() {
     tag !== filter ? setFilter(tag) : setFilter(null);
   };
 
-  const handleSearch = (query: string) => {
+  const handleSearch = (query: string | null) => {
     setFilter(query);
   };
 
@@ -123,6 +123,7 @@ function App() {
             handleTagFilter={handleTagFilter}
             handleSearch={handleSearch}
             refetchTrigger={refetchTrigger}
+            filter={filter}
           />
         </div>
       </aside>
