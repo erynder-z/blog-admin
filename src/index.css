@@ -5,22 +5,6 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  /*   --background_dark: #001c30;
-  --background_bright: #f6f6f6;
-  --text_bright: #f6f6f6;
-  --text_dark: #001b2e;
-  --text_grey: #707070;
-  --nav: #f6f6f6;
-  --sidebar: #f6f6f6;
-  --article_card_background: #f6f6f6;
-  --tag_background: #cd3c00;
-  --button: #003b5e;
-  --button_danger: #800040;
-  --button_danger_hover: #99024e;
-  --hover: #0071af;
-  --highlight: #d2008f; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -30,20 +14,20 @@
 
 html {
   scrollbar-width: auto;
-  scrollbar-color: var(--highlight) var(--background_dark);
+  scrollbar-color: grey #d2008f;
 }
 
 html::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 html::-webkit-scrollbar-track {
-  background: var(--background_dark);
+  background: grey;
 }
 html::-webkit-scrollbar-thumb {
-  background-color: var(--highlight);
+  background-color: #d2008f;
 }
 
 ::selection {
-  color: var(--text_bright);
+  color: var(--text_1);
   background: var(--highlight);
 }

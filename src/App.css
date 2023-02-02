@@ -95,11 +95,11 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex;
+  place-items: center; */
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--background_dark);
+  background-color: var(--background_1);
 }
 
 h1 {
@@ -234,7 +234,6 @@ textarea:focus {
   line-height: 1.75;
   font-size: 1.25em;
   max-height: 100vh;
-  overflow-y: auto;
   z-index: 10;
 }
 

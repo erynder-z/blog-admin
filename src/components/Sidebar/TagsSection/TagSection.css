@@ -4,13 +4,13 @@
 
 .side-tag-list {
   list-style: none;
-  padding: 0;
+  /*  padding: 0; */
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
   max-height: calc(100vh / 2);
   gap: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 2px;
 }
 
 .side-tag-list::-webkit-scrollbar {
@@ -30,6 +30,10 @@
   color: var(--text_1);
   padding: 0 1rem;
   cursor: pointer;
+}
+
+.side-tag-list-item:hover {
+  outline: solid 2px var(--highlight);
 }
 
 .side-tag-list-item.active {
