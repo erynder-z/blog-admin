@@ -8,9 +8,14 @@ interface Props {
 }
 
 export default function NoArticlePage({ filter }: Props) {
+  const getQueryString = () => {
+    const query = typeof filter === 'string' ? filter : filter?.name;
+    return query && typeof query === 'string' ? query : query?.toString();
+  };
+
   return (
     <div className="not_found" aria-live="assertive">
-      <span> No articles matching {filter?.toString()} !</span>
+      <span> No articles matching {getQueryString()} !</span>
       <span>
         <FaRegFrown />
       </span>
