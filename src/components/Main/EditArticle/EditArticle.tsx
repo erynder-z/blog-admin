@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchArticleData } from '../../../helpers/FetchArticleData';
+import { fetchArticleContent } from '../../../helpers/FetchArticleContent';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
@@ -71,7 +71,7 @@ export default function EditArticle() {
 
   useEffect(() => {
     fetchTagListData(setTagList, setLoading, setError);
-    fetchArticleData(id, setArticle, setLoading, setError);
+    fetchArticleContent(id, setArticle, setLoading, setError);
   }, [id]);
 
   useEffect(() => {

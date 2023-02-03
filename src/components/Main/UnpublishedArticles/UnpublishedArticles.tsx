@@ -4,10 +4,11 @@ import { ITag } from '../../../interfaces/Tag';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
 import './UnpublishedArticles.css';
 import AuthContext from '../../../contexts/AuthContext';
-import { fetchArticles } from '../../../helpers/FetchArticles';
+import { fetchArticleList } from '../../../helpers/FetchArticleList';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import { filterArticles } from '../../../helpers/FilterArticles';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 interface Props {
   filter: ITag | string | null;
@@ -22,7 +23,7 @@ export default function UnpublishedArticles({ filter }: Props) {
 
   useEffect(() => {
     if (token) {
-      fetchArticles(
+      fetchArticleList(
         'unpublished',
         token,
         setActiveArticleList,
@@ -42,11 +43,7 @@ export default function UnpublishedArticles({ filter }: Props) {
   }
 
   if (error) {
-    return (
-      <p aria-live="assertive">
-        An error occurred: <span role="alert">{error.message}</span>
-      </p>
-    );
+    return <NotFoundPage />;
   }
 
   return (

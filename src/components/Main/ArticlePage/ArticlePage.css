@@ -128,6 +128,14 @@
 }
 
 @media (max-width: 800px) {
+  .article_title {
+    font-size: 1.5em;
+  }
+
+  .article_container {
+    padding: 0.5em;
+  }
+
   .article_options_container {
     gap: 1rem;
     flex-direction: column;

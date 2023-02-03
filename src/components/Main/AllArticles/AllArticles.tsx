@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import AuthContext from '../../../contexts/AuthContext';
-import { fetchArticles } from '../../../helpers/FetchArticles';
+import { fetchArticleList } from '../../../helpers/FetchArticleList';
 import { filterArticles } from '../../../helpers/FilterArticles';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import './AllArticles.css';
 
 interface Props {
@@ -22,7 +23,14 @@ export default function AllArticles({ filter }: Props) {
 
   useEffect(() => {
     if (token) {
-      fetchArticles('all', token, setActiveArticleList, setFullArticleList, setLoading, setError);
+      fetchArticleList(
+        'all',
+        token,
+        setActiveArticleList,
+        setFullArticleList,
+        setLoading,
+        setError
+      );
     }
   }, []);
 
@@ -49,11 +57,7 @@ export default function AllArticles({ filter }: Props) {
   }
 
   if (error) {
-    return (
-      <p aria-live="assertive">
-        An error occurred: <span role="alert">{error.message}</span>
-      </p>
-    );
+    return <NotFoundPage />;
   }
 
   return (

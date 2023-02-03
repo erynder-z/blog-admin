@@ -6,7 +6,6 @@ import InfoText from '../InfoText/InfoText';
 import { FaTimes } from 'react-icons/fa';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 
 interface Props {
