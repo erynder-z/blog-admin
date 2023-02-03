@@ -56,11 +56,11 @@ export default function LoginPage() {
         <h1>Please login to continue!</h1>
         <form className="login-form" action="" method="POST" onSubmit={handleSubmit}>
           <div className="input-container">
-            <input name="username" autoComplete="off" autoFocus required type="text" />
+            <input name="username" autoComplete="off" required type="text" />
             <label htmlFor="username">Username</label>
           </div>
           <div className="input-container">
-            <input name="password" autoComplete="off" autoFocus required type="password" />
+            <input name="password" autoComplete="off" required type="password" />
             <label htmlFor="password">Password</label>
           </div>
           <button type="submit" className="loginBtn">

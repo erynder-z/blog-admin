@@ -76,9 +76,14 @@
 
   .nav-title {
     font-size: 1.5em;
+    justify-content: center;
   }
 
   .nav-list {
     flex-direction: column;
+  }
+
+  .logo {
+    display: none;
   }
 }

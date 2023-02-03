@@ -1,4 +1,4 @@
-.not_found {
+.no_article {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,8 +6,10 @@
   font-size: 3rem;
   padding: 1em;
   margin-top: 1rem;
-  background-color: var(--background_bright);
+  background-color: var(--card_background);
   color: var(--text_2);
   border-radius: 4px;
   text-align: center;
+  font-size: 1.8em;
+  font-weight: 700;
 }
