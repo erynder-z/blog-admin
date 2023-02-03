@@ -18,7 +18,7 @@ export default function Navbar() {
     <nav aria-label="Main navigation" className="navbar">
       <h1 className="nav-title">
         <FaServer />
-        Blog-Admin
+        ./code/blog/admin
       </h1>
       <ul className="nav-list">
         <li className="nav-list-item">

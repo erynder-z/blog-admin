@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import './AddArticlePage.css';
 import { ITag } from '../../../interfaces/Tag';
@@ -10,7 +10,7 @@ import { handleArticleSubmit } from '../../../helpers/HandleArticleSubmit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
 import CurrentViewContext from '../../../contexts/CurrentViewContext';
-import { MagnifyingGlass } from 'react-loader-spinner';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 
 export default function AddArticlePage() {
   const { token } = useContext(AuthContext);
@@ -22,6 +22,7 @@ export default function AddArticlePage() {
   const [showInfoText, setShowInfoText] = useState<boolean>(false);
   const [infoTextMessage, setInfoTextMessage] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [isPublished, setIsPublished] = useState<boolean>(false);
 
   const editorRef = useRef<TinyMCEEditor | null>(null);
 
@@ -29,9 +30,21 @@ export default function AddArticlePage() {
     editorRef.current = editor;
   };
 
+  const handleIsPublishedCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsPublished(event.target.checked);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleArticleSubmit(event, token, editorRef, selectedTags, successfullSubmit, failedSubmit);
+    handleArticleSubmit(
+      event,
+      token,
+      editorRef,
+      selectedTags,
+      isPublished,
+      successfullSubmit,
+      failedSubmit
+    );
   };
 
   const successfullSubmit = () => {
@@ -53,20 +66,7 @@ export default function AddArticlePage() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="fetching">
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="Loading data"
-          wrapperStyle={{}}
-          wrapperClass="loading-spinner"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />
-      </div>
-    );
+    return <ArticleFetchingAnimation />;
   }
 
   if (error) {
@@ -104,7 +104,12 @@ export default function AddArticlePage() {
             </div>
             <div className="create-article-publish-options">
               <div className="checkbox-container">
-                <input type="checkbox" id="publishArticle" name="publishArticle" />
+                <input
+                  type="checkbox"
+                  id="publishArticle"
+                  name="publishArticle"
+                  onChange={handleIsPublishedCheckboxChange}
+                />
                 <label htmlFor="publishArticle">Publish article when submitting</label>
               </div>
             </div>

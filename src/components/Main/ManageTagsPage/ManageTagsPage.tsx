@@ -7,6 +7,7 @@ import { FaTimes } from 'react-icons/fa';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { MagnifyingGlass } from 'react-loader-spinner';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 
 interface Props {
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
@@ -99,21 +100,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   }, []);
 
   if (loading) {
-    return (
-      <div className="fetching" aria-live="polite">
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="MagnifyingGlass-loading"
-          wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />{' '}
-        <p>Loading articles...</p>
-      </div>
-    );
+    return <ArticleFetchingAnimation />;
   }
 
   if (error) {

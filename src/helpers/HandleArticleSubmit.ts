@@ -2,9 +2,10 @@ import { Editor as TinyMCEEditor } from 'tinymce';
 
 export const handleArticleSubmit = async (
   event: React.FormEvent<HTMLFormElement>,
-  token: String | null,
+  token: string | null,
   editorRef: React.MutableRefObject<TinyMCEEditor | null>,
   selectedTags: string[],
+  isPublished: boolean,
   successfullSubmit: () => () => void,
   failedSubmit: (error: any) => void
 ) => {
@@ -14,7 +15,8 @@ export const handleArticleSubmit = async (
     const body = {
       title: formData.get('title'),
       content: editorRef.current ? editorRef.current.getContent() : '',
-      tags: selectedTags
+      tags: selectedTags,
+      isPublished: isPublished
     };
 
     const response = await fetch('http://localhost:8000/api/articles', {

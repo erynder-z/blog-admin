@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { decode } from 'html-entities';
 import parse from 'html-react-parser';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import CommentsSection from '../CommentsSection/CommentsSection';
@@ -10,12 +10,14 @@ import { FaPenAlt, FaTrashAlt } from 'react-icons/fa';
 import './ArticlePage.css';
 import { fetchArticleData } from '../../../helpers/FetchArticleData';
 import { stripHtml } from 'string-strip-html';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import Prism from 'prismjs';
 import '../../../libraries/prism-material-dark.css';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function ArticlePage() {
   const params = useParams();
+  let navigate = useNavigate();
   const id: string | undefined = params.id;
 
   const [article, setArticle] = useState<IArticle>();
@@ -25,6 +27,10 @@ export default function ArticlePage() {
 
   const titleWithoutHTML = article?.title ? stripHtml(article.title).result : '';
   const decodedString = decode(article?.content);
+
+  const goToPreviousPage = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
     fetchArticleData(id, setArticle, setLoading, setError);
@@ -45,21 +51,7 @@ export default function ArticlePage() {
   }, [decodedString]);
 
   if (loading) {
-    return (
-      <div className="fetching" aria-live="polite">
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="MagnifyingGlass-loading"
-          wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />{' '}
-        <p>Loading articles...</p>
-      </div>
-    );
+    return <ArticleFetchingAnimation />;
   }
 
   if (error) {
@@ -72,10 +64,12 @@ export default function ArticlePage() {
   return (
     <main className="article_page" aria-label="Main content for article page">
       <div className="article_container">
-        <div className="timestamp">
-          <time>{format(new Date(article?.timestamp || ''), 'EEEE, dd. MMMM yyyy')}</time>
-        </div>
-        <span className="author">by {article?.author?.username}</span>
+        <header className="article_header" aria-label="Article Header">
+          <div className="timestamp">
+            <time>{format(new Date(article?.timestamp || ''), 'EEEE, dd. MMMM yyyy')}</time>
+          </div>
+          <span className="author">by {article?.author?.username}</span>
+        </header>
         <h1 id="article-title" className="article_title">
           {titleWithoutHTML}
         </h1>
@@ -86,9 +80,12 @@ export default function ArticlePage() {
             </li>
           ))}
         </ul>
-        <div aria-labelledby="article-title" className="article-content">
+        <article aria-labelledby="article-content" className="article-content">
           {parse(decodedString)}
-        </div>
+        </article>
+        <button className="backBtn" onClick={goToPreviousPage}>
+          <FaArrowLeft /> go back
+        </button>
         <div className="article_options_container">
           <Link to={`/edit_article/${id}`} className="edit_article-button">
             Edit article <FaPenAlt />

@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import './UnpublishedArticles.css';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticles } from '../../../helpers/FetchArticles';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import { filterArticles } from '../../../helpers/FilterArticles';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 
 interface Props {
   filter: ITag | string | null;
@@ -38,21 +38,7 @@ export default function UnpublishedArticles({ filter }: Props) {
   }, [filter, fullArticleList]);
 
   if (loading) {
-    return (
-      <div className="fetching" aria-live="polite">
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="MagnifyingGlass-loading"
-          wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />{' '}
-        <p>Loading articles...</p>
-      </div>
-    );
+    return <ArticleFetchingAnimation />;
   }
 
   if (error) {

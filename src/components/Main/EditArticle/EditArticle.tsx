@@ -12,8 +12,8 @@ import AuthContext from '../../../contexts/AuthContext';
 import { handleArticleUpdate } from '../../../helpers/HandleArticleUpdate';
 import { Tags } from './DisplayTagsEdit/DisplayTagsEdit';
 import ContentEditor from '../ContentEditor/ContentEditor';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import CurrentViewContext from '../../../contexts/CurrentViewContext';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 
 export default function EditArticle() {
   const { token } = useContext(AuthContext);
@@ -93,20 +93,7 @@ export default function EditArticle() {
   }, [navigate]);
 
   if (loading) {
-    return (
-      <div className="fetching" aria-label="Loading data">
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="Loading spinner"
-          wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />
-      </div>
-    );
+    return <ArticleFetchingAnimation />;
   }
 
   if (error) {
