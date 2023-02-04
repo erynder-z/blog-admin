@@ -82,8 +82,4 @@
   .nav-list {
     flex-direction: column;
   }
-
-  .logo {
-    display: none;
-  }
 }

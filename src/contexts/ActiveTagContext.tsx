@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+/* import { createContext, useState } from 'react';
 import { ITag } from '../interfaces/Tag';
 
 interface ActiveTagContextProviderProps {
@@ -25,3 +25,4 @@ export function ActiveTagContextProvider({ children }: ActiveTagContextProviderP
 }
 
 export default ActiveTagContext;
+ */

@@ -1,19 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import './SearchSection.css';
 import { FaAngleLeft } from 'react-icons/fa';
-import { ITag } from '../../../interfaces/Tag';
+import { useNavigate } from 'react-router-dom';
+import FilterContext from '../../../contexts/FilterContext';
 
-interface Props {
-  handleSearch: (query: string) => void;
-  filter: ITag | string | null;
-}
-
-export default function SearchSection({ handleSearch, filter }: Props) {
+export default function SearchSection() {
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  const { filter, setFilter } = useContext(FilterContext);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleSearch(inputRef.current!.value);
+    setFilter(inputRef.current!.value);
+    navigate('/search');
   };
 
   useEffect(() => {

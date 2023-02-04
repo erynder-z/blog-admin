@@ -14,11 +14,11 @@ import UnpublishedArticles from './components/Main/UnpublishedArticles/Unpublish
 import PublishedArticles from './components/Main/PublishedArticles/PublishedArticles';
 import AuthContext from './contexts/AuthContext';
 import EditArticle from './components/Main/EditArticle/EditArticle';
-import CurrentViewContext from './contexts/CurrentViewContext';
 import NotFoundPage from './components/Main/NotFoundPage/NotFoundPage';
 import ConfirmArticleDelete from './components/Main/ConfirmArticleDelete/ConfirmArticleDelete';
 import ManualPage from './components/Main/ManualPage/ManualPage';
 import ThemeContext from './contexts/ThemeContext';
+import SearchResults from './components/Main/SearchResults/SearchResults';
 
 type ProtectedRouteProps = {
   user: any;
@@ -33,17 +33,8 @@ function App() {
   const { token, user, isAuth, setUser, setIsAuth } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
 
-  const [filter, setFilter] = useState<ITag | string | null>(null);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
   const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
-
-  const handleTagFilter = (tag: ITag) => {
-    tag !== filter ? setFilter(tag) : setFilter(null);
-  };
-
-  const handleSearch = (query: string | null) => {
-    setFilter(query);
-  };
 
   const toggleSidebarActive = () => {
     setSidebarActive(!sidebarActive);
@@ -96,7 +87,7 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path="/all" element={<AllArticles filter={filter} />} />
+              <Route path="/all" element={<AllArticles />} />
               <Route path="/article/:id" element={<ArticlePage />} />
               <Route path="/add_article" element={<AddArticlePage />} />
               <Route path="/edit_article/:id" element={<EditArticle />} />
@@ -105,9 +96,10 @@ function App() {
                 path="/manage_tags"
                 element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}
               />
-              <Route path="/published" element={<PublishedArticles filter={filter} />} />
-              <Route path="/unpublished" element={<UnpublishedArticles filter={filter} />} />
+              <Route path="/published" element={<PublishedArticles />} />
+              <Route path="/unpublished" element={<UnpublishedArticles />} />
               <Route path="/howto" element={<ManualPage />} />
+              <Route path="/search" element={<SearchResults />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
@@ -119,12 +111,7 @@ function App() {
           onClick={toggleSidebarActive}
         />
         <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
-          <Sidebar
-            handleTagFilter={handleTagFilter}
-            handleSearch={handleSearch}
-            refetchTrigger={refetchTrigger}
-            filter={filter}
-          />
+          <Sidebar refetchTrigger={refetchTrigger} />
         </div>
       </aside>
     </div>

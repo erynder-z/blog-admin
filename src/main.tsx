@@ -4,21 +4,21 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { AuthContextProvider } from './contexts/AuthContext';
-import { ActiveTagContextProvider } from './contexts/ActiveTagContext';
 import { CurrentViewContextProvider } from './contexts/CurrentViewContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
+import { FilterContextProvider } from './contexts/FilterContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
-        <ActiveTagContextProvider>
-          <CurrentViewContextProvider>
-            <ThemeContextProvider>
+        <CurrentViewContextProvider>
+          <ThemeContextProvider>
+            <FilterContextProvider>
               <App />
-            </ThemeContextProvider>
-          </CurrentViewContextProvider>
-        </ActiveTagContextProvider>
+            </FilterContextProvider>
+          </ThemeContextProvider>
+        </CurrentViewContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>

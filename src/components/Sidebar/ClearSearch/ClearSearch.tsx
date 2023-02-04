@@ -1,17 +1,12 @@
 import React, { useContext } from 'react';
-import ActiveTagContext from '../../../contexts/ActiveTagContext';
 import './ClearSearch.css';
 import { FaUndoAlt } from 'react-icons/fa';
+import FilterContext from '../../../contexts/FilterContext';
 
-interface Props {
-  handleSearch: (query: string | null) => void;
-}
-
-export default function ClearSearch({ handleSearch }: Props) {
-  const { setActiveTag } = useContext(ActiveTagContext);
+export default function ClearSearch() {
+  const { setFilter } = useContext(FilterContext);
   const handleClearSearch = () => {
-    handleSearch(null);
-    setActiveTag(null);
+    setFilter(null);
   };
 
   return (
