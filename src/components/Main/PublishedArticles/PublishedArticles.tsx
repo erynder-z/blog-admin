@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { IArticle } from '../../../interfaces/Article';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
 import './PublishedArticles.css';
@@ -7,8 +7,13 @@ import { fetchArticleList } from '../../../helpers/FetchArticleList';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { ViewType } from '../../../interfaces/customTypes';
 
-export default function PublishedArticles() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function PublishedArticles({ setCurrentView }: Props) {
   const { token } = useContext(AuthContext);
   const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +23,8 @@ export default function PublishedArticles() {
     if (token) {
       fetchArticleList('published', token, setFullArticleList, setLoading, setError);
     }
+    setCurrentView('Published');
+    localStorage.setItem('currentView', 'Published');
   }, []);
 
   if (loading) {
@@ -25,7 +32,7 @@ export default function PublishedArticles() {
   }
 
   if (error) {
-    return <NotFoundPage />;
+    return <NotFoundPage setCurrentView={setCurrentView} />;
   }
 
   return (

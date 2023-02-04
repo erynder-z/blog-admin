@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import CurrentViewContext from '../../contexts/CurrentViewContext';
+import { ViewType } from '../../interfaces/customTypes';
 import AddPostSection from './AddArticleSection/AddArticleSection';
 import ClearSearch from './ClearSearch/ClearSearch';
 import LogoutSection from './LogoutSection/LogoutSection';
@@ -12,16 +13,10 @@ import UserInfo from './UserInfo/UserInfo';
 
 interface Props {
   refetchTrigger: boolean;
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
 }
 
-export default function Sidebar({ refetchTrigger }: Props) {
-  const { setCurrentView } = useContext(CurrentViewContext);
-
-  const handleSetCurrentView = () => {
-    setCurrentView('Other');
-    localStorage.setItem('currentView', 'Other');
-  };
-
+export default function Sidebar({ refetchTrigger, setCurrentView }: Props) {
   return (
     <div className="sidebar">
       <section className="sidebar-section">
@@ -35,7 +30,8 @@ export default function Sidebar({ refetchTrigger }: Props) {
       <section
         className="sidebar-section"
         onClick={() => {
-          handleSetCurrentView();
+          setCurrentView('Other');
+          localStorage.setItem('currentView', 'Other');
         }}>
         <AddPostSection />
         <ManageTagsSection />

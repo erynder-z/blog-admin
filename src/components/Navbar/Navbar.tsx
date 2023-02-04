@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CurrentViewContext from '../../contexts/CurrentViewContext';
+import { ViewType } from '../../interfaces/customTypes';
 import './Navbar.css';
 
-export default function Navbar() {
-  const { currentView, setCurrentView } = useContext(CurrentViewContext);
+interface Props {
+  currentView: ViewType | null;
+}
 
-  const handleSetCurrentView = (currentView: 'All' | 'Published' | 'Unpublished' | 'Manual') => {
-    setCurrentView(currentView);
-    localStorage.setItem('currentView', currentView);
-  };
-
+export default function Navbar({ currentView }: Props) {
   return (
     <nav aria-label="Main navigation" className="navbar">
       <h1 className="nav-title">./code/blog/admin</h1>
@@ -19,10 +17,7 @@ export default function Navbar() {
           <Link
             to="/all"
             className={`${currentView === 'All' ? 'active' : ''}`}
-            aria-current={currentView === 'All' ? 'page' : undefined}
-            onClick={() => {
-              handleSetCurrentView('All');
-            }}>
+            aria-current={currentView === 'All' ? 'page' : undefined}>
             All
           </Link>
         </li>
@@ -30,10 +25,7 @@ export default function Navbar() {
           <Link
             to="/published"
             className={`${currentView === 'Published' ? 'active' : ''}`}
-            aria-current={currentView === 'Published' ? 'page' : undefined}
-            onClick={() => {
-              handleSetCurrentView('Published');
-            }}>
+            aria-current={currentView === 'Published' ? 'page' : undefined}>
             Published articles
           </Link>
         </li>
@@ -41,10 +33,7 @@ export default function Navbar() {
           <Link
             to="/unpublished"
             className={`${currentView === 'Unpublished' ? 'active' : ''}`}
-            aria-current={currentView === 'Unpublished' ? 'page' : undefined}
-            onClick={() => {
-              handleSetCurrentView('Unpublished');
-            }}>
+            aria-current={currentView === 'Unpublished' ? 'page' : undefined}>
             Unpublished articles
           </Link>
         </li>
@@ -52,10 +41,7 @@ export default function Navbar() {
           <Link
             to="/howto"
             className={`${currentView === 'Manual' ? 'active' : ''}`}
-            aria-current={currentView === 'Manual' ? 'page' : undefined}
-            onClick={() => {
-              handleSetCurrentView('Manual');
-            }}>
+            aria-current={currentView === 'Manual' ? 'page' : undefined}>
             Manual
           </Link>
         </li>

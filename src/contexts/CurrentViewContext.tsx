@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+/* import { createContext, useState } from 'react';
 import { ViewType } from '../interfaces/customTypes';
 
 interface CurrentViewContextProviderProps {
@@ -28,3 +28,4 @@ export function CurrentViewContextProvider({ children }: CurrentViewContextProvi
 }
 
 export default CurrentViewContext;
+ */

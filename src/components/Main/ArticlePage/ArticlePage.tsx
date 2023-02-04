@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { decode } from 'html-entities';
 import parse from 'html-react-parser';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -15,8 +15,13 @@ import '../../../libraries/prism-material-dark.css';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import { FaArrowLeft } from 'react-icons/fa';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { ViewType } from '../../../interfaces/customTypes';
 
-export default function ArticlePage() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function ArticlePage({ setCurrentView }: Props) {
   const params = useParams();
   let navigate = useNavigate();
   const id: string | undefined = params.id;
@@ -51,12 +56,17 @@ export default function ArticlePage() {
     Prism.highlightAll();
   }, [decodedString]);
 
+  useEffect(() => {
+    setCurrentView('Other');
+    localStorage.setItem('currentView', 'About');
+  }, []);
+
   if (loading) {
     return <ArticleFetchingAnimation />;
   }
 
   if (error) {
-    return <NotFoundPage />;
+    return <NotFoundPage setCurrentView={setCurrentView} />;
   }
   return (
     <main className="article_page" aria-label="Main content for article page">

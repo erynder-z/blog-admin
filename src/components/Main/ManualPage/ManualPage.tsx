@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import './ManualPage.css';
 import { FaPen, FaPenAlt, FaTrashAlt, FaRegCommentAlt, FaShapes, FaTimes } from 'react-icons/fa';
+import { ViewType } from '../../../interfaces/customTypes';
 
-export default function ManualPage() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function ManualPage({ setCurrentView }: Props) {
+  useEffect(() => {
+    setCurrentView('Manual');
+    localStorage.setItem('currentView', 'Manual');
+  }, []);
   return (
     <div className="manual_page">
       <h1 className="manual_page-heading">How to use:</h1>

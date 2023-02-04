@@ -1,4 +1,12 @@
-import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchArticleContent } from '../../../helpers/FetchArticleContent';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
@@ -14,10 +22,14 @@ import { Tags } from './DisplayTagsEdit/DisplayTagsEdit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 import CurrentViewContext from '../../../contexts/CurrentViewContext';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
+import { ViewType } from '../../../interfaces/customTypes';
 
-export default function EditArticle() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function EditArticle({ setCurrentView }: Props) {
   const { token } = useContext(AuthContext);
-  const { setCurrentView } = useContext(CurrentViewContext);
   const navigate = useNavigate();
   const params = useParams();
   const id: string | undefined = params.id;
@@ -60,7 +72,6 @@ export default function EditArticle() {
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
-      setCurrentView('All');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
@@ -91,6 +102,11 @@ export default function EditArticle() {
     const timeoutId = setTimeout(navigate, 3000);
     return () => clearTimeout(timeoutId);
   }, [navigate]);
+
+  useEffect(() => {
+    setCurrentView('Other');
+    localStorage.setItem('currentView', 'Other');
+  }, []);
 
   if (loading) {
     return <ArticleFetchingAnimation />;

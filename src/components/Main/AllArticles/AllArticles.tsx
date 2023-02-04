@@ -1,15 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticleList } from '../../../helpers/FetchArticleList';
 import { IArticle } from '../../../interfaces/Article';
-import { ITag } from '../../../interfaces/Tag';
+import { ViewType } from '../../../interfaces/customTypes';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import './AllArticles.css';
 
-export default function AllArticles() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function AllArticles({ setCurrentView }: Props) {
   const { token } = useContext(AuthContext);
   const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +23,8 @@ export default function AllArticles() {
     if (token) {
       fetchArticleList('all', token, setFullArticleList, setLoading, setError);
     }
+    setCurrentView('All');
+    localStorage.setItem('currentView', 'All');
   }, []);
 
   if (loading) {
@@ -40,7 +46,7 @@ export default function AllArticles() {
   }
 
   if (error) {
-    return <NotFoundPage />;
+    return <NotFoundPage setCurrentView={setCurrentView} />;
   }
 
   return (

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NotFoundPage.css';
 import { FaArrowLeft } from 'react-icons/fa';
+import { ViewType } from '../../../interfaces/customTypes';
 
-export default function NotFoundPage() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function NotFoundPage({ setCurrentView }: Props) {
   let navigate = useNavigate();
 
   const goToPreviousPage = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    setCurrentView('Other');
+    localStorage.setItem('currentView', 'Other');
+  }, []);
   return (
     <div className="not_found" aria-live="assertive">
       <h1>The 404 Error Page: Understanding and Creating a Great User Experience</h1>

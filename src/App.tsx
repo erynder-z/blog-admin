@@ -5,7 +5,6 @@ import AllArticles from './components/Main/AllArticles/AllArticles';
 import ArticlePage from './components/Main/ArticlePage/ArticlePage';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import { ITag } from './interfaces/Tag';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddArticlePage from './components/Main/AddArticlePage/AddArticlePage';
 import ManageTagsPage from './components/Main/ManageTagsPage/ManageTagsPage';
@@ -19,6 +18,7 @@ import ConfirmArticleDelete from './components/Main/ConfirmArticleDelete/Confirm
 import ManualPage from './components/Main/ManualPage/ManualPage';
 import ThemeContext from './contexts/ThemeContext';
 import SearchResults from './components/Main/SearchResults/SearchResults';
+import { ViewType } from './interfaces/customTypes';
 
 type ProtectedRouteProps = {
   user: any;
@@ -35,6 +35,9 @@ function App() {
 
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
   const [refetchTrigger, setRefetchTrigger] = useState<boolean>(false);
+  const [currentView, setCurrentView] = useState<ViewType | null>(
+    (localStorage.getItem('currentView') as ViewType) || null
+  );
 
   const toggleSidebarActive = () => {
     setSidebarActive(!sidebarActive);
@@ -81,26 +84,41 @@ function App() {
     <div className={`app-container ${theme}`}>
       <div className="main-container">
         <nav>
-          <Navbar />
+          <Navbar currentView={currentView} />
         </nav>
         <main>
           <Routes>
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path="/all" element={<AllArticles />} />
-              <Route path="/article/:id" element={<ArticlePage />} />
-              <Route path="/add_article" element={<AddArticlePage />} />
-              <Route path="/edit_article/:id" element={<EditArticle />} />
+              <Route path="/all" element={<AllArticles setCurrentView={setCurrentView} />} />
+              <Route
+                path="/article/:id"
+                element={<ArticlePage setCurrentView={setCurrentView} />}
+              />
+              <Route
+                path="/add_article"
+                element={<AddArticlePage setCurrentView={setCurrentView} />}
+              />
+              <Route
+                path="/edit_article/:id"
+                element={<EditArticle setCurrentView={setCurrentView} />}
+              />
               <Route path="/confirm_article_delete/:id" element={<ConfirmArticleDelete />} />
               <Route
                 path="/manage_tags"
                 element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}
               />
-              <Route path="/published" element={<PublishedArticles />} />
-              <Route path="/unpublished" element={<UnpublishedArticles />} />
-              <Route path="/howto" element={<ManualPage />} />
-              <Route path="/search" element={<SearchResults />} />
-              <Route path="*" element={<NotFoundPage />} />
+              <Route
+                path="/published"
+                element={<PublishedArticles setCurrentView={setCurrentView} />}
+              />
+              <Route
+                path="/unpublished"
+                element={<UnpublishedArticles setCurrentView={setCurrentView} />}
+              />
+              <Route path="/howto" element={<ManualPage setCurrentView={setCurrentView} />} />
+              <Route path="/search" element={<SearchResults setCurrentView={setCurrentView} />} />
+              <Route path="*" element={<NotFoundPage setCurrentView={setCurrentView} />} />
             </Route>
           </Routes>
         </main>
@@ -111,7 +129,7 @@ function App() {
           onClick={toggleSidebarActive}
         />
         <div className={`side-container ${sidebarActive ? 'active' : ''}`}>
-          <Sidebar refetchTrigger={refetchTrigger} />
+          <Sidebar refetchTrigger={refetchTrigger} setCurrentView={setCurrentView} />
         </div>
       </aside>
     </div>

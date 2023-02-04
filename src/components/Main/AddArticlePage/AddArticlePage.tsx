@@ -1,4 +1,12 @@
-import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import './AddArticlePage.css';
 import { ITag } from '../../../interfaces/Tag';
@@ -9,12 +17,15 @@ import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { handleArticleSubmit } from '../../../helpers/HandleArticleSubmit';
 import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
-import CurrentViewContext from '../../../contexts/CurrentViewContext';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
+import { ViewType } from '../../../interfaces/customTypes';
 
-export default function AddArticlePage() {
+interface Props {
+  setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
+}
+
+export default function AddArticlePage({ setCurrentView }: Props) {
   const { token } = useContext(AuthContext);
-  const { setCurrentView } = useContext(CurrentViewContext);
   const navigate = useNavigate();
   const [tagList, setTagList] = useState<ITag[]>();
   const [loading, setLoading] = useState(true);
@@ -48,11 +59,10 @@ export default function AddArticlePage() {
   };
 
   const successfullSubmit = () => {
-    setInfoTextMessage('Article submit successfull!');
+    setInfoTextMessage('Article submit successful!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
       navigate('/all');
-      setCurrentView('All');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
@@ -63,6 +73,8 @@ export default function AddArticlePage() {
 
   useEffect(() => {
     fetchTagListData(setTagList, setLoading, setError);
+    setCurrentView('Other');
+    localStorage.setItem('currentView', 'Other');
   }, []);
 
   if (loading) {
