@@ -4,6 +4,7 @@ import AuthContext from '../../../contexts/AuthContext';
 import { fetchArticleList } from '../../../helpers/FetchArticleList';
 import { IArticle } from '../../../interfaces/Article';
 import { ViewType } from '../../../interfaces/customTypes';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import ArticleItem from '../ArticlePreview/ArticlePreview';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
@@ -28,21 +29,7 @@ export default function AllArticles({ setCurrentView }: Props) {
   }, []);
 
   if (loading) {
-    return (
-      <div className="fetching" aria-live="polite">
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="MagnifyingGlass-loading"
-          wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />{' '}
-        <p>Loading articles...</p>
-      </div>
-    );
+    return <ArticleFetchingAnimation />;
   }
 
   if (error) {
