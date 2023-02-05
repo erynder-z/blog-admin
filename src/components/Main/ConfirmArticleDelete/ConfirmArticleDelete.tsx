@@ -19,10 +19,10 @@ export default function ConfirmArticleDelete() {
   };
 
   const handleDelete = () => {
-    handleArticleDelete(token, id, successfullSubmit, failedSubmit);
+    handleArticleDelete(token, id, successfulSubmit, failedSubmit);
   };
 
-  const successfullSubmit = () => {
+  const successfulSubmit = () => {
     setInfoTextMessage('Article successfully deleted!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {

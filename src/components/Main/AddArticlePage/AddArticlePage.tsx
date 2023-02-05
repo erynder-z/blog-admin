@@ -53,12 +53,12 @@ export default function AddArticlePage({ setCurrentView }: Props) {
       editorRef,
       selectedTags,
       isPublished,
-      successfullSubmit,
+      successfulSubmit,
       failedSubmit
     );
   };
 
-  const successfullSubmit = () => {
+  const successfulSubmit = () => {
     setInfoTextMessage('Article submit successful!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {

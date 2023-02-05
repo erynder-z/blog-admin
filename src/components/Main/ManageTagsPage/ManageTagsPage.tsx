@@ -34,7 +34,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
         });
         if (res.ok) {
           setRefetchTrigger(true);
-          successfullSubmit();
+          successfulSubmit();
           setRefetchTrigger(true);
         } else {
           console.error(res.statusText);
@@ -67,7 +67,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
 
       if (response.ok) {
         const data = await response.json();
-        successfullSubmit();
+        successfulSubmit();
         setRefetchTrigger(true);
       } else {
         console.error(response.statusText);
@@ -76,7 +76,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
     }
   };
 
-  const successfullSubmit = () => {
+  const successfulSubmit = () => {
     setInfoTextMessage('Tags updated');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
