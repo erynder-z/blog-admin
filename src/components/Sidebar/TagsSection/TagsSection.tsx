@@ -17,7 +17,12 @@ export default function TagsSection({ refetchTrigger }: Props) {
   const navigate = useNavigate();
 
   const handleTagClick = (tag: ITag) => {
-    navigate('/search');
+    if (tag !== filter) {
+      navigate('/search');
+    } else {
+      setFilter(null);
+      navigate(-1);
+    }
   };
 
   useEffect(() => {
