@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
 import AllArticles from './components/Main/AllArticles/AllArticles';
@@ -46,31 +46,6 @@ function App() {
   useEffect(() => {
     setRefetchTrigger(false);
   }, [refetchTrigger]);
-
-  useEffect(() => {
-    const checkToken = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/api/check-token', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const data = await response.json();
-        if (response.status === 200) {
-          setUser(data);
-          setIsAuth(true);
-        } else {
-          setUser(null);
-          setIsAuth(false);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    checkToken();
-  }, [token]);
 
   if (!user) {
     return <LoginPage />;

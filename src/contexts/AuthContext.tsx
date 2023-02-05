@@ -43,9 +43,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        if (!token) {
-          throw new Error('Unauthorized: Token is missing');
-        }
         const response = await fetch('http://localhost:8000/api/check-token', {
           method: 'GET',
           headers: {
@@ -63,14 +60,16 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         const data = await response.json();
         setUser(data);
         setIsAuth(true);
-      } catch (error) {
+      } catch (error: any) {
         setUser(null);
         setIsAuth(false);
         console.error(error);
       }
     };
 
-    checkToken();
+    if (token) {
+      checkToken();
+    }
   }, [token]);
 
   return (
