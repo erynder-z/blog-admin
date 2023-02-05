@@ -39,6 +39,11 @@ input[name='password'] {
   border: solid 1px black;
 }
 
+input[name='username']:hover,
+input[name='password']:hover {
+  outline: solid 1px #d2008f;
+}
+
 input[name='username'] + label,
 input[name='password'] + label {
   top: 0.4em;
@@ -52,14 +57,36 @@ input[name='password']:not(:focus):valid ~ label {
 }
 
 .loginBtn {
+  position: relative;
+  overflow: hidden;
   border: none;
   outline: none;
+  background-color: rgba(255, 221, 0, 0.2);
 }
 
-.loginBtn:hover {
-  background-color: rgba(255, 221, 0, 0.175);
-  border: none;
-  outline: none;
+.loginBtn-text {
+  position: relative;
+  transition: 0.5s;
+}
+
+.loginBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130%;
+  height: 100%;
+  background-color: rgba(255, 221, 0, 0.5);
+  transform: translate(-110%, 0) skew(-33deg);
+  transition: 0.5s;
+}
+
+.loginBtn:hover .text {
+  color: #fff;
+}
+
+.loginBtn:hover::before {
+  transform: translate(-5%, 0) skew(-15deg);
 }
 
 @media (max-width: 800px) {

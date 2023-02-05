@@ -26,7 +26,6 @@
 
 .newTag_input {
   margin-bottom: 1.5em;
-  width: 33%;
 }
 
 .create-article-tag-list ul {
@@ -69,6 +68,6 @@
 
 .submitTagBtn {
   color: var(--text_1);
-  width: 33%;
+  width: 100%;
   align-self: center;
 }

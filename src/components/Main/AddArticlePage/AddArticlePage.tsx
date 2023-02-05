@@ -105,7 +105,7 @@ export default function AddArticlePage({ setCurrentView }: Props) {
                 setSelectedTags={setSelectedTags}
               />
             </div>
-            <div className="title-container">
+            <div className="add-article-title-container">
               <h2>Title:</h2>
               <input type="text" name="title" id="title" aria-describedby="title-desc" />
               <p id="title-desc">Enter the title of the article here</p>

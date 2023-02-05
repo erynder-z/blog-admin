@@ -51,7 +51,7 @@ export default function LoginPage() {
 
   return (
     <div className="login-overlay">
-      <h1 className="login-heading">Blog-Admin</h1>
+      <h1 className="login-heading">./code/blog/admin</h1>
       <div className="login-container">
         <h1>Please login to continue!</h1>
         <form className="login-form" action="" method="POST" onSubmit={handleSubmit}>
@@ -64,7 +64,7 @@ export default function LoginPage() {
             <label htmlFor="password">Password</label>
           </div>
           <button type="submit" className="loginBtn">
-            Login
+            <span className="loginBtn-text">Login</span>
           </button>
           <div className="status_message">
             {isVerifying && (

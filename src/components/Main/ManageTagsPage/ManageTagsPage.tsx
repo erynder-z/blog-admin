@@ -130,7 +130,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
                 ))}
               </ul>
             </div>
-            <div className="title-container">
+            <div className="manage-tags-title-container">
               <h2>Enter new tag:</h2>
               <input
                 type="text"
