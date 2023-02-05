@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useContext } from 'react';
-import CurrentViewContext from '../../contexts/CurrentViewContext';
+import FilterContext from '../../contexts/FilterContext';
 import { ViewType } from '../../interfaces/customTypes';
 import AddPostSection from './AddArticleSection/AddArticleSection';
 import ClearSearch from './ClearSearch/ClearSearch';
@@ -17,6 +17,7 @@ interface Props {
 }
 
 export default function Sidebar({ refetchTrigger, setCurrentView }: Props) {
+  const { setFilter } = useContext(FilterContext);
   return (
     <div className="sidebar">
       <section className="sidebar-section">
@@ -30,6 +31,7 @@ export default function Sidebar({ refetchTrigger, setCurrentView }: Props) {
       <section
         className="sidebar-section"
         onClick={() => {
+          setFilter(null);
           setCurrentView('Other');
           localStorage.setItem('currentView', 'Other');
         }}>
