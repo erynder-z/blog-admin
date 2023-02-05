@@ -3,6 +3,7 @@ import './ManualPage.css';
 import { FaPen, FaPenAlt, FaTrashAlt, FaRegCommentAlt, FaShapes, FaTimes } from 'react-icons/fa';
 import { ViewType } from '../../../interfaces/customTypes';
 import FilterContext from '../../../contexts/FilterContext';
+import BackButton from '../BackButton/BackButton';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
@@ -101,6 +102,7 @@ export default function ManualPage({ setCurrentView }: Props) {
         <li>Click the "Theme" button to toggle between four different color themes.</li>
         <li>Your choice will be saved.</li>
       </ol>
+      <BackButton />
     </div>
   );
 }

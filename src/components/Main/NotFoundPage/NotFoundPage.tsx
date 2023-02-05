@@ -1,20 +1,13 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './NotFoundPage.css';
-import { FaArrowLeft } from 'react-icons/fa';
 import { ViewType } from '../../../interfaces/customTypes';
+import BackButton from '../BackButton/BackButton';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
 }
 
 export default function NotFoundPage({ setCurrentView }: Props) {
-  let navigate = useNavigate();
-
-  const goToPreviousPage = () => {
-    navigate(-1);
-  };
-
   useEffect(() => {
     setCurrentView('Other');
     localStorage.setItem('currentView', 'Other');
@@ -41,9 +34,7 @@ export default function NotFoundPage({ setCurrentView }: Props) {
         experience.
       </p>
       <h2>404</h2>
-      <button className="backBtn" onClick={goToPreviousPage}>
-        <FaArrowLeft /> go back
-      </button>
+      <BackButton />
     </div>
   );
 }

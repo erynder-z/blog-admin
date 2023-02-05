@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { decode } from 'html-entities';
 import parse from 'html-react-parser';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
 import CommentsSection from '../CommentsSection/CommentsSection';
@@ -13,9 +13,9 @@ import { stripHtml } from 'string-strip-html';
 import Prism from 'prismjs';
 import '../../../libraries/prism-material-dark.css';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
-import { FaArrowLeft } from 'react-icons/fa';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import { ViewType } from '../../../interfaces/customTypes';
+import BackButton from '../BackButton/BackButton';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
@@ -23,7 +23,6 @@ interface Props {
 
 export default function ArticlePage({ setCurrentView }: Props) {
   const params = useParams();
-  let navigate = useNavigate();
   const id: string | undefined = params.id;
 
   const [article, setArticle] = useState<IArticle>();
@@ -34,10 +33,6 @@ export default function ArticlePage({ setCurrentView }: Props) {
 
   const titleWithoutHTML = article?.title ? stripHtml(article.title).result : '';
   const decodedString = decode(article?.content);
-
-  const goToPreviousPage = () => {
-    navigate(-1);
-  };
 
   const getReadingTime = () => {
     const wpm = 250;
@@ -100,9 +95,7 @@ export default function ArticlePage({ setCurrentView }: Props) {
         <article aria-labelledby="article-content" className="article-content">
           {parse(decodedString)}
         </article>
-        <button className="backBtn" onClick={goToPreviousPage}>
-          <FaArrowLeft /> go back
-        </button>
+        <BackButton />
         <div className="article_options_container">
           <Link to={`/edit_article/${id}`} className="edit_article-button">
             Edit article <FaPenAlt />

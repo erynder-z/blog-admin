@@ -1,0 +1,19 @@
+.backBtn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8em;
+  color: var(--text_2);
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.backBtn:hover {
+  background: none;
+  color: var(--highlight);
+}
+
+.backBtn:focus {
+  outline: none;
+}

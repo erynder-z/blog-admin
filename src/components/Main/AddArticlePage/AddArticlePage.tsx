@@ -19,6 +19,7 @@ import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import { ViewType } from '../../../interfaces/customTypes';
+import BackButton from '../BackButton/BackButton';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
@@ -92,6 +93,7 @@ export default function AddArticlePage({ setCurrentView }: Props) {
           <InfoText message={infoTextMessage} />
         ) : (
           <form onSubmit={handleSubmit}>
+            <BackButton />
             <header className="add-article_header">
               <h1 className="add-article_heading" id="add-article-heading">
                 Add article

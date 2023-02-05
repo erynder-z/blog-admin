@@ -23,6 +23,7 @@ import ContentEditor from '../ContentEditor/ContentEditor';
 import CurrentViewContext from '../../../contexts/CurrentViewContext';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import { ViewType } from '../../../interfaces/customTypes';
+import BackButton from '../BackButton/BackButton';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
@@ -123,6 +124,7 @@ export default function EditArticle({ setCurrentView }: Props) {
         ) : (
           article && (
             <form onSubmit={handleSubmit}>
+              <BackButton />
               <h1 className="edit-article_heading" aria-level="1">
                 Edit article
               </h1>

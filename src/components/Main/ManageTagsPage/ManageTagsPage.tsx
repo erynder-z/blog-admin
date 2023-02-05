@@ -7,6 +7,7 @@ import { FaTimes } from 'react-icons/fa';
 import AuthContext from '../../../contexts/AuthContext';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
+import BackButton from '../BackButton/BackButton';
 
 interface Props {
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
@@ -117,6 +118,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
           <InfoText message={infoTextMessage} />
         ) : (
           <form onSubmit={handleSubmit}>
+            <BackButton />
             <h1 className="manage_tags_heading">Registered tags</h1>
             <div className="create-article-tag-list">
               <ul>
