@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import AuthContext from '../../../contexts/AuthContext';
+import FilterContext from '../../../contexts/FilterContext';
 import { fetchArticleList } from '../../../helpers/FetchArticleList';
 import { IArticle } from '../../../interfaces/Article';
 import { ViewType } from '../../../interfaces/customTypes';
@@ -16,6 +17,7 @@ interface Props {
 
 export default function AllArticles({ setCurrentView }: Props) {
   const { token } = useContext(AuthContext);
+  const { setFilter } = useContext(FilterContext);
   const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -24,6 +26,7 @@ export default function AllArticles({ setCurrentView }: Props) {
     if (token) {
       fetchArticleList('all', token, setFullArticleList, setLoading, setError);
     }
+    setFilter(null);
     setCurrentView('All');
     localStorage.setItem('currentView', 'All');
   }, []);

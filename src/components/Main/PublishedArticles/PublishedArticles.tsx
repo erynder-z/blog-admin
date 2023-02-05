@@ -8,6 +8,7 @@ import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import { ViewType } from '../../../interfaces/customTypes';
+import FilterContext from '../../../contexts/FilterContext';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
@@ -15,6 +16,7 @@ interface Props {
 
 export default function PublishedArticles({ setCurrentView }: Props) {
   const { token } = useContext(AuthContext);
+  const { setFilter } = useContext(FilterContext);
   const [fullArticleList, setFullArticleList] = useState<IArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -23,6 +25,7 @@ export default function PublishedArticles({ setCurrentView }: Props) {
     if (token) {
       fetchArticleList('published', token, setFullArticleList, setLoading, setError);
     }
+    setFilter(null);
     setCurrentView('Published');
     localStorage.setItem('currentView', 'Published');
   }, []);

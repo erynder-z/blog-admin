@@ -1,14 +1,17 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect } from 'react';
 import './ManualPage.css';
 import { FaPen, FaPenAlt, FaTrashAlt, FaRegCommentAlt, FaShapes, FaTimes } from 'react-icons/fa';
 import { ViewType } from '../../../interfaces/customTypes';
+import FilterContext from '../../../contexts/FilterContext';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
 }
 
 export default function ManualPage({ setCurrentView }: Props) {
+  const { setFilter } = useContext(FilterContext);
   useEffect(() => {
+    setFilter(null);
     setCurrentView('Manual');
     localStorage.setItem('currentView', 'Manual');
   }, []);
