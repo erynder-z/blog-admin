@@ -11,10 +11,11 @@ export const filterArticles = (
   if (typeof filter === 'string') {
     // search comes from searchbar
     const filterLower = filter.toLowerCase();
-    filtered = fullArticleList.filter(
-      ({ title, content }) =>
-        title.toLowerCase().includes(filterLower) || content.toLowerCase().includes(filterLower)
-    );
+    filtered = fullArticleList.filter(({ title, content }) => {
+      const titleWords = title.toLowerCase().split(' ');
+      const contentWords = content.toLowerCase().split(' ');
+      return titleWords.includes(filterLower) || contentWords.includes(filterLower);
+    });
   } else if (filter) {
     // search comes from tag
     filtered = fullArticleList.filter(({ tags = [] }) =>
