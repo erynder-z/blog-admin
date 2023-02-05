@@ -137,7 +137,7 @@ export default function EditArticle({ setCurrentView }: Props) {
                   />
                 )}
               </div>
-              <div className="title-container">
+              <div className="edit-article-title-container">
                 <h2>title:</h2>
                 <input
                   type="text"
