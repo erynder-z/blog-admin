@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../contexts/AuthContext';
 import { Blocks } from 'react-loader-spinner';
 import './LoginPage.css';
-import AuthContext from '../../contexts/AuthContext';
 
 export default function LoginPage() {
   const { setToken } = useContext(AuthContext);
@@ -14,7 +14,8 @@ export default function LoginPage() {
     setIsVerifying(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8000/api/login', {
+      const serverURL = import.meta.env.VITE_SERVER_URL;
+      const response = await fetch(`${serverURL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './ManageTagsPage.css';
-import { ITag } from '../../../interfaces/Tag';
-import { useNavigate } from 'react-router-dom';
-import InfoText from '../InfoText/InfoText';
-import { FaTimes } from 'react-icons/fa';
 import AuthContext from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { ITag } from '../../../interfaces/Tag';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
+import InfoText from '../InfoText/InfoText';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import BackButton from '../BackButton/BackButton';
+import { FaTimes } from 'react-icons/fa';
+import './ManageTagsPage.css';
 
 interface Props {
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;

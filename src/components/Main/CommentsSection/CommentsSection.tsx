@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { IComment } from '../../../interfaces/Comment';
 import Comment from './Comment/Comment';
+import NewCommentModal from './NewCommentModal/NewCommentModal';
 import { FaRegCommentAlt } from 'react-icons/fa';
 import './CommentsSection.css';
-import NewCommentModal from './NewCommentModal/NewCommentModal';
 
 interface Props {
   commentList: IComment[];

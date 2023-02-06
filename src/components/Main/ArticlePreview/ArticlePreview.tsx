@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import format from 'date-fns/format';
 import { stripHtml } from 'string-strip-html';
-import './ArticlePreview.css';
 import { IArticle } from '../../../interfaces/Article';
 import { FaArrowRight, FaRegCommentAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import './ArticlePreview.css';
 
 interface Props {
   articleData: IArticle;

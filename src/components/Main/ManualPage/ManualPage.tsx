@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect } from 'react';
-import './ManualPage.css';
-import { FaPen, FaPenAlt, FaTrashAlt, FaRegCommentAlt, FaShapes, FaTimes } from 'react-icons/fa';
 import { ViewType } from '../../../interfaces/customTypes';
 import FilterContext from '../../../contexts/FilterContext';
 import BackButton from '../BackButton/BackButton';
+import { FaPen, FaPenAlt, FaTrashAlt, FaRegCommentAlt, FaShapes, FaTimes } from 'react-icons/fa';
+import './ManualPage.css';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;

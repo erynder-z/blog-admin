@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import './SearchSection.css';
-import { FaAngleLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import FilterContext from '../../../contexts/FilterContext';
+import { FaAngleLeft } from 'react-icons/fa';
+import './SearchSection.css';
 
 export default function SearchSection() {
   const inputRef = useRef<HTMLInputElement>(null);

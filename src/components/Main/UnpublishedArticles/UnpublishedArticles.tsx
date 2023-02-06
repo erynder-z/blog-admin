@@ -1,14 +1,14 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
-import { IArticle } from '../../../interfaces/Article';
-import ArticleItem from '../ArticlePreview/ArticlePreview';
-import './UnpublishedArticles.css';
+import FilterContext from '../../../contexts/FilterContext';
 import AuthContext from '../../../contexts/AuthContext';
+import { IArticle } from '../../../interfaces/Article';
+import { ViewType } from '../../../interfaces/customTypes';
 import { fetchArticleList } from '../../../helpers/FetchArticleList';
+import ArticleItem from '../ArticlePreview/ArticlePreview';
 import NoArticlePage from '../NoArticlePage/NoArticlePage';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import { ViewType } from '../../../interfaces/customTypes';
-import FilterContext from '../../../contexts/FilterContext';
+import './UnpublishedArticles.css';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;

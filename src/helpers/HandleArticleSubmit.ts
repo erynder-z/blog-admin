@@ -6,7 +6,7 @@ export const handleArticleSubmit = async (
   editorRef: React.MutableRefObject<TinyMCEEditor | null>,
   selectedTags: string[],
   isPublished: boolean,
-  successfullSubmit: () => () => void,
+  successfulSubmit: () => () => void,
   failedSubmit: (error: any) => void
 ) => {
   if (token) {
@@ -19,7 +19,8 @@ export const handleArticleSubmit = async (
       isPublished: isPublished
     };
 
-    const response = await fetch('http://localhost:8000/api/articles', {
+    const serverURL = import.meta.env.VITE_SERVER_URL;
+    const response = await fetch(`${serverURL}/api/admin/articles/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ export const handleArticleSubmit = async (
 
     if (response.ok) {
       const data = await response.json();
-      successfullSubmit();
+      successfulSubmit();
     } else {
       console.error(response.statusText);
       failedSubmit(response.statusText);

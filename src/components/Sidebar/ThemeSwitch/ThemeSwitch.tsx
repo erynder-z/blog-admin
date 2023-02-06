@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import './ThemeSwitch.css';
 import ThemeContext from '../../../contexts/ThemeContext';
 import { ThemeType } from '../../../interfaces/customTypes';
+import './ThemeSwitch.css';
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);

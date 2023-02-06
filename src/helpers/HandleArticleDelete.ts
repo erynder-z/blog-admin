@@ -1,11 +1,12 @@
 export const handleArticleDelete = async (
   token: String | null,
   id: String | undefined,
-  successfullSubmit: () => () => void,
+  successfulSubmit: () => () => void,
   failedSubmit: (error: any) => void
 ) => {
   if (token) {
-    const response = await fetch(`http://localhost:8000/api/articles/${id}`, {
+    const serverURL = import.meta.env.VITE_SERVER_URL;
+    const response = await fetch(`${serverURL}/api/admin/articles/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -15,7 +16,7 @@ export const handleArticleDelete = async (
 
     if (response.ok) {
       const data = await response.json();
-      successfullSubmit();
+      successfulSubmit();
     } else {
       console.error(response.statusText);
       failedSubmit(response.statusText);

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FilterContext from '../../../contexts/FilterContext';
-import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { ITag } from '../../../interfaces/Tag';
+import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import './TagSection.css';
 
 interface Props {

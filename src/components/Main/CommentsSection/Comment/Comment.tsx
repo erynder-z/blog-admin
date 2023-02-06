@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
+import AuthContext from '../../../../contexts/AuthContext';
 import { format } from 'date-fns';
 import { IComment } from '../../../../interfaces/Comment';
 import { FaTrashAlt } from 'react-icons/fa';
 import './Comment.css';
-import AuthContext from '../../../../contexts/AuthContext';
 
 interface Props {
   commentData: IComment;
@@ -18,7 +18,8 @@ export default function Comment({ commentData, setRefetchTrigger }: Props) {
     const confirmed = window.confirm('Are you sure you want to delete this comment?');
     if (confirmed) {
       try {
-        const res = await fetch(`http://localhost:8000/api/articles/${_id}/comment`, {
+        const serverURL = import.meta.env.VITE_SERVER_URL;
+        const res = await fetch(`${serverURL}/api/admin/articles/${_id}/comment`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`

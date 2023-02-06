@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import CurrentViewContext from '../../contexts/CurrentViewContext';
 import { ViewType } from '../../interfaces/customTypes';
 import './Navbar.css';
 

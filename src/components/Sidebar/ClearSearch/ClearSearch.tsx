@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import './ClearSearch.css';
-import { FaUndoAlt } from 'react-icons/fa';
-import FilterContext from '../../../contexts/FilterContext';
 import { useNavigate } from 'react-router-dom';
+import FilterContext from '../../../contexts/FilterContext';
+import { FaUndoAlt } from 'react-icons/fa';
+import './ClearSearch.css';
 
 export default function ClearSearch() {
   const { setFilter } = useContext(FilterContext);

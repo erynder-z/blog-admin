@@ -6,10 +6,10 @@ import ClearSearch from './ClearSearch/ClearSearch';
 import LogoutSection from './LogoutSection/LogoutSection';
 import ManageTagsSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
-import './Sidebar.css';
 import TagsSection from './TagsSection/TagsSection';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 import UserInfo from './UserInfo/UserInfo';
+import './Sidebar.css';
 
 interface Props {
   refetchTrigger: boolean;

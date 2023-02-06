@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import './UserInfo.css';
 import AuthContext from '../../../contexts/AuthContext';
+import './UserInfo.css';
 
 export default function UserInfo() {
   const { user } = useContext(AuthContext);

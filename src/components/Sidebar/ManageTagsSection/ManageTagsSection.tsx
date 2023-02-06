@@ -1,7 +1,7 @@
 import React from 'react';
-import './ManageTagsSection.css';
-import { FaShapes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaShapes } from 'react-icons/fa';
+import './ManageTagsSection.css';
 
 export default function ManageTagsSection() {
   return (

@@ -1,24 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import './App.css';
+import AuthContext from './contexts/AuthContext';
+import ThemeContext from './contexts/ThemeContext';
+import { ViewType } from './interfaces/customTypes';
 import AllArticles from './components/Main/AllArticles/AllArticles';
 import ArticlePage from './components/Main/ArticlePage/ArticlePage';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import { FaAngleDoubleUp } from 'react-icons/fa';
 import AddArticlePage from './components/Main/AddArticlePage/AddArticlePage';
 import ManageTagsPage from './components/Main/ManageTagsPage/ManageTagsPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import UnpublishedArticles from './components/Main/UnpublishedArticles/UnpublishedArticles';
 import PublishedArticles from './components/Main/PublishedArticles/PublishedArticles';
-import AuthContext from './contexts/AuthContext';
 import EditArticle from './components/Main/EditArticle/EditArticle';
 import NotFoundPage from './components/Main/NotFoundPage/NotFoundPage';
 import ConfirmArticleDelete from './components/Main/ConfirmArticleDelete/ConfirmArticleDelete';
 import ManualPage from './components/Main/ManualPage/ManualPage';
-import ThemeContext from './contexts/ThemeContext';
 import SearchResults from './components/Main/SearchResults/SearchResults';
-import { ViewType } from './interfaces/customTypes';
+import { FaAngleDoubleUp } from 'react-icons/fa';
+import './App.css';
 
 type ProtectedRouteProps = {
   user: any;

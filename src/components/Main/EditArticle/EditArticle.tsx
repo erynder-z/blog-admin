@@ -1,29 +1,20 @@
-import React, {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchArticleContent } from '../../../helpers/FetchArticleContent';
-import { fetchTagListData } from '../../../helpers/FetchTagListData';
+import AuthContext from '../../../contexts/AuthContext';
 import { IArticle } from '../../../interfaces/Article';
 import { ITag } from '../../../interfaces/Tag';
-import InfoText from '../InfoText/InfoText';
-import { Editor as TinyMCEEditor } from 'tinymce';
-import { decode } from 'html-entities';
-import './EditArticle.css';
-import AuthContext from '../../../contexts/AuthContext';
+import { ViewType } from '../../../interfaces/customTypes';
+import { fetchArticleContent } from '../../../helpers/FetchArticleContent';
+import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { handleArticleUpdate } from '../../../helpers/HandleArticleUpdate';
+import InfoText from '../InfoText/InfoText';
+import { decode } from 'html-entities';
+import { Editor as TinyMCEEditor } from 'tinymce';
 import { Tags } from './DisplayTagsEdit/DisplayTagsEdit';
 import ContentEditor from '../ContentEditor/ContentEditor';
-import CurrentViewContext from '../../../contexts/CurrentViewContext';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
-import { ViewType } from '../../../interfaces/customTypes';
 import BackButton from '../BackButton/BackButton';
+import './EditArticle.css';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;

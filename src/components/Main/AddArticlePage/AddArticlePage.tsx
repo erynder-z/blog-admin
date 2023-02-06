@@ -7,19 +7,20 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { Editor as TinyMCEEditor } from 'tinymce';
-import './AddArticlePage.css';
-import { ITag } from '../../../interfaces/Tag';
+
 import { useNavigate } from 'react-router-dom';
-import InfoText from '../InfoText/InfoText';
+import { ITag } from '../../../interfaces/Tag';
+import { ViewType } from '../../../interfaces/customTypes';
 import AuthContext from '../../../contexts/AuthContext';
+import { Editor as TinyMCEEditor } from 'tinymce';
 import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import { handleArticleSubmit } from '../../../helpers/HandleArticleSubmit';
-import ContentEditor from '../ContentEditor/ContentEditor';
 import { Tags } from './DisplayTagsAdd/DisplayTagsAdd';
+import InfoText from '../InfoText/InfoText';
+import ContentEditor from '../ContentEditor/ContentEditor';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
-import { ViewType } from '../../../interfaces/customTypes';
 import BackButton from '../BackButton/BackButton';
+import './AddArticlePage.css';
 
 interface Props {
   setCurrentView: Dispatch<SetStateAction<ViewType | null>>;
