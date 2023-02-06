@@ -7,14 +7,16 @@
   --sidebar: #001c30;
   --card_background: #f6f6f6;
   --tag_background: #cd3c00;
+  --hover: #c6e0ff;
   --button: #003b5e;
   --button_hover: #005180;
   --button_danger: #800040;
   --button_danger_hover: #99024e;
-  --hover: #c6e0ff;
   --highlight: #d2008f;
   --searchbar: rgba(246, 246, 246, 0.1);
   --searchbar_focus: rgba(246, 246, 246, 0.2);
+  --link: #008fdb;
+  --link_hover: #006195;
 }
 
 .Matte {
@@ -24,16 +26,18 @@
   --text_3: #d3c680;
   --nav: #44475a;
   --sidebar: #44475a;
-  --card_background: #44475a;
+  --card_background: #4d5066;
   --tag_background: #846560;
+  --hover: #777798;
   --button: #555673;
   --button_hover: #616285;
   --button_danger: #68829f;
   --button_danger_hover: #bb928b;
-  --hover: #777798;
   --highlight: #866c83;
   --searchbar: rgba(189, 195, 199, 0.1);
   --searchbar_focus: rgba(189, 195, 199, 0.2);
+  --link: #72c2c3;
+  --link_hover: #519d9e;
 }
 
 .Dark {
@@ -43,16 +47,18 @@
   --text_3: #6a8799;
   --nav: #1d1f21;
   --sidebar: #1d1f21;
-  --card_background: #1d1f21;
+  --card_background: hsl(210, 6%, 15%);
   --tag_background: #48513b;
+  --hover: #50272c;
   --button: #292d3e;
   --button_hover: #353b56;
   --button_danger: #97522c;
   --button_danger_hover: #be100e;
-  --hover: #50272c;
   --highlight: #ac6d74;
   --searchbar: rgba(202, 206, 216, 0.1);
   --searchbar_focus: rgba(202, 206, 216, 0.2);
+  --link: #72c373;
+  --link_hover: #2bde2e;
 }
 
 .Bright {
@@ -64,14 +70,16 @@
   --sidebar: #f4f4f4;
   --card_background: #ffffff;
   --tag_background: #f7d4cf;
+  --hover: #f1d007;
   --button: #f8eec7;
   --button_hover: #decf92;
   --button_danger: #fb7661;
   --button_danger_hover: rgb(255, 91, 88);
-  --hover: #f1d007;
   --highlight: #f1d007;
   --searchbar: rgba(62, 62, 62, 0.1);
   --searchbar_focus: rgba(62, 62, 62, 0.2);
+  --link: #db2d20;
+  --link_hover: #7a0d06;
 }
 
 .Chameleon {
@@ -91,12 +99,12 @@
   --highlight: #689d69;
   --searchbar: rgba(106, 106, 106, 0.3);
   --searchbar_focus: rgba(106, 106, 106, 0.6);
+  --link: #458587;
+  --link_hover: #4aaeb1;
 }
 
 body {
   margin: 0;
-  /* display: flex;
-  place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--background_1);
@@ -135,11 +143,11 @@ button:focus-visible {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--link);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--link_hover);
 }
 
 form {
@@ -282,12 +290,18 @@ textarea:focus {
 
   .sidebar_toggle {
     display: block;
-    height: 5rem;
+    height: 3rem;
+    padding: 1rem;
     color: var(--tag_background);
+    background-image: radial-gradient(circle at center, var(--text_3) 0%, rgba(0, 0, 0, 0) 66%);
+    border-radius: 50%;
     position: fixed;
     top: 87%;
-    right: 50%;
-    z-index: 20;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
     transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 

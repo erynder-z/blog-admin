@@ -41,12 +41,15 @@
 }
 
 .reading_time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.8rem;
   font-size: 0.8em;
   color: var(--text_3);
   text-align: right;
   margin: 1em 0;
 }
-
 .article-content {
   font-size: 0.8em;
 }
