@@ -99,7 +99,7 @@ export default function ManualPage({ setCurrentView }: Props) {
 
       <h2 className="manual_paragraph-heading">Changing the theme:</h2>
       <ol>
-        <li>Click the "Theme" button to toggle between four different color themes.</li>
+        <li>Click the "Theme" button to toggle between five different color themes.</li>
         <li>Your choice will be saved.</li>
       </ol>
       <BackButton />
