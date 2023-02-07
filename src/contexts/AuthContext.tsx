@@ -43,7 +43,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/check-token', {
+        const serverURL = import.meta.env.VITE_SERVER_URL;
+        const response = await fetch(`${serverURL}/api/check-token`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
