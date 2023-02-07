@@ -63,7 +63,7 @@ export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCE
           { text: 'C++', value: 'cpp' }
         ],
         codesample_highlight: true,
-        pre_process: (editor, el) => {
+        pre_process: (editor: TinyMCEEditor, el: HTMLElement) => {
           Prism.highlightAllUnder(el);
         },
         file_picker_callback: (cb, value, meta) => {
@@ -77,7 +77,7 @@ export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCE
           const handleFileSelected =
             (cb: (value: string, meta?: Record<string, any> | undefined) => void) =>
             (event: Event) => {
-              if (event.target && event.target.files) {
+              if (event.target instanceof HTMLInputElement && event.target.files) {
                 const file = event.target?.files[0];
                 const reader = new FileReader();
                 reader.onload = handleFileRead(cb, file);
@@ -90,13 +90,15 @@ export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCE
             (event: ProgressEvent<FileReader>) => {
               if (event.target) {
                 const base64 = (event.target.result as string)?.split(',')[1];
-
+                // @ts-ignore
                 const blobCache = tinymce.activeEditor?.editorUpload.blobCache;
                 const id = createBlobId();
-                const blobInfo = blobCache.create(id, file, base64);
+                if (blobCache) {
+                  const blobInfo = blobCache.create(id, file, base64);
 
-                blobCache.add(blobInfo);
-                cb(blobInfo.blobUri(), { title: file.name });
+                  blobCache.add(blobInfo);
+                  cb(blobInfo.blobUri(), { title: file.name });
+                }
               }
             };
 

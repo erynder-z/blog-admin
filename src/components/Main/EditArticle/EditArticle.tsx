@@ -116,9 +116,7 @@ export default function EditArticle({ setCurrentView }: Props) {
           article && (
             <form onSubmit={handleSubmit}>
               <BackButton />
-              <h1 className="edit-article_heading" aria-level="1">
-                Edit article
-              </h1>
+              <h1 className="edit-article_heading">Edit article</h1>
               <div className="tags-container">
                 <label htmlFor="tags">Tags</label>
                 {tagList && (
