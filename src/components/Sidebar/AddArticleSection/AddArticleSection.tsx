@@ -6,7 +6,7 @@ import './AddArticleSection.css';
 export default function AddArticleSection() {
   return (
     <div className="add_article-container">
-      <Link to="/add_article" className="addArticleBtn" aria-label="Add Article">
+      <Link to="/code-blog-admin/add_article" className="addArticleBtn" aria-label="Add Article">
         Add article <FaPen />
       </Link>
     </div>

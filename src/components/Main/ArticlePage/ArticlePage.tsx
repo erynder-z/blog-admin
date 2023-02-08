@@ -99,10 +99,12 @@ export default function ArticlePage({ setCurrentView }: Props) {
         </article>
         <BackButton />
         <div className="article_options_container">
-          <Link to={`/edit_article/${id}`} className="edit_article-button">
+          <Link to={`/code-blog-admin/edit_article/${id}`} className="edit_article-button">
             Edit article <FaPenAlt />
           </Link>
-          <Link to={`/confirm_article_delete/${id}`} className="delete_article-button">
+          <Link
+            to={`/code-blog-admin/confirm_article_delete/${id}`}
+            className="delete_article-button">
             Delete article <FaTrashAlt />
           </Link>
         </div>

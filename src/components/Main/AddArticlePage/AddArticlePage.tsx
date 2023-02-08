@@ -64,7 +64,7 @@ export default function AddArticlePage({ setCurrentView }: Props) {
     setInfoTextMessage('Article submit successful!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
-      navigate('/all');
+      navigate('/code-blog-admin/all');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
@@ -111,7 +111,6 @@ export default function AddArticlePage({ setCurrentView }: Props) {
             <div className="add-article-title-container">
               <h2>Title:</h2>
               <input type="text" name="title" id="title" aria-describedby="title-desc" />
-              <p id="title-desc">Enter the title of the article here</p>
             </div>
             <div className="editor-container">
               <h2>Content:</h2>

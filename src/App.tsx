@@ -64,36 +64,54 @@ function App() {
         <main>
           <Routes>
             <Route element={<ProtectedRoute user={user} />}>
-              <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path="/all" element={<AllArticles setCurrentView={setCurrentView} />} />
               <Route
-                path="/article/:id"
+                path="/code-blog-admin/"
+                element={<Navigate replace to="/code-blog-admin/all" />}
+              />
+              <Route
+                path="/code-blog-admin/all"
+                element={<AllArticles setCurrentView={setCurrentView} />}
+              />
+              <Route
+                path="/code-blog-admin/article/:id"
                 element={<ArticlePage setCurrentView={setCurrentView} />}
               />
               <Route
-                path="/add_article"
+                path="/code-blog-admin/add_article"
                 element={<AddArticlePage setCurrentView={setCurrentView} />}
               />
               <Route
-                path="/edit_article/:id"
+                path="/code-blog-admin/edit_article/:id"
                 element={<EditArticle setCurrentView={setCurrentView} />}
               />
-              <Route path="/confirm_article_delete/:id" element={<ConfirmArticleDelete />} />
               <Route
-                path="/manage_tags"
+                path="/code-blog-admin/confirm_article_delete/:id"
+                element={<ConfirmArticleDelete />}
+              />
+              <Route
+                path="/code-blog-admin/manage_tags"
                 element={<ManageTagsPage setRefetchTrigger={setRefetchTrigger} />}
               />
               <Route
-                path="/published"
+                path="/code-blog-admin/published"
                 element={<PublishedArticles setCurrentView={setCurrentView} />}
               />
               <Route
-                path="/unpublished"
+                path="/code-blog-admin/unpublished"
                 element={<UnpublishedArticles setCurrentView={setCurrentView} />}
               />
-              <Route path="/howto" element={<ManualPage setCurrentView={setCurrentView} />} />
-              <Route path="/search" element={<SearchResults setCurrentView={setCurrentView} />} />
-              <Route path="*" element={<NotFoundPage setCurrentView={setCurrentView} />} />
+              <Route
+                path="/code-blog-admin/howto"
+                element={<ManualPage setCurrentView={setCurrentView} />}
+              />
+              <Route
+                path="/code-blog-admin/search"
+                element={<SearchResults setCurrentView={setCurrentView} />}
+              />
+              <Route
+                path="/code-blog-admin/*"
+                element={<NotFoundPage setCurrentView={setCurrentView} />}
+              />
             </Route>
           </Routes>
         </main>

@@ -46,7 +46,7 @@ export default function LoginPage() {
     try {
       await login(username, password);
     } catch (error) {
-      navigate('/login');
+      navigate('/code-blog-admin/login');
     }
   };
 

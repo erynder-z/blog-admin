@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
-  max-height: calc(100vh / 2);
+  max-height: calc(100vh / 4);
   gap: 1rem;
   padding: 1rem 2px;
 }

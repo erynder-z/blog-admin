@@ -6,7 +6,7 @@ import './ManageTagsSection.css';
 export default function ManageTagsSection() {
   return (
     <div className="manage_tags_side-container">
-      <Link to="/manage_tags" className="addTagBtn">
+      <Link to="/code-blog-admin/manage_tags" className="addTagBtn">
         Manage tags <FaShapes />
       </Link>
     </div>

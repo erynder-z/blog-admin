@@ -26,7 +26,7 @@ export default function ConfirmArticleDelete() {
     setInfoTextMessage('Article successfully deleted!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
-      navigate('/all');
+      navigate('/code-blog-admin/all');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };

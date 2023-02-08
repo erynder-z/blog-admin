@@ -1,6 +1,8 @@
 .sidebar {
+  box-sizing: border-box;
   position: relative;
   height: 100%;
+  max-height: 100vh;
   background-color: var(--sidebar);
   padding: 3em 3em 3em 0;
   margin: auto;
@@ -10,5 +12,6 @@
   .sidebar {
     padding: 1rem;
     min-height: 100vh;
+    overflow-y: auto;
   }
 }

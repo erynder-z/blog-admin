@@ -14,7 +14,7 @@ export default function Navbar({ currentView }: Props) {
       <ul className="nav-list">
         <li className="nav-list-item">
           <Link
-            to="/all"
+            to="/code-blog-admin/all"
             className={`${currentView === 'All' ? 'active' : ''}`}
             aria-current={currentView === 'All' ? 'page' : undefined}>
             All
@@ -22,7 +22,7 @@ export default function Navbar({ currentView }: Props) {
         </li>
         <li className="nav-list-item">
           <Link
-            to="/published"
+            to="/code-blog-admin/published"
             className={`${currentView === 'Published' ? 'active' : ''}`}
             aria-current={currentView === 'Published' ? 'page' : undefined}>
             Published articles
@@ -30,7 +30,7 @@ export default function Navbar({ currentView }: Props) {
         </li>
         <li className="nav-list-item">
           <Link
-            to="/unpublished"
+            to="/code-blog-admin/unpublished"
             className={`${currentView === 'Unpublished' ? 'active' : ''}`}
             aria-current={currentView === 'Unpublished' ? 'page' : undefined}>
             Unpublished articles
@@ -38,7 +38,7 @@ export default function Navbar({ currentView }: Props) {
         </li>
         <li className="nav-list-item">
           <Link
-            to="/howto"
+            to="/code-blog-admin/howto"
             className={`${currentView === 'Manual' ? 'active' : ''}`}
             aria-current={currentView === 'Manual' ? 'page' : undefined}>
             Manual

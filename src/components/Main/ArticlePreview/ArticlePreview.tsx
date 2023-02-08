@@ -21,7 +21,7 @@ export default function ArticlePreview({ articleData }: Props) {
   };
 
   return (
-    <Link to={`/article/${_id}`} className="article" aria-label={title}>
+    <Link to={`/code-blog-admin/article/${_id}`} className="article" aria-label={title}>
       <div className="article-top">
         <div className="article-head">
           <div className="timestamp">{format(new Date(timestamp), 'EEEE, dd. MMMM yyyy')}</div>

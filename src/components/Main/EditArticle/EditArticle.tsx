@@ -53,17 +53,17 @@ export default function EditArticle({ setCurrentView }: Props) {
         editorRef,
         selectedTags,
         articleComments,
-        successfullSubmit,
+        successfulSubmit,
         failedSubmit
       );
     }
   };
 
-  const successfullSubmit = () => {
+  const successfulSubmit = () => {
     setInfoTextMessage('Article updated successfully!!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
-      navigate('/all');
+      navigate('/code-blog-admin/all');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
