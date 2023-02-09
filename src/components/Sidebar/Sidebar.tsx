@@ -8,7 +8,6 @@ import ManageTagsSection from './ManageTagsSection/ManageTagsSection';
 import SearchSection from './SearchSection/SearchSection';
 import TagsSection from './TagsSection/TagsSection';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
-import UserInfo from './UserInfo/UserInfo';
 import './Sidebar.css';
 
 interface Props {
@@ -21,7 +20,6 @@ export default function Sidebar({ refetchTrigger, setCurrentView }: Props) {
   return (
     <div className="sidebar">
       <section className="sidebar-section">
-        <UserInfo />
         <SearchSection />
         <TagsSection refetchTrigger={refetchTrigger} />
       </section>

@@ -1,7 +1,6 @@
 .userinfo-container {
   max-width: 18rem;
-  border-bottom: solid 2px var(--text_3);
-  margin-bottom: 2rem;
+  border-bottom: solid 2px var(--highlight);
   font-size: 0.6em;
   overflow: hidden;
   white-space: nowrap;

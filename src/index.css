@@ -28,6 +28,6 @@ html::-webkit-scrollbar-thumb {
 }
 
 ::selection {
-  color: var(--text_1);
-  background: var(--highlight);
+  color: #f4f4f4;
+  background: #d2008f;
 }

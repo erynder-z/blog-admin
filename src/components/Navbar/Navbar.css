@@ -5,6 +5,12 @@
   border-radius: 4px;
 }
 
+.nav_upper-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .nav-title {
   display: flex;
   align-items: center;
@@ -72,6 +78,10 @@
 @media (max-width: 800px) {
   .navbar {
     padding: 0.5em;
+  }
+
+  .nav_upper-container {
+    flex-direction: column;
   }
 
   .nav-title {

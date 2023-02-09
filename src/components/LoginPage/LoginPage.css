@@ -49,6 +49,11 @@ input[name='password'] + label {
   top: 0.4em;
 }
 
+input[name='username']:focus,
+input[name='password']:focus {
+  outline: solid 2px #d2008f;
+}
+
 input[name='username']:focus + label,
 input[name='password']:focus + label,
 input[name='username']:not(:focus):valid ~ label,
