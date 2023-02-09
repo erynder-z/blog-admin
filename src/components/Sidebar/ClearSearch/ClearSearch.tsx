@@ -9,7 +9,7 @@ export default function ClearSearch() {
   const navigate = useNavigate();
   const handleClearSearch = () => {
     setFilter(null);
-    navigate('/code-blog-admin/all');
+    navigate('/all');
   };
 
   return (

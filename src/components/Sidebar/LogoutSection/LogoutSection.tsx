@@ -12,7 +12,7 @@ export default function LogoutSection() {
     window.localStorage.clear();
     setToken(null);
     setUser(null);
-    navigate('/code-blog-admin/');
+    navigate('/');
   };
 
   return (

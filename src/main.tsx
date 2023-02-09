@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <AuthContextProvider>
         <ThemeContextProvider>
           <FilterContextProvider>
@@ -17,6 +17,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           </FilterContextProvider>
         </ThemeContextProvider>
       </AuthContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );

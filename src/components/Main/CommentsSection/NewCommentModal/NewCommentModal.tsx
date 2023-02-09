@@ -27,7 +27,8 @@ export default function NewCommentModal({ showModal, closeModal, setRefetchTrigg
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/articles/${id}/comment`, {
+      const serverURL = import.meta.env.VITE_SERVER_URL;
+      const response = await fetch(`${serverURL}/api/articles/${id}/comment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

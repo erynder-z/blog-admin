@@ -13,7 +13,7 @@ export default function SearchSection() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFilter(inputRef.current!.value);
-    navigate('/code-blog-admin/search');
+    navigate('/search');
   };
 
   useEffect(() => {

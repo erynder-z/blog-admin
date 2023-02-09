@@ -81,7 +81,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
     setInfoTextMessage('Tags updated');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
-      navigate('/code-blog-admin/all');
+      navigate('/all');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
@@ -90,7 +90,7 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
     setInfoTextMessage('Something went wrong!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
-      navigate('/code-blog-admin/all');
+      navigate('/all');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };

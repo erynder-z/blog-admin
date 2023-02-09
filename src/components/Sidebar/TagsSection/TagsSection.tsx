@@ -18,7 +18,7 @@ export default function TagsSection({ refetchTrigger }: Props) {
 
   const handleTagClick = (tag: ITag) => {
     if (tag !== filter) {
-      navigate('/code-blog-admin/search');
+      navigate('/search');
     } else {
       setFilter(null);
       navigate(-1);
