@@ -64,7 +64,7 @@ export default function AddArticlePage({ setCurrentView }: Props) {
     setInfoTextMessage('Article submit successful!');
     setShowInfoText(true);
     const timeoutId = setTimeout(() => {
-      navigate('/code-blog-admin/all');
+      navigate('/all');
     }, 3000);
     return () => clearTimeout(timeoutId);
   };
