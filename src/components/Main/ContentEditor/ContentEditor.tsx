@@ -1,8 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ThemeContext from '../../../contexts/ThemeContext';
 import { Editor } from '@tinymce/tinymce-react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import Prism from 'prismjs';
+import { fetchApiKey } from '../../../helpers/FetchAPIKey';
+import AuthContext from '../../../contexts/AuthContext';
+import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 
 interface ITinyMCEEditorProps {
   setEditorRef: (editor: TinyMCEEditor) => void;
@@ -10,10 +13,21 @@ interface ITinyMCEEditorProps {
 }
 
 export default function ContentEditor({ setEditorRef, decodedContent }: ITinyMCEEditorProps) {
+  const [apiKey, setApiKey] = useState<string | undefined>(undefined);
   const { theme } = useContext(ThemeContext);
+  const { token } = useContext(AuthContext);
+
+  useEffect(() => {
+    fetchApiKey(token, setApiKey);
+  }, []);
+
+  if (!apiKey) {
+    return <ArticleFetchingAnimation />;
+  }
+
   return (
     <Editor
-      apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
+      apiKey={apiKey}
       onInit={(_evt, editor: TinyMCEEditor) => {
         setEditorRef(editor);
       }}
