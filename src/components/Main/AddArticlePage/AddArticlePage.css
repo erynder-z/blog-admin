@@ -34,6 +34,10 @@
   all: unset;
 }
 
+.title_heading {
+  margin-top: 0;
+}
+
 .create-article-publish-options {
   margin: 1em 0;
 }

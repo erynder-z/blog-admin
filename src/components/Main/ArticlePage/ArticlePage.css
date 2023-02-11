@@ -54,25 +54,6 @@
   font-size: 0.8em;
 }
 
-.backBtn {
-  all: unset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  color: var(--text_1);
-  cursor: pointer;
-}
-
-.backBtn:hover {
-  background: none;
-  color: var(--highlight);
-}
-
-.backBtn:focus {
-  outline: none;
-}
-
 .article_options_container {
   width: 100%;
   display: flex;

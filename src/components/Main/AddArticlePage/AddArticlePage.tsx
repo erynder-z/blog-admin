@@ -109,7 +109,7 @@ export default function AddArticlePage({ setCurrentView }: Props) {
               />
             </div>
             <div className="add-article-title-container">
-              <h2>Title:</h2>
+              <h2 className="title_heading">Title:</h2>
               <input type="text" name="title" id="title" aria-describedby="title-desc" />
             </div>
             <div className="editor-container">
