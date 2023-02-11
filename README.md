@@ -2,10 +2,6 @@
 
 Code-Blog-Admin is a tool designed to manage the content of your blog. With a user-friendly interface, you can easily create, edit, and delete articles, manage tags, and moderate comments, of your blog. The tool is built with React and TypeScript and is powered by a self-coded RESTful blog API written in Express.
 
-## Live
-
-[https://erynder-z.github.io/code-blog-admin/](https://erynder-z.github.io/code-blog-admin/)
-
 ## Features
 
 - Creating, editing and deleting articles
@@ -13,6 +9,14 @@ Code-Blog-Admin is a tool designed to manage the content of your blog. With a us
 - WYSIWYG editor for content creation
 - Moderating article comments
 - Five different color themes to choose from
+
+## API
+
+The CMS fetches data from a self-coded RESTful blog API. The source code for the API can be found at [https://github.com/erynder-z/code-blog-api](https://github.com/erynder-z/code-blog-api).
+
+## Client
+
+The source code for the blog-client frontend can be found at [https://github.com/erynder-z/code-blog](https://github.com/erynder-z/code-blog).
 
 ## Installation
 
@@ -26,14 +30,6 @@ Code-Blog-Admin is a tool designed to manage the content of your blog. With a us
 1. Create a new author by making a POST request to the API endpoint `/api/signup` with the following data-payload: `username:<your_username>`, `password:<your_passowrd>`, `confirmPassword:<repeat_password>`, `signup_secret:<secret_key_as_defined_by_the_API>`.
 2. Login with the created user credentials.
 3. Check out the "Manual" section for detailed instructions on how to use the CMS.
-
-## API
-
-The CMS fetches data from a self-coded RESTful blog API. The source code for the API can be found at [https://github.com/erynder-z/code-blog-api](https://github.com/erynder-z/code-blog-api).
-
-## Client
-
-The source code for the blog-client frontend can be found at [https://github.com/erynder-z/code-blog](https://github.com/erynder-z/code-blog).
 
 ## Acknowledgments
 
@@ -51,3 +47,10 @@ The source code for the blog-client frontend can be found at [https://github.com
 - [EsLint](https://eslint.org/) - A linter for JavaScript and TypeScript code.
 - [Prettier](https://prettier.io/) - An opinionated code formatter for JavaScript and TypeScript code.
 - [Vite](https://vite.dev/) - A fast build tool for JavaScript and TypeScript projects.
+
+## Screenshots
+
+<img src="src/assets/screenshot_1.png" alt="screenshot"/>
+<img src="src/assets/screenshot_2.png" alt="screenshot"/>
+<img src="src/assets/screenshot_3.png" alt="screenshot"/>
+<img src="src/assets/screenshot_4.png" alt="screenshot"/>
