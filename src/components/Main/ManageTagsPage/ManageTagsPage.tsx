@@ -6,8 +6,9 @@ import { fetchTagListData } from '../../../helpers/FetchTagListData';
 import InfoText from '../InfoText/InfoText';
 import ArticleFetchingAnimation from '../ArticleFetchingAnimation/ArticleFetchingAnimation';
 import BackButton from '../BackButton/BackButton';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaEdit } from 'react-icons/fa';
 import './ManageTagsPage.css';
+import UpdateTagModal from './UpdateTagModal/UpdateTagModal';
 
 interface Props {
   setRefetchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,8 +22,17 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
   const [error, setError] = useState<Error | null>(null);
   const [showInfoText, setShowInfoText] = useState<boolean>(false);
   const [infoTextMessage, setInfoTextMessage] = useState<string | null>(null);
+  const [updateTagId, setUpdateTagId] = useState<string | null>(null);
+  const [updateTagName, setUpdateTagName] = useState<string>('');
+  const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
 
   const serverURL = import.meta.env.VITE_SERVER_URL;
+
+  const handleTagUpdate = (tagId: string, tagName: string) => {
+    setUpdateTagId(tagId);
+    setUpdateTagName(tagName);
+    setShowUpdateModal(true);
+  };
 
   const handleTagDelete = async (tagId: string) => {
     if (window.confirm('Are you sure you want to delete this tag?')) {
@@ -123,10 +133,17 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
             <div className="create-article-tag-list">
               <ul>
                 {tagList?.map((tag) => (
-                  <li key={tag._id} className="registered_tasks-list">
-                    {tag.name} <div className="tag_delete-divider"></div>
-                    <div className="tag_delete-button" onClick={() => handleTagDelete(tag._id)}>
-                      <FaTimes aria-label="Delete tag" color="crimson" />
+                  <li key={tag._id} className="registered_tasks-list-item">
+                    <span>{tag.name}</span> <div className="tag_options-divider"></div>
+                    <div className="options-container">
+                      <div
+                        className="tag_edit-button"
+                        onClick={() => handleTagUpdate(tag._id, tag.name)}>
+                        <FaEdit aria-label="Edit tag" />
+                      </div>
+                      <div className="tag_delete-button" onClick={() => handleTagDelete(tag._id)}>
+                        <FaTimes aria-label="Delete tag" />
+                      </div>
                     </div>
                   </li>
                 ))}
@@ -146,6 +163,19 @@ export default function ManageTagsPage({ setRefetchTrigger }: Props) {
               Submit tag
             </button>
           </form>
+        )}
+        {showUpdateModal && (
+          <UpdateTagModal
+            showUpdateModal={showUpdateModal}
+            updateTagId={updateTagId}
+            setShowUpdateModal={setShowUpdateModal}
+            setUpdateTagId={setUpdateTagId}
+            setUpdateTagName={setUpdateTagName}
+            setRefetchTrigger={setRefetchTrigger}
+            successfulSubmit={successfulSubmit}
+            failedSubmit={failedSubmit}
+            updateTagName={updateTagName}
+          />
         )}
       </div>
     </main>

@@ -36,21 +36,41 @@
   flex-wrap: wrap;
 }
 
-.registered_tasks-list {
+.registered_tasks-list-item {
   display: flex;
   justify-content: center;
   align-items: center;
   border: solid 1px var(--text_3);
   border-radius: 4px;
-  padding-left: 0.25em;
   height: 1.5em;
 }
 
-.tag_delete-divider {
+.registered_tasks-list-item span {
+  padding-left: 1rem;
+}
+
+.tag_options-divider {
   height: 100%;
   width: 1px;
   background-color: var(--text_3);
-  margin-left: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.registered_tasks-list-item .options-container {
+  display: flex;
+  gap: 0.5rem;
+  padding-right: 1rem;
+}
+
+.tag_edit-button {
+  all: unset;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--button_danger);
 }
 
 .tag_delete-button {
@@ -60,10 +80,12 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: var(--button_danger_hover);
 }
 
+.tag_edit-button:hover,
 .tag_delete-button:hover {
-  background-color: #d1e7ff;
+  color: var(--highlight);
 }
 
 .submitTagBtn {
