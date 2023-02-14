@@ -14,11 +14,15 @@
 .nav-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.8em;
-  font-weight: 500;
+  font-weight: 700;
+  gap: 0.1rem;
+}
+
+.nav-title span {
+  color: var(--highlight);
 }
 
 .nav-list {

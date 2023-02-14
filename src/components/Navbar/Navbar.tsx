@@ -12,7 +12,9 @@ export default function Navbar({ currentView }: Props) {
   return (
     <nav aria-label="Main navigation" className="navbar">
       <div className="nav_upper-container">
-        <h1 className="nav-title">./code/blog/admin</h1>
+        <h1 className="nav-title">
+          <span>./</span>code<span>/</span>blog<span>/</span>admin
+        </h1>
         <UserInfo />
       </div>
       <ul className="nav-list">
