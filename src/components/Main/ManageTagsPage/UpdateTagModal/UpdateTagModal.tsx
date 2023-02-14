@@ -31,7 +31,12 @@ export default function UpdateTagModal({
   return (
     <div className={`update_tag_modal-overlay${showUpdateModal ? ' fade-in' : ' fade-out'}`}>
       <div className="update_tag_modal-content">
-        <FaTimes className="closeBtn" onClick={() => setShowUpdateModal(false)} />
+        <button
+          className="closeBtn"
+          onClick={() => setShowUpdateModal(false)}
+          aria-label="close modal">
+          <FaTimes />
+        </button>
         <form
           onSubmit={(event) => {
             handleTagUpdateSubmit(
